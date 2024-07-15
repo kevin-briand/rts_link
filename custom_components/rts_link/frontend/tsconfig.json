@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": [
+      "es2017",
+      "dom",
+      "dom.iterable"
+    ],
+    "experimentalDecorators": true,
+    "useDefineForClassFields": true,
+    "module": "esNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+     "outDir": "./dist/",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true
+  }
+}

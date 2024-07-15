@@ -1,0 +1,15 @@
+{
+  "domain": "rts_link",
+  "name": "RTS Link",
+  "codeowners": ["@kevin-briand"],
+  "config_flow": true,
+  "dependencies": ["http"],
+  "documentation": "https://github.com/kevin-briand/rts_link",
+  "homekit": {},
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/kevin-briand/rts_link/issues",
+  "requirements": [],
+  "ssdp": [],
+  "version": "0.0.0",
+  "zeroconf": []
+}

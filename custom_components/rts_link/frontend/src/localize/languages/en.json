@@ -1,0 +1,44 @@
+{
+  "panel": {
+    "title": "Manage covers",
+    "id": "id",
+    "create": "Create",
+    "name": "Name",
+    "rename": "Rename",
+    "add": "Add shutter",
+    "delete": "Delete",
+    "dialog": {
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "title": {
+        "create": "adding a new shutter",
+        "add": "Add a shutter",
+        "remove": "Remove",
+        "rename": "Rename"
+      },
+      "content": {
+        "create": "You are about to create a new remote control, please follow these steps: <br>{{panel.dialog.step.shutter}}<br>{{panel.dialog.step.add}}",
+        "add": "You are about to add a shutter to an existing remote control, please follow these steps: <br>{{panel.dialog.step.shutter}}<br>{{panel.dialog.step.add}}",
+        "remove": "You are going to delete this remote control, are you sure?"
+      },
+      "step": {
+        "shutter": "- Briefly press the PROG button on the shutter's remote control, the shutter should make a confirmation movement",
+        "add": "- Click the confirm button in the dialog box, the shutter should make a confirmation movement"
+      }
+    },
+    "error": {
+      "create": "Fail to creating cover",
+      "add": "Fail to adding shutter",
+      "rename": "Fail to renaming cover",
+      "remove": "Fail to removing cover",
+      "emptyField": "You should provide the field"
+    },
+    "success": {
+      "create": "Cover successfully added",
+      "add": "Command successfully sent",
+      "rename": "Cover successfully renamed",
+      "remove": "Cover successfully removed"
+    }
+  },
+  "error": "Error"
+}

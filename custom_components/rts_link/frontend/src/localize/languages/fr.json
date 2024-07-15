@@ -1,0 +1,44 @@
+{
+  "panel": {
+    "title": "Contrôle des commandes",
+    "id": "id",
+    "create": "Créer",
+    "name": "Nom",
+    "rename": "Renommer",
+    "add": "Ajouter volet",
+    "delete": "Supprimer",
+    "dialog": {
+      "confirm": "Confirmer",
+      "cancel": "Annuler",
+      "title": {
+        "create": "Ajouter une télécommande",
+        "add": "Ajouter un volet",
+        "remove": "Supprimer",
+        "rename": "Renommer"
+      },
+      "content": {
+        "create": "Vous vous apprêtez à créer une nouvelle télécommande, pour cela veuillez suivre les étapes suivantes : <br>{{panel.dialog.step.shutter}}<br>{{panel.dialog.step.add}}",
+        "add": "Vous vous apprêtez à ajouter un volet sur une télécommande existante, pour cela veuillez suivre les étapes suivantes : <br>{{panel.dialog.step.shutter}}<br>{{panel.dialog.step.add}}",
+        "remove": "Vous allez supprimer cette télécommande, êtes vous sûr ?"
+      },
+      "step": {
+        "shutter": "- Faites un court appuis sur le bouton PROG de la télécommande du volet, le volet doit faire un mouvement de confirmation",
+        "add": "- Cliquez sur le bouton confirmer de la boite de dialogue, le volet doit effectuer un mouvement de confirmation"
+      }
+    },
+    "error": {
+      "create": "Ajout de la télécommande échoué",
+      "add": "Ajout du volet échoué",
+      "rename": "Renommage de la télécommande échoué",
+      "remove": "Suppression de la télécommande échoué",
+      "emptyField": "Vous devez remplir le champ"
+    },
+    "success": {
+      "create": "Télécommande ajoutée",
+      "add": "Commande envoyée",
+      "rename": "Télécommande renommée",
+      "remove": "Télécommande supprimée"
+    }
+  },
+  "error": "Erreur"
+}
