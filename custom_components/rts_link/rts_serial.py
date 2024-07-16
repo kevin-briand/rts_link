@@ -20,7 +20,7 @@ class RTSSerial(threading.Thread):
 
     def start_serial(self) -> bool:
         try:
-            self.ser = serial.Serial(self.port, 57600, timeout=3)
+            self.ser = serial.Serial(self.port, 115200, timeout=3)
             result = self.read()
             _LOGGER.info(result)
             return 'Somfy RTS link' in result
