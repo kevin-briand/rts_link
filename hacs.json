@@ -1,6 +1,7 @@
 {
-  "name": "rts_link",
+  "name": "RTS Link",
   "render_readme": true,
   "zip_release": true,
-  "filename": "rts_link.zip"
+  "filename": "rts_link.zip",
+  "homeassistant": "2024.7.0"
 }

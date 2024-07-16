@@ -21,7 +21,7 @@ async def async_register_panel(hass: HomeAssistant):
         frontend_url_path=DOMAIN,
         module_url='/api/panel_custom/rts-link',
         sidebar_title='RTS Link',
-        sidebar_icon='mdi:radiator',
+        sidebar_icon='mdi:antenna',
         require_admin=True,
         config={},
         config_panel_domain=DOMAIN,
