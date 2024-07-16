@@ -63,24 +63,24 @@ class ShutterEntity(CoverEntity):
         self._attr_name = name
         self.id = rts_id
         self._attr_device_class = CoverDeviceClass.SHUTTER
-        self._attr_is_closed = True
+        self._attr_current_cover_position = 50
         self._attr_supported_features = CoverEntityFeature.OPEN | CoverEntityFeature.CLOSE | CoverEntityFeature.STOP
         self.hass = hass
 
     async def async_open_cover(self, **kwargs):
         """Open the cover."""
         self.move_cover(Command.UP)
-        self._attr_is_closed = False
+        self._attr_current_cover_position = 100
 
     async def async_close_cover(self, **kwargs):
         """Close cover."""
         self.move_cover(Command.DOWN)
-        self._attr_is_closed = True
+        self._attr_current_cover_position = 50
 
     async def async_stop_cover(self, **kwargs):
         """Stop the cover."""
         self.move_cover(Command.STOP)
-        self._attr_is_closed = False
+        self._attr_current_cover_position = 0
 
     def move_cover(self, command: Command):
         rts_api = self.hass.data[DOMAIN][RTS_API]

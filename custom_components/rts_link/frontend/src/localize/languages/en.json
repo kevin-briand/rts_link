@@ -22,7 +22,7 @@
         "remove": "You are going to delete this remote control, are you sure?"
       },
       "step": {
-        "shutter": "- Briefly press the PROG button on the shutter's remote control, the shutter should make a confirmation movement",
+        "shutter": "- Press the PROG button on the shutter's remote control for 3 seconds, the shutter should make a confirmation movement",
         "add": "- Click the confirm button in the dialog box, the shutter should make a confirmation movement"
       }
     },

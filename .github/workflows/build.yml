@@ -15,10 +15,17 @@ jobs:
         id: version
         uses: home-assistant/actions/helpers/version@master
 
+      - name: build panel
+        run: |
+          sed -i 's/0.0.0/${{ steps.version.outputs.version }}/' custom_components/rts_link/frontend/src/panel/consts.ts
+          cd custom_components/rts_link/frontend/
+          npm install
+          npm run build
+          cd ../../../
+
       - name: Patch manifest and zip
         run: |
           sed -i 's/0.0.0/${{ steps.version.outputs.version }}/' custom_components/rts_link/manifest.json
-          sed -i 's/0.0.0/${{ steps.version.outputs.version }}/' custom_components/rts_link/frontend/src/panel/consts.ts
           
           cd custom_components/rts_link/
           zip -r ../../rts_link.zip ./* -x '.*'

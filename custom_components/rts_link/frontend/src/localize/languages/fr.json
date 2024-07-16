@@ -22,7 +22,7 @@
         "remove": "Vous allez supprimer cette télécommande, êtes vous sûr ?"
       },
       "step": {
-        "shutter": "- Faites un court appuis sur le bouton PROG de la télécommande du volet, le volet doit faire un mouvement de confirmation",
+        "shutter": "- Faites un appuis de 3s sur le bouton PROG de la télécommande du volet, le volet doit faire un mouvement de confirmation",
         "add": "- Cliquez sur le bouton confirmer de la boite de dialogue, le volet doit effectuer un mouvement de confirmation"
       }
     },
