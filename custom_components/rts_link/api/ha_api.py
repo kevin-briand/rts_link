@@ -43,7 +43,7 @@ class RTSLinkAddShutterView(HomeAssistantView):
     async def post(self, request, data):
         hass = request.app["hass"]
         rts_api: RTSLinkApi = hass.data[DOMAIN][RTS_API]
-        result = rts_api.add_shutter_to_existing_cover(int(data['id']))
+        result = await rts_api.add_shutter_to_existing_cover(int(data['id']))
         return self.json({"success": result})
 
 

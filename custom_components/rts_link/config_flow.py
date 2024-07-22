@@ -25,7 +25,7 @@ async def validate_input(hass: HomeAssistant, data: dict) -> dict[str, Any]:
     """
 
     ser = RTSLinkApi(hass, data['USB'])
-    if not ser.is_accessible():
+    if not await ser.is_accessible():
         raise CannotConnect()
 
     loop = asyncio.get_running_loop()
@@ -65,7 +65,6 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         if len(usb_found) == 0:
             return 'No USB found'
 
-
         errors = {}
         if user_input is not None:
             try:
@@ -77,7 +76,6 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 _LOGGER.exception("Unexpected exception")
                 errors["base"] = "unknown"
 
-        # If there is no user input or there were errors, show the form again, including any errors that were found with the input.
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema({vol.Required('USB', default=usb_found[0]): vol.In(usb_found)}),

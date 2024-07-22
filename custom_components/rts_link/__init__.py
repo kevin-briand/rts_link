@@ -18,14 +18,14 @@ _LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up Hello World from a config entry."""
+    """Set up rts_link from a config entry."""
     tty = await RTSSerial.get_device_tty(entry.data['vid'], entry.data['pid'])
     if not tty:
         return False
 
     rts_api = RTSLinkApi(hass, tty)
     await rts_api.async_init()
-    rts_api.start()
+    await rts_api.start()
     hass.data.setdefault(DOMAIN, {})[RTS_API] = rts_api
 
     await hass.config_entries.async_forward_entry_setups(entry, ['cover'])
@@ -37,9 +37,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
 
 async def async_unload_entry(hass, entry):
-    """Supprimer les entités lors de la désinstallation de l'intégration."""
+    """Unload rts_link entities."""
     serial = hass.data[DOMAIN][RTS_API]
-    serial.stop()
+    await serial.stop()
     await async_unregister_panel(hass)
 
     entities = hass.data[DOMAIN].pop("sensor", [])

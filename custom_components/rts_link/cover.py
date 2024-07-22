@@ -2,7 +2,7 @@
 import logging
 
 from homeassistant import exceptions
-from homeassistant.components.cover import CoverDeviceClass, CoverEntity, CoverEntityFeature
+from homeassistant.components.cover import CoverDeviceClass, CoverEntity
 from homeassistant.core import HomeAssistant
 
 from custom_components.rts_link.command import Command
@@ -63,28 +63,31 @@ class ShutterEntity(CoverEntity):
         self._attr_name = name
         self.id = rts_id
         self._attr_device_class = CoverDeviceClass.SHUTTER
-        self._attr_current_cover_position = 50
-        self._attr_supported_features = CoverEntityFeature.OPEN | CoverEntityFeature.CLOSE | CoverEntityFeature.STOP
+        self._attr_is_closed = None
+        self._attr_current_cover_position = 0
         self.hass = hass
 
     async def async_open_cover(self, **kwargs):
         """Open the cover."""
-        self.move_cover(Command.UP)
+        await self.move_cover(Command.UP)
         self._attr_current_cover_position = 100
+        self._attr_is_closed = False
 
     async def async_close_cover(self, **kwargs):
         """Close cover."""
-        self.move_cover(Command.DOWN)
-        self._attr_current_cover_position = 50
+        await self.move_cover(Command.DOWN)
+        self._attr_current_cover_position = 0
+        self._attr_is_closed = True
 
     async def async_stop_cover(self, **kwargs):
         """Stop the cover."""
-        self.move_cover(Command.STOP)
-        self._attr_current_cover_position = 0
+        await self.move_cover(Command.STOP)
+        self._attr_current_cover_position = 50
+        self._attr_is_closed = False
 
-    def move_cover(self, command: Command):
+    async def move_cover(self, command: Command):
         rts_api = self.hass.data[DOMAIN][RTS_API]
-        if not rts_api.send_command(self.id, command):
+        if not await rts_api.send_command(self.id, command):
             raise ShutterError()
 
     def get_id(self):
@@ -93,3 +96,5 @@ class ShutterEntity(CoverEntity):
 
 class ShutterError(exceptions.HomeAssistantError):
     """Error indicating that the cover cannot be moved."""
+    def __init__(self):
+        super().__init__("The cover cannot be moved.")

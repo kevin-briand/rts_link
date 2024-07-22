@@ -23,6 +23,8 @@ class RTSLinkApi:
         self.hass = hass
         self.store = Store(hass, 1, 'rts-link')
         self.covers = []
+        self.run_task = None
+        self.run_queue = None
 
     async def async_init(self):
         data = await self.store.async_load()
@@ -30,23 +32,25 @@ class RTSLinkApi:
             _LOGGER.info(data)
             self.covers = [Cover(**cover) for cover in data]
 
-    def start(self):
-        self.ser.start_serial()
-        self.ser.start()
+    async def start(self):
+        await self.ser.start_serial()
+        self.run_task = self.hass.loop.create_task(self.ser.run())
 
-    def stop(self):
+    async def stop(self):
         self.ser.stop()
+        if self.run_task:
+            self.run_task.cancel()
+            await self.run_task
 
-    def is_accessible(self):
-        return self.ser.start_serial()
+    async def is_accessible(self):
+        return await self.ser.start_serial()
 
-    def send_command(self, rts_id: int, command) -> bool:
-        return self.ser.write(F'{command.value};{rts_id}\n')
+    async def send_command(self, rts_id: int, command) -> bool:
+        return await self.ser.write(F'{command.value};{rts_id}\n')
 
     async def add_cover(self, name: str) -> bool:
         _LOGGER.info('adding new cover : ' + name)
-        data_id = self.ser.write_prog(F'PROG\n')
-        _LOGGER.info(data_id)
+        data_id = await self.ser.write_prog(F'PROG\n')
         if not data_id:
             return False
         rts_id = int(data_id)
@@ -55,8 +59,8 @@ class RTSLinkApi:
         await self.store.async_save(self.covers)
         return True
 
-    def add_shutter_to_existing_cover(self, rts_id: int) -> bool:
-        data_id = self.ser.write_prog(F'MULTIPROG;{rts_id}\n')
+    async def add_shutter_to_existing_cover(self, rts_id: int) -> bool:
+        data_id = await self.ser.write_prog(F'MULTIPROG;{rts_id}\n')
         if not data_id:
             return False
         data_id = int(data_id)
