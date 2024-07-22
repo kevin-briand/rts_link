@@ -28,7 +28,8 @@ jobs:
           sed -i 's/0.0.0/${{ steps.version.outputs.version }}/' custom_components/rts_link/manifest.json
           
           cd custom_components/rts_link/
-          zip -r ../../rts_link.zip ./* -x '.*'
+          zip -r ../../rts_link.zip . -x ".*" -x "frontend/*"
+          zip -ur ../../rts_link.zip frontend/dist/rts-link-panel.js
       - uses: JasonEtco/upload-to-release@master
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
