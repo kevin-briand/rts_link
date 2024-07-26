@@ -6,10 +6,18 @@ import '../dialog/confirm'
 import { localize } from '../../localize/localize'
 import { style } from '../../style'
 import { CoverDto } from '../websocket/dto/coverDto';
-import { rtsLinkAddShutter, rtsLinkNewCover, rtsLinkRemoveCover, rtsLinkRenameCover } from '../api/ha-api';
+import {
+  rtsLinkAddShutter,
+  rtsLinkChangeTypeCover,
+  rtsLinkNewCover,
+  rtsLinkRemoveCover,
+  rtsLinkRenameCover,
+} from '../api/ha-api';
 import { rtsLinkGetAllCovers } from '../websocket/ha-ws';
 import { RtsLinkCoversTable } from './table_covers';
 import { RtsLinkConfirmDialog } from '../dialog/confirm';
+import { CoverDeviceEnum } from '../api/enum/cover-device-enum';
+import { getEnumValues } from '../common';
 
 @customElement('rts-link-covers-card')
 export class RtsLinkCoversCard extends LitElement {
@@ -45,14 +53,15 @@ export class RtsLinkCoversCard extends LitElement {
     const form = this.shadowRoot?.querySelector('form')
     if (form == null) return
     const name = form.shutterName.value
-    if (!name) {
+    const coverType = form.coverType.value
+    if (!name || !coverType) {
       this.error = localize('panel.error.emptyField', this.hass.language)
       this.requestUpdate()
       return
     }
     this.disableButtons(true)
 
-    void rtsLinkNewCover(this.hass, name).then((data) => {
+    void rtsLinkNewCover(this.hass, name, coverType).then((data) => {
       if (!data.success) {
         this.error = localize("panel.error.create", this.hass.language)
         return
@@ -111,6 +120,21 @@ export class RtsLinkCoversCard extends LitElement {
       .finally(() => this.disableButtons(false))
   }
 
+  handleChangeType (shutter: CoverDto): void {
+    this.disableButtons(true)
+    void rtsLinkChangeTypeCover(this.hass, shutter.id, shutter.cover_type ?? CoverDeviceEnum.SHUTTER)
+      .then((data) => {
+        if (!data.success) {
+          this.error = localize("panel.error.changeType", this.hass.language)
+          return
+        }
+        this.updateCoversData();
+        this.success = localize("panel.success.changeType", this.hass.language)
+      })
+      .catch(() => this.error = localize("panel.error.changeType", this.hass.language))
+      .finally(() => this.disableButtons(false))
+  }
+
   updateCoversData (): void {
     rtsLinkGetAllCovers(this.hass)
       .then((r) => {
@@ -163,8 +187,18 @@ export class RtsLinkCoversCard extends LitElement {
           <div class="content">
             <form>
               <div class="flexRow">
-                <label for="state">${localize('panel.name', this.hass.language)}</label>
+                <label for="shutterName">${localize('panel.name', this.hass.language)}</label>
                 <input type="text" name="shutterName" id="shutterName">
+              </div>
+              <div class="flexRow">
+                <label for="coverType">${localize('panel.type', this.hass.language)}</label>
+                <select name="coverType" id="coverType">
+                  ${getEnumValues(CoverDeviceEnum).map((v) => {
+                    return html`<option value="${v}">${v}</option>`
+                  })}
+                </select>
+              </div>
+              <div class="flexRow">
                 <mwc-button class="button" id="add">
                   ${localize('panel.create', this.hass.language)}
                 </mwc-button>
@@ -175,6 +209,7 @@ export class RtsLinkCoversCard extends LitElement {
               .removeCover="${this.handleDelete.bind(this)}" 
               .addShutter="${this.handleAddShutter.bind(this)}"
               .rename="${this.handleRename.bind(this)}"
+              .changeType="${this.handleChangeType.bind(this)}"
             ></rts-link-covers-table>
           </div>
         </div>

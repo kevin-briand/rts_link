@@ -5,8 +5,10 @@
     "create": "Create",
     "name": "Name",
     "rename": "Rename",
+    "changeType": "Change type",
     "add": "Add shutter",
     "delete": "Delete",
+    "type": "Type",
     "dialog": {
       "confirm": "Confirm",
       "cancel": "Cancel",
@@ -14,7 +16,8 @@
         "create": "adding a new shutter",
         "add": "Add a shutter",
         "remove": "Remove",
-        "rename": "Rename"
+        "rename": "Rename",
+        "changeType": "Change type"
       },
       "content": {
         "create": "You are about to create a new remote control, please follow these steps: <br>{{panel.dialog.step.shutter}}<br>{{panel.dialog.step.add}}",
@@ -30,6 +33,7 @@
       "create": "Fail to creating cover",
       "add": "Fail to adding shutter",
       "rename": "Fail to renaming cover",
+      "changeType": "Type change failed",
       "remove": "Fail to removing cover",
       "emptyField": "You should provide the field"
     },
@@ -37,6 +41,7 @@
       "create": "Cover successfully added",
       "add": "Command successfully sent",
       "rename": "Cover successfully renamed",
+      "changeType": "Type has been successfully changed",
       "remove": "Cover successfully removed"
     }
   },

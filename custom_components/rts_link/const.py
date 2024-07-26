@@ -3,4 +3,4 @@
 DOMAIN = "rts_link"
 PORT = "port"
 RTS_API = "rts_api"
-COVER = "cover"
+ENTITIES = "entities"

@@ -5,8 +5,10 @@
     "create": "Créer",
     "name": "Nom",
     "rename": "Renommer",
+    "changeType": "Changer type",
     "add": "Ajouter volet",
     "delete": "Supprimer",
+    "type": "Type",
     "dialog": {
       "confirm": "Confirmer",
       "cancel": "Annuler",
@@ -14,7 +16,8 @@
         "create": "Ajouter une télécommande",
         "add": "Ajouter un volet",
         "remove": "Supprimer",
-        "rename": "Renommer"
+        "rename": "Renommer",
+        "changeType": "Changer le type"
       },
       "content": {
         "create": "Vous vous apprêtez à créer une nouvelle télécommande, pour cela veuillez suivre les étapes suivantes : <br>{{panel.dialog.step.shutter}}<br>{{panel.dialog.step.add}}",
@@ -30,6 +33,7 @@
       "create": "Ajout de la télécommande échoué",
       "add": "Ajout du volet échoué",
       "rename": "Renommage de la télécommande échoué",
+      "changeType": "Le changement de type à échoué",
       "remove": "Suppression de la télécommande échoué",
       "emptyField": "Vous devez remplir le champ"
     },
@@ -37,6 +41,7 @@
       "create": "Télécommande ajoutée",
       "add": "Commande envoyée",
       "rename": "Télécommande renommée",
+      "changeType": "Le type à été changé",
       "remove": "Télécommande supprimée"
     }
   },

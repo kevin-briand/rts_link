@@ -5,16 +5,17 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.storage import Store
 
 from custom_components.rts_link.rts_serial import RTSSerial
-from custom_components.rts_link.cover import remove_cover, add_cover, rename_cover
+from custom_components.rts_link.manage_cover import remove_cover, add_cover, rename_cover, change_type_cover, CoverType
 
 _LOGGER = logging.getLogger(__name__)
 
 
 @dataclass
 class Cover:
-    def __init__(self, id: int, name: str, **kwargs):
+    def __init__(self, id: int, name: str, cover_type: CoverType = CoverType.SHUTTER, **kwargs):
         self.id = id
         self.name = name
+        self.cover_type = cover_type
 
 
 class RTSLinkApi:
@@ -48,14 +49,14 @@ class RTSLinkApi:
     async def send_command(self, rts_id: int, command) -> bool:
         return await self.ser.write(F'{command.value};{rts_id}\n')
 
-    async def add_cover(self, name: str) -> bool:
+    async def add_cover(self, name: str, cover_type: CoverType) -> bool:
         _LOGGER.info('adding new cover : ' + name)
         data_id = await self.ser.write_prog(F'PROG\n')
         if not data_id:
             return False
         rts_id = int(data_id)
-        await add_cover(self.hass, name, rts_id)
-        self.covers.append(Cover(rts_id, name))
+        await add_cover(self.hass, name, rts_id, cover_type)
+        self.covers.append(Cover(rts_id, name, cover_type))
         await self.store.async_save(self.covers)
         return True
 
@@ -85,6 +86,17 @@ class RTSLinkApi:
         self.covers = covers
         await self.store.async_save(self.covers)
         await rename_cover(self.hass, rts_id, name)
+        return True
+
+    async def change_type_cover(self, rts_id: int, cover_type: CoverType):
+        covers = []
+        for cover in self.covers:
+            if cover.id == rts_id:
+                cover.cover_type = cover_type
+                await change_type_cover(self.hass, cover)
+            covers.append(cover)
+        self.covers = covers
+        await self.store.async_save(self.covers)
         return True
 
     def get_all_covers(self):
