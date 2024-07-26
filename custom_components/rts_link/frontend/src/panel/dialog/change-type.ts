@@ -56,7 +56,7 @@ export class RtsLinkChangeTypeDialog extends LitElement {
           <select name="coverType" id="coverType">
             ${getEnumValues(CoverDeviceEnum).map((v) => {
               console.log(v, this.type.valueOf(), v === this.type.valueOf());
-              return html`<option value="${v}">${v}</option>`
+              return html`<option value="${v}">${localize(`panel.coverType.${v}`, this.hass.language)}</option>`
             })}
           </select>
         </form>

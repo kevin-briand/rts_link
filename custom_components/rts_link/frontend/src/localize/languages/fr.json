@@ -43,6 +43,10 @@
       "rename": "Télécommande renommée",
       "changeType": "Le type à été changé",
       "remove": "Télécommande supprimée"
+    },
+    "coverType": {
+      "shutter": "Volet",
+      "button": "Bouton"
     }
   },
   "error": "Erreur"

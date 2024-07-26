@@ -43,6 +43,10 @@
       "rename": "Cover successfully renamed",
       "changeType": "Type has been successfully changed",
       "remove": "Cover successfully removed"
+    },
+    "coverType": {
+      "shutter": "Shutter",
+      "button": "Button"
     }
   },
   "error": "Error"

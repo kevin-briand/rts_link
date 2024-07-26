@@ -35,7 +35,7 @@ export class RtsLinkCoversTable extends LitElement {
     return html`
       <div class="grid-item">${data.id}</div>
       <div class="grid-item">${data.name}</div>
-      <div class="grid-item">${data.cover_type ?? CoverDeviceEnum.SHUTTER}</div>
+      <div class="grid-item">${localize(`panel.coverType.${data.cover_type ?? CoverDeviceEnum.SHUTTER}`, this.hass.language)}</div>
       <div class="grid-item">
         <mwc-button @click='${(event: MouseEvent) => { this.openDialog(event, data, Btn.rename, 'rename') }}' class="button" id="rename" .disabled="${this.disabled}">
           ${localize('panel.rename', this.hass.language)}

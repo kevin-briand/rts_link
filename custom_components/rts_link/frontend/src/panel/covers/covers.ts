@@ -194,7 +194,7 @@ export class RtsLinkCoversCard extends LitElement {
                 <label for="coverType">${localize('panel.type', this.hass.language)}</label>
                 <select name="coverType" id="coverType">
                   ${getEnumValues(CoverDeviceEnum).map((v) => {
-                    return html`<option value="${v}">${v}</option>`
+                    return html`<option value="${v}">${localize(`panel.coverType.${v}`, this.hass.language)}</option>`
                   })}
                 </select>
               </div>
