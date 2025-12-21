@@ -199,9 +199,9 @@ export class RtsLinkCoversCard extends LitElement {
                 </select>
               </div>
               <div class="flexRow">
-                <mwc-button class="button" id="add">
+                <ha-button class="button" id="add">
                   ${localize('panel.create', this.hass.language)}
-                </mwc-button>
+                </ha-button>
               </div>
             </form>
             <rts-link-covers-table 

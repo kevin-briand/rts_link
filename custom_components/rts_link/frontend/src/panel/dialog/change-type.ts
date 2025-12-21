@@ -60,16 +60,16 @@ export class RtsLinkChangeTypeDialog extends LitElement {
             })}
           </select>
         </form>
-        <mwc-button
+        <ha-button
           slot="primaryAction"
           dialogAction="accept">
           ${localize('panel.dialog.confirm', this.hass.language)}
-        </mwc-button>
-        <mwc-button
+        </ha-button>
+        <ha-button variant="danger"
           slot="secondaryAction"
           dialogAction="decline">
           ${localize('panel.dialog.cancel', this.hass.language)}
-        </mwc-button>  
+        </ha-button>  
       </ha-dialog>
     `
   }

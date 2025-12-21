@@ -39,16 +39,16 @@ export class RtsLinkConfirmDialog extends LitElement {
           <span slot="title">${localize(`panel.dialog.title.${this.contentKey}`, this.hass.language)}</span>
         </ha-dialog-header>
         <div class="content">${unsafeHTML(localize(`panel.dialog.content.${this.contentKey}`, this.hass.language))}</div>
-          <mwc-button
+          <ha-button
             slot="primaryAction"
             dialogAction="accept">
             ${localize('panel.dialog.confirm', this.hass.language)}
-          </mwc-button>
-          <mwc-button
+          </ha-button>
+          <ha-button variant="danger"
             slot="secondaryAction"
             dialogAction="decline">
             ${localize('panel.dialog.cancel', this.hass.language)}
-          </mwc-button>
+          </ha-button>
       </ha-dialog>
     `
   }

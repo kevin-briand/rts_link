@@ -1,7 +1,7 @@
 import asyncio
 import logging
 from typing import Optional
-import serial_asyncio
+import serial_asyncio_fast
 import serial.tools.list_ports
 
 _LOGGER = logging.getLogger(__name__)
@@ -54,7 +54,7 @@ class RTSSerial:
     async def start_serial(self) -> bool:
         try:
             loop = asyncio.get_running_loop()
-            transport, protocol = await serial_asyncio.create_serial_connection(
+            transport, protocol = await serial_asyncio_fast.create_serial_connection(
                 loop, RTSProtocol, self.port, baudrate=115200)
             self.protocol = protocol
             result = await self.protocol.read()

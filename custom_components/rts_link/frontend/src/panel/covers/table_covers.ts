@@ -37,18 +37,18 @@ export class RtsLinkCoversTable extends LitElement {
       <div class="grid-item">${data.name}</div>
       <div class="grid-item">${localize(`panel.coverType.${data.cover_type ?? CoverDeviceEnum.SHUTTER}`, this.hass.language)}</div>
       <div class="grid-item">
-        <mwc-button @click='${(event: MouseEvent) => { this.openDialog(event, data, Btn.rename, 'rename') }}' class="button" id="rename" .disabled="${this.disabled}">
+        <ha-button appearance="plain" @click='${(event: MouseEvent) => { this.openDialog(event, data, Btn.rename, 'rename') }}' class="button" id="rename" .disabled="${this.disabled}">
           ${localize('panel.rename', this.hass.language)}
-        </mwc-button>
-        <mwc-button @click='${(event: MouseEvent) => { this.openDialog(event, data, Btn.changeType, 'changeType') }}' class="button" id="changeType" .disabled="${this.disabled}">
+        </ha-button>
+        <ha-button appearance="plain" @click='${(event: MouseEvent) => { this.openDialog(event, data, Btn.changeType, 'changeType') }}' class="button" id="changeType" .disabled="${this.disabled}">
           ${localize('panel.changeType', this.hass.language)}
-        </mwc-button>
-        <mwc-button @click='${(event: MouseEvent) => { this.openDialog(event, data, Btn.add, 'add') }}' class="button" id="add" .disabled="${this.disabled}">
+        </ha-button>
+        <ha-button appearance="plain" @click='${(event: MouseEvent) => { this.openDialog(event, data, Btn.add, 'add') }}' class="button" id="add" .disabled="${this.disabled}">
           ${localize('panel.add', this.hass.language)}
-        </mwc-button>
-        <mwc-button @click='${(event: MouseEvent) => { this.openDialog(event, data, Btn.remove, 'remove') }}' class="button" id="delete" .disabled="${this.disabled}">
+        </ha-button>
+        <ha-button appearance="plain" @click='${(event: MouseEvent) => { this.openDialog(event, data, Btn.remove, 'remove') }}' class="button" id="delete" .disabled="${this.disabled}">
           ${localize('panel.delete', this.hass.language)}
-        </mwc-button>             
+        </ha-button>
       </div>
         `
   }
@@ -154,7 +154,6 @@ export class RtsLinkCoversTable extends LitElement {
       }
       
       .grid-item {
-        margin: 0 5px;
         align-self: center;
         min-width: 20px;
       }
