@@ -1,78 +1,36 @@
-import { css, html, LitElement, PropertyValues, type TemplateResult } from 'lit';
-import { type HomeAssistant } from 'custom-card-helpers'
-import { customElement, property, state } from 'lit/decorators.js';
-import { localize } from '../../localize/localize';
-import { Dialog } from '@material/mwc-dialog';
-import { style } from '../../style';
-import { CoverDeviceEnum } from '../api/enum/cover-device-enum';
-import { getEnumValues } from '../common';
+import { html, type TemplateResult } from 'lit'
+import { customElement, property, query, state } from 'lit/decorators.js'
+import { RtsLinkBaseDialog } from './base-dialog'
+import { CoverDeviceEnum } from '../api/enum/cover-device-enum'
+import { getEnumValues } from '../common'
 
 @customElement('rts-link-change-type-dialog')
-export class RtsLinkChangeTypeDialog extends LitElement {
-  @property() public hass!: HomeAssistant
-  @property() public closed!: (confirm: boolean, name: string) => void
+export class RtsLinkChangeTypeDialog extends RtsLinkBaseDialog {
+  @property({ attribute: false }) public closed!: (confirm: boolean, type: CoverDeviceEnum) => void
   @state() public type: CoverDeviceEnum = CoverDeviceEnum.SHUTTER
-  @state() public contentKey: string | undefined = undefined
+  @query('#coverType') private select!: HTMLSelectElement
 
-  protected firstUpdated(_changedProperties: PropertyValues) {
-    const dialog = this.shadowRoot?.getElementById('dialog') as Dialog;
-    if (!dialog) return
-    dialog.addEventListener('closed', (event) => {
-      const customEvent = event as CustomEvent<{ action: string }>;
-      const form = this.shadowRoot?.querySelector('form')
-      if (form == null) return
-      const type = form.coverType.value
-      if (!type) return
-      this.closed(customEvent.detail.action === 'accept', type)
-    })
-  }
-
-  setContentKey (contentKey: string) {
-    this.contentKey = contentKey
-  }
-
-  setSelected (type: CoverDeviceEnum) {
+  setSelected (type: CoverDeviceEnum): void {
     this.type = type
   }
 
-  open() {
-    const dialog = this.shadowRoot?.getElementById('dialog') as Dialog;
-    if (!dialog) return
-    const select = this.shadowRoot?.querySelector('select')
-    if (select) {
-      select.selectedIndex = Object.values(CoverDeviceEnum).indexOf(this.type)
-    }
-    dialog.show()
-    this.requestUpdate()
+  async open (): Promise<void> {
+    await this.updateComplete
+    this.select.value = this.type
+    await super.open()
   }
 
-  render (): TemplateResult<1> {
+  protected onClosed (confirm: boolean): void {
+    const type = this.select.value as CoverDeviceEnum
+    if (!type) return
+    this.closed(confirm, type)
+  }
+
+  protected renderBody (): TemplateResult<1> {
     return html`
-      <ha-dialog id="dialog" flexcontent="" scrimClickAction="">
-        <ha-dialog-header>
-          <span slot="title">${localize(`panel.dialog.title.${this.contentKey}`, this.hass.language)}</span>
-        </ha-dialog-header>
-        <form>
-          <select name="coverType" id="coverType">
-            ${getEnumValues(CoverDeviceEnum).map((v) => {
-              console.log(v, this.type.valueOf(), v === this.type.valueOf());
-              return html`<option value="${v}">${localize(`panel.coverType.${v}`, this.hass.language)}</option>`
-            })}
-          </select>
-        </form>
-        <ha-button
-          slot="primaryAction"
-          dialogAction="accept">
-          ${localize('panel.dialog.confirm', this.hass.language)}
-        </ha-button>
-        <ha-button variant="danger"
-          slot="secondaryAction"
-          dialogAction="decline">
-          ${localize('panel.dialog.cancel', this.hass.language)}
-        </ha-button>  
-      </ha-dialog>
-    `
+      <select id="coverType" autofocus .value=${this.type}>
+        ${getEnumValues(CoverDeviceEnum).map((v) => html`
+          <option value=${v} ?selected=${v === this.type}>${this.t(`panel.coverType.${v}`)}</option>`)}
+      </select>`
   }
-
-  static readonly styles = css`${style}`
 }

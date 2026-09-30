@@ -1,63 +1,30 @@
-import { css, html, LitElement, PropertyValues, type TemplateResult } from 'lit';
-import { type HomeAssistant } from 'custom-card-helpers'
-import { customElement, property, state } from 'lit/decorators.js';
-import { localize } from '../../localize/localize';
-import { Dialog } from '@material/mwc-dialog';
-import { style } from '../../style';
+import { html, type TemplateResult } from 'lit'
+import { customElement, property, query } from 'lit/decorators.js'
+import { RtsLinkBaseDialog } from './base-dialog'
 
 @customElement('rts-link-rename-dialog')
-export class RtsLinkRenameDialog extends LitElement {
-  @property() public hass!: HomeAssistant
-  @property() public closed!: (confirm: boolean, name: string) => void
-  @property() public name!: string
-  @state() public contentKey: string | undefined = undefined
+export class RtsLinkRenameDialog extends RtsLinkBaseDialog {
+  @property({ attribute: false }) public closed!: (confirm: boolean, name: string) => void
+  @property({ attribute: false }) public name: string = ''
+  @query('#shutterName') private input!: HTMLInputElement
 
-  protected firstUpdated(_changedProperties: PropertyValues) {
-    const dialog = this.shadowRoot?.getElementById('dialog') as Dialog;
-    if (!dialog) return
-    dialog.addEventListener('closed', (event) => {
-      const customEvent = event as CustomEvent<{ action: string }>;
-      const form = this.shadowRoot?.querySelector('form')
-      if (form == null) return
-      const name = form.shutterName.value
-      if (!name) return
-      this.closed(customEvent.detail.action === 'accept', name)
-    })
+  async open (): Promise<void> {
+    await this.updateComplete
+    this.input.value = this.name ?? '' // reset what a cancelled edit left in the field
+    await super.open()
+    this.input.select()
   }
 
-  setContentKey (contentKey: string) {
-    this.contentKey = contentKey
+  protected onClosed (confirm: boolean): void {
+    const name = this.input.value.trim()
+    if (!name) return
+    this.closed(confirm, name)
   }
 
-  open() {
-    const dialog = this.shadowRoot?.getElementById('dialog') as Dialog;
-    if (!dialog) return
-    dialog.show()
-    this.requestUpdate()
-  }
-
-  render (): TemplateResult<1> {
+  protected renderBody (): TemplateResult<1> {
     return html`
-      <ha-dialog id="dialog" flexcontent="" scrimClickAction="">
-        <ha-dialog-header>
-          <span slot="title">${localize(`panel.dialog.title.${this.contentKey}`, this.hass.language)}</span>
-        </ha-dialog-header>
-        <form>
-            <input type="text" name="shutterName" id="shutterName" value="${this.name}">
-        </form>
-        <ha-button
-          slot="primaryAction"
-          dialogAction="accept">
-          ${localize('panel.dialog.confirm', this.hass.language)}
-        </ha-button>
-        <ha-button variant="danger"
-          slot="secondaryAction"
-          dialogAction="decline">
-          ${localize('panel.dialog.cancel', this.hass.language)}
-        </ha-button>  
-      </ha-dialog>
-    `
+      <form @submit=${(e: Event) => { e.preventDefault(); this.finish(true) }}>
+        <input type="text" id="shutterName" autocomplete="off" autofocus .value=${this.name ?? ''}>
+      </form>`
   }
-
-  static readonly styles = css`${style}`
 }

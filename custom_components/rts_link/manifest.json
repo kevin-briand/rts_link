@@ -3,13 +3,10 @@
   "name": "RTS Link",
   "codeowners": ["@kevin-briand"],
   "config_flow": true,
-  "dependencies": ["http"],
+  "dependencies": ["http", "panel_custom", "frontend"],
   "documentation": "https://github.com/kevin-briand/rts_link",
-  "homekit": {},
-  "iot_class": "local_polling",
+  "iot_class": "assumed_state",
   "issue_tracker": "https://github.com/kevin-briand/rts_link/issues",
-  "requirements": [],
-  "ssdp": [],
-  "version": "0.0.0",
-  "zeroconf": []
+  "requirements": ["pyserial>=3.5", "pyserial-asyncio-fast>=0.11"],
+  "version": "0.0.0"
 }

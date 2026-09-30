@@ -1,42 +1,25 @@
 {
-  "name": "frontend",
+  "name": "rts-link-panel",
   "version": "1.0.0",
-  "description": "",
-  "main": "./panel/heatger-panel.ts",
-  "scripts": {
-    "build": "tsc && npx webpack",
-    "lint": "eslint src/**/*.ts --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "private": true,
+  "description": "RTS Link panel for Home Assistant",
   "author": "firedream",
   "license": "ISC",
+  "scripts": {
+    "build": "tsc && webpack",
+    "lint": "eslint src",
+    "format": "prettier --write src"
+  },
   "dependencies": {
-    "@material/mwc-dialog": "^0.27.0",
-    "axios": "^1.13.2",
-    "buffer": "^6.0.3",
-    "custom-card-helpers": "^1.9.0",
-    "home-assistant-js-websocket": "^9.6.0",
-    "intl-messageformat": "^11.0.4",
-    "lit": "^3.3.1",
-    "mqtt": "^5.14.1",
-    "paho-mqtt": "^1.1.0",
-    "stream-browserify": "^3.0.0",
-    "url": "^0.11.4"
+    "lit": "^3.3.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.0",
-    "@babel/preset-env": "^7.26.0",
-    "@typescript-eslint/eslint-plugin": "^8.50.0",
-    "@typescript-eslint/parser": "^8.50.0",
-    "babel-loader": "^9.2.1",
-    "eslint": "^9.39.2",
-    "eslint-config-love": "^140.0.0",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-n": "^17.23.1",
-    "eslint-plugin-promise": "^7.2.1",
-    "prettier": "^3.7.4",
-    "typescript": "^5.9.3",
-    "webpack": "^5.104.1",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.11.0",
+    "prettier": "^3.9.9",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.0",
+    "webpack": "^5.111.1",
     "webpack-cli": "^6.0.1"
   }
 }

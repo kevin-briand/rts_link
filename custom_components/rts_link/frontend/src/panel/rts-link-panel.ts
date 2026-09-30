@@ -1,5 +1,5 @@
 import { css, html, LitElement, type TemplateResult } from 'lit'
-import { type HomeAssistant, type Panel } from 'custom-card-helpers'
+import { type HomeAssistant, type Panel } from '../types/hass'
 import { customElement, property } from 'lit/decorators.js'
 import './covers/covers'
 import { VERSION } from './consts'
@@ -15,18 +15,14 @@ export class RtsLinkPanel extends LitElement {
             <div class="header">
                 <div class="toolbar">
                     <ha-menu-button .hass=${this.hass} .narrow=${this.narrow}></ha-menu-button>
-                    <div class="main-title">
-                        Rts Link
-                    </div>
+                    <div class="main-title">RTS Link</div>
                     <div class="version">
                             v${VERSION}
                     </div>
                 </div>
             </div>
             <div class="view">
-                <div>
                 ${this.getCards()}
-                </div>
             </div>
         `
   }
@@ -71,16 +67,17 @@ export class RtsLinkPanel extends LitElement {
             color: rgba(var(--rgb-text-primary-color), 0.9);
           }
           .view {
-            height: calc(100vh - 112px);
+            box-sizing: border-box;
+            min-height: calc(100vh - var(--header-height, 56px));
+            padding: 16px 8px 24px;
             display: flex;
             justify-content: center;
+            align-items: flex-start;
+            background-color: var(--primary-background-color);
           }
           .view > * {
-            width: 600px;
-            max-width: 600px;
-          }
-          .view > *:last-child {
-            margin-bottom: 20px;
+            width: 100%;
+            max-width: 760px;
           }
     `
 }

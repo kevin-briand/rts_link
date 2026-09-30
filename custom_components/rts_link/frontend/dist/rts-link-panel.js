@@ -1,250 +1,447 @@
 /*! For license information please see rts-link-panel.js.LICENSE.txt */
-(()=>{"use strict";var e={};const t={};function s(i){const r=t[i];if(void 0!==r)return r.exports;const n=t[i]={exports:{}};return e[i](n,n.exports,s),n.exports}(()=>{const e=Object.getPrototypeOf;let t;s.t=function(i,r){if(1&r&&(i=this(i)),8&r)return i;if("object"==typeof i&&i){if(4&r&&i.__esModule)return i;if(16&r&&"function"==typeof i.then)return i}const n=Object.create(null);s.r(n);const o={};t=t||[null,e({}),e([]),e(e)];for(var a=2&r&&i;("object"==typeof a||"function"==typeof a)&&!~t.indexOf(a);a=e(a))Object.getOwnPropertyNames(a).forEach(e=>o[e]=()=>i[e]);return o.default=()=>i,s.d(n,o),n}})(),s.d=(e,t)=>{for(var i in t)s.o(t,i)&&!s.o(e,i)&&Object.defineProperty(e,i,{enumerable:!0,get:t[i]})},s.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),s.r=e=>{Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})};const i=globalThis,r=i.ShadowRoot&&(void 0===i.ShadyCSS||i.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,n=Symbol(),o=new WeakMap;class a{constructor(e,t,s){if(this._$cssResult$=!0,s!==n)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=e,this.t=t}get styleSheet(){let e=this.o;const t=this.t;if(r&&void 0===e){const s=void 0!==t&&1===t.length;s&&(e=o.get(t)),void 0===e&&((this.o=e=new CSSStyleSheet).replaceSync(this.cssText),s&&o.set(t,e))}return e}toString(){return this.cssText}}const h=(e,...t)=>{const s=1===e.length?e[0]:t.reduce((t,s,i)=>t+(e=>{if(!0===e._$cssResult$)return e.cssText;if("number"==typeof e)return e;throw Error("Value passed to 'css' function must be a 'css' function result: "+e+". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.")})(s)+e[i+1],e[0]);return new a(s,e,n)},l=(e,t)=>{if(r)e.adoptedStyleSheets=t.map(e=>e instanceof CSSStyleSheet?e:e.styleSheet);else for(const s of t){const t=document.createElement("style"),r=i.litNonce;void 0!==r&&t.setAttribute("nonce",r),t.textContent=s.cssText,e.appendChild(t)}},c=r?e=>e:e=>e instanceof CSSStyleSheet?(e=>{let t="";for(const s of e.cssRules)t+=s.cssText;return(e=>new a("string"==typeof e?e:e+"",void 0,n))(t)})(e):e,{is:u,defineProperty:d,getOwnPropertyDescriptor:p,getOwnPropertyNames:f,getOwnPropertySymbols:g,getPrototypeOf:m}=Object,b=globalThis,y=b.trustedTypes,v=y?y.emptyScript:"",E=b.reactiveElementPolyfillSupport,_=(e,t)=>e,H={toAttribute(e,t){switch(t){case Boolean:e=e?v:null;break;case Object:case Array:e=null==e?e:JSON.stringify(e)}return e},fromAttribute(e,t){let s=e;switch(t){case Boolean:s=null!==e;break;case Number:s=null===e?null:Number(e);break;case Object:case Array:try{s=JSON.parse(e)}catch(e){s=null}}return s}},A=(e,t)=>!u(e,t),$={attribute:!0,type:String,converter:H,reflect:!1,useDefault:!1,hasChanged:A};Symbol.metadata??=Symbol("metadata"),b.litPropertyMetadata??=new WeakMap;class B extends HTMLElement{static addInitializer(e){this._$Ei(),(this.l??=[]).push(e)}static get observedAttributes(){return this.finalize(),this._$Eh&&[...this._$Eh.keys()]}static createProperty(e,t=$){if(t.state&&(t.attribute=!1),this._$Ei(),this.prototype.hasOwnProperty(e)&&((t=Object.create(t)).wrapped=!0),this.elementProperties.set(e,t),!t.noAccessor){const s=Symbol(),i=this.getPropertyDescriptor(e,s,t);void 0!==i&&d(this.prototype,e,i)}}static getPropertyDescriptor(e,t,s){const{get:i,set:r}=p(this.prototype,e)??{get(){return this[t]},set(e){this[t]=e}};return{get:i,set(t){const n=i?.call(this);r?.call(this,t),this.requestUpdate(e,n,s)},configurable:!0,enumerable:!0}}static getPropertyOptions(e){return this.elementProperties.get(e)??$}static _$Ei(){if(this.hasOwnProperty(_("elementProperties")))return;const e=m(this);e.finalize(),void 0!==e.l&&(this.l=[...e.l]),this.elementProperties=new Map(e.elementProperties)}static finalize(){if(this.hasOwnProperty(_("finalized")))return;if(this.finalized=!0,this._$Ei(),this.hasOwnProperty(_("properties"))){const e=this.properties,t=[...f(e),...g(e)];for(const s of t)this.createProperty(s,e[s])}const e=this[Symbol.metadata];if(null!==e){const t=litPropertyMetadata.get(e);if(void 0!==t)for(const[e,s]of t)this.elementProperties.set(e,s)}this._$Eh=new Map;for(const[e,t]of this.elementProperties){const s=this._$Eu(e,t);void 0!==s&&this._$Eh.set(s,e)}this.elementStyles=this.finalizeStyles(this.styles)}static finalizeStyles(e){const t=[];if(Array.isArray(e)){const s=new Set(e.flat(1/0).reverse());for(const e of s)t.unshift(c(e))}else void 0!==e&&t.push(c(e));return t}static _$Eu(e,t){const s=t.attribute;return!1===s?void 0:"string"==typeof s?s:"string"==typeof e?e.toLowerCase():void 0}constructor(){super(),this._$Ep=void 0,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Em=null,this._$Ev()}_$Ev(){this._$ES=new Promise(e=>this.enableUpdating=e),this._$AL=new Map,this._$E_(),this.requestUpdate(),this.constructor.l?.forEach(e=>e(this))}addController(e){(this._$EO??=new Set).add(e),void 0!==this.renderRoot&&this.isConnected&&e.hostConnected?.()}removeController(e){this._$EO?.delete(e)}_$E_(){const e=new Map,t=this.constructor.elementProperties;for(const s of t.keys())this.hasOwnProperty(s)&&(e.set(s,this[s]),delete this[s]);e.size>0&&(this._$Ep=e)}createRenderRoot(){const e=this.shadowRoot??this.attachShadow(this.constructor.shadowRootOptions);return l(e,this.constructor.elementStyles),e}connectedCallback(){this.renderRoot??=this.createRenderRoot(),this.enableUpdating(!0),this._$EO?.forEach(e=>e.hostConnected?.())}enableUpdating(e){}disconnectedCallback(){this._$EO?.forEach(e=>e.hostDisconnected?.())}attributeChangedCallback(e,t,s){this._$AK(e,s)}_$ET(e,t){const s=this.constructor.elementProperties.get(e),i=this.constructor._$Eu(e,s);if(void 0!==i&&!0===s.reflect){const r=(void 0!==s.converter?.toAttribute?s.converter:H).toAttribute(t,s.type);this._$Em=e,null==r?this.removeAttribute(i):this.setAttribute(i,r),this._$Em=null}}_$AK(e,t){const s=this.constructor,i=s._$Eh.get(e);if(void 0!==i&&this._$Em!==i){const e=s.getPropertyOptions(i),r="function"==typeof e.converter?{fromAttribute:e.converter}:void 0!==e.converter?.fromAttribute?e.converter:H;this._$Em=i;const n=r.fromAttribute(t,e.type);this[i]=n??this._$Ej?.get(i)??n,this._$Em=null}}requestUpdate(e,t,s,i=!1,r){if(void 0!==e){const n=this.constructor;if(!1===i&&(r=this[e]),s??=n.getPropertyOptions(e),!((s.hasChanged??A)(r,t)||s.useDefault&&s.reflect&&r===this._$Ej?.get(e)&&!this.hasAttribute(n._$Eu(e,s))))return;this.C(e,t,s)}!1===this.isUpdatePending&&(this._$ES=this._$EP())}C(e,t,{useDefault:s,reflect:i,wrapped:r},n){s&&!(this._$Ej??=new Map).has(e)&&(this._$Ej.set(e,n??t??this[e]),!0!==r||void 0!==n)||(this._$AL.has(e)||(this.hasUpdated||s||(t=void 0),this._$AL.set(e,t)),!0===i&&this._$Em!==e&&(this._$Eq??=new Set).add(e))}async _$EP(){this.isUpdatePending=!0;try{await this._$ES}catch(e){Promise.reject(e)}const e=this.scheduleUpdate();return null!=e&&await e,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){if(!this.isUpdatePending)return;if(!this.hasUpdated){if(this.renderRoot??=this.createRenderRoot(),this._$Ep){for(const[e,t]of this._$Ep)this[e]=t;this._$Ep=void 0}const e=this.constructor.elementProperties;if(e.size>0)for(const[t,s]of e){const{wrapped:e}=s,i=this[t];!0!==e||this._$AL.has(t)||void 0===i||this.C(t,void 0,s,i)}}let e=!1;const t=this._$AL;try{e=this.shouldUpdate(t),e?(this.willUpdate(t),this._$EO?.forEach(e=>e.hostUpdate?.()),this.update(t)):this._$EM()}catch(t){throw e=!1,this._$EM(),t}e&&this._$AE(t)}willUpdate(e){}_$AE(e){this._$EO?.forEach(e=>e.hostUpdated?.()),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(e)),this.updated(e)}_$EM(){this._$AL=new Map,this.isUpdatePending=!1}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$ES}shouldUpdate(e){return!0}update(e){this._$Eq&&=this._$Eq.forEach(e=>this._$ET(e,this[e])),this._$EM()}updated(e){}firstUpdated(e){}}B.elementStyles=[],B.shadowRootOptions={mode:"open"},B[_("elementProperties")]=new Map,B[_("finalized")]=new Map,E?.({ReactiveElement:B}),(b.reactiveElementVersions??=[]).push("2.1.2");const T=globalThis,w=e=>e,P=T.trustedTypes,S=P?P.createPolicy("lit-html",{createHTML:e=>e}):void 0,C="$lit$",O=`lit$${Math.random().toFixed(9).slice(2)}$`,R="?"+O,N=`<${R}>`,L=document,U=()=>L.createComment(""),I=e=>null===e||"object"!=typeof e&&"function"!=typeof e,M=Array.isArray,x="[ \t\n\f\r]",D=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,k=/-->/g,j=/>/g,G=RegExp(`>|${x}(?:([^\\s"'>=/]+)(${x}*=${x}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`,"g"),F=/'/g,K=/"/g,V=/^(?:script|style|textarea|title)$/i,q=e=>(t,...s)=>({_$litType$:e,strings:t,values:s}),z=q(1),X=(q(2),q(3),Symbol.for("lit-noChange")),Y=Symbol.for("lit-nothing"),W=new WeakMap,Z=L.createTreeWalker(L,129);function J(e,t){if(!M(e)||!e.hasOwnProperty("raw"))throw Error("invalid template strings array");return void 0!==S?S.createHTML(t):t}const Q=(e,t)=>{const s=e.length-1,i=[];let r,n=2===t?"<svg>":3===t?"<math>":"",o=D;for(let t=0;t<s;t++){const s=e[t];let a,h,l=-1,c=0;for(;c<s.length&&(o.lastIndex=c,h=o.exec(s),null!==h);)c=o.lastIndex,o===D?"!--"===h[1]?o=k:void 0!==h[1]?o=j:void 0!==h[2]?(V.test(h[2])&&(r=RegExp("</"+h[2],"g")),o=G):void 0!==h[3]&&(o=G):o===G?">"===h[0]?(o=r??D,l=-1):void 0===h[1]?l=-2:(l=o.lastIndex-h[2].length,a=h[1],o=void 0===h[3]?G:'"'===h[3]?K:F):o===K||o===F?o=G:o===k||o===j?o=D:(o=G,r=void 0);const u=o===G&&e[t+1].startsWith("/>")?" ":"";n+=o===D?s+N:l>=0?(i.push(a),s.slice(0,l)+C+s.slice(l)+O+u):s+O+(-2===l?t:u)}return[J(e,n+(e[s]||"<?>")+(2===t?"</svg>":3===t?"</math>":"")),i]};class ee{constructor({strings:e,_$litType$:t},s){let i;this.parts=[];let r=0,n=0;const o=e.length-1,a=this.parts,[h,l]=Q(e,t);if(this.el=ee.createElement(h,s),Z.currentNode=this.el.content,2===t||3===t){const e=this.el.content.firstChild;e.replaceWith(...e.childNodes)}for(;null!==(i=Z.nextNode())&&a.length<o;){if(1===i.nodeType){if(i.hasAttributes())for(const e of i.getAttributeNames())if(e.endsWith(C)){const t=l[n++],s=i.getAttribute(e).split(O),o=/([.?@])?(.*)/.exec(t);a.push({type:1,index:r,name:o[2],strings:s,ctor:"."===o[1]?ne:"?"===o[1]?oe:"@"===o[1]?ae:re}),i.removeAttribute(e)}else e.startsWith(O)&&(a.push({type:6,index:r}),i.removeAttribute(e));if(V.test(i.tagName)){const e=i.textContent.split(O),t=e.length-1;if(t>0){i.textContent=P?P.emptyScript:"";for(let s=0;s<t;s++)i.append(e[s],U()),Z.nextNode(),a.push({type:2,index:++r});i.append(e[t],U())}}}else if(8===i.nodeType)if(i.data===R)a.push({type:2,index:r});else{let e=-1;for(;-1!==(e=i.data.indexOf(O,e+1));)a.push({type:7,index:r}),e+=O.length-1}r++}}static createElement(e,t){const s=L.createElement("template");return s.innerHTML=e,s}}function te(e,t,s=e,i){if(t===X)return t;let r=void 0!==i?s._$Co?.[i]:s._$Cl;const n=I(t)?void 0:t._$litDirective$;return r?.constructor!==n&&(r?._$AO?.(!1),void 0===n?r=void 0:(r=new n(e),r._$AT(e,s,i)),void 0!==i?(s._$Co??=[])[i]=r:s._$Cl=r),void 0!==r&&(t=te(e,r._$AS(e,t.values),r,i)),t}class se{constructor(e,t){this._$AV=[],this._$AN=void 0,this._$AD=e,this._$AM=t}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(e){const{el:{content:t},parts:s}=this._$AD,i=(e?.creationScope??L).importNode(t,!0);Z.currentNode=i;let r=Z.nextNode(),n=0,o=0,a=s[0];for(;void 0!==a;){if(n===a.index){let t;2===a.type?t=new ie(r,r.nextSibling,this,e):1===a.type?t=new a.ctor(r,a.name,a.strings,this,e):6===a.type&&(t=new he(r,this,e)),this._$AV.push(t),a=s[++o]}n!==a?.index&&(r=Z.nextNode(),n++)}return Z.currentNode=L,i}p(e){let t=0;for(const s of this._$AV)void 0!==s&&(void 0!==s.strings?(s._$AI(e,s,t),t+=s.strings.length-2):s._$AI(e[t])),t++}}class ie{get _$AU(){return this._$AM?._$AU??this._$Cv}constructor(e,t,s,i){this.type=2,this._$AH=Y,this._$AN=void 0,this._$AA=e,this._$AB=t,this._$AM=s,this.options=i,this._$Cv=i?.isConnected??!0}get parentNode(){let e=this._$AA.parentNode;const t=this._$AM;return void 0!==t&&11===e?.nodeType&&(e=t.parentNode),e}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(e,t=this){e=te(this,e,t),I(e)?e===Y||null==e||""===e?(this._$AH!==Y&&this._$AR(),this._$AH=Y):e!==this._$AH&&e!==X&&this._(e):void 0!==e._$litType$?this.$(e):void 0!==e.nodeType?this.T(e):(e=>M(e)||"function"==typeof e?.[Symbol.iterator])(e)?this.k(e):this._(e)}O(e){return this._$AA.parentNode.insertBefore(e,this._$AB)}T(e){this._$AH!==e&&(this._$AR(),this._$AH=this.O(e))}_(e){this._$AH!==Y&&I(this._$AH)?this._$AA.nextSibling.data=e:this.T(L.createTextNode(e)),this._$AH=e}$(e){const{values:t,_$litType$:s}=e,i="number"==typeof s?this._$AC(e):(void 0===s.el&&(s.el=ee.createElement(J(s.h,s.h[0]),this.options)),s);if(this._$AH?._$AD===i)this._$AH.p(t);else{const e=new se(i,this),s=e.u(this.options);e.p(t),this.T(s),this._$AH=e}}_$AC(e){let t=W.get(e.strings);return void 0===t&&W.set(e.strings,t=new ee(e)),t}k(e){M(this._$AH)||(this._$AH=[],this._$AR());const t=this._$AH;let s,i=0;for(const r of e)i===t.length?t.push(s=new ie(this.O(U()),this.O(U()),this,this.options)):s=t[i],s._$AI(r),i++;i<t.length&&(this._$AR(s&&s._$AB.nextSibling,i),t.length=i)}_$AR(e=this._$AA.nextSibling,t){for(this._$AP?.(!1,!0,t);e!==this._$AB;){const t=w(e).nextSibling;w(e).remove(),e=t}}setConnected(e){void 0===this._$AM&&(this._$Cv=e,this._$AP?.(e))}}class re{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(e,t,s,i,r){this.type=1,this._$AH=Y,this._$AN=void 0,this.element=e,this.name=t,this._$AM=i,this.options=r,s.length>2||""!==s[0]||""!==s[1]?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=Y}_$AI(e,t=this,s,i){const r=this.strings;let n=!1;if(void 0===r)e=te(this,e,t,0),n=!I(e)||e!==this._$AH&&e!==X,n&&(this._$AH=e);else{const i=e;let o,a;for(e=r[0],o=0;o<r.length-1;o++)a=te(this,i[s+o],t,o),a===X&&(a=this._$AH[o]),n||=!I(a)||a!==this._$AH[o],a===Y?e=Y:e!==Y&&(e+=(a??"")+r[o+1]),this._$AH[o]=a}n&&!i&&this.j(e)}j(e){e===Y?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,e??"")}}class ne extends re{constructor(){super(...arguments),this.type=3}j(e){this.element[this.name]=e===Y?void 0:e}}class oe extends re{constructor(){super(...arguments),this.type=4}j(e){this.element.toggleAttribute(this.name,!!e&&e!==Y)}}class ae extends re{constructor(e,t,s,i,r){super(e,t,s,i,r),this.type=5}_$AI(e,t=this){if((e=te(this,e,t,0)??Y)===X)return;const s=this._$AH,i=e===Y&&s!==Y||e.capture!==s.capture||e.once!==s.once||e.passive!==s.passive,r=e!==Y&&(s===Y||i);i&&this.element.removeEventListener(this.name,this,s),r&&this.element.addEventListener(this.name,this,e),this._$AH=e}handleEvent(e){"function"==typeof this._$AH?this._$AH.call(this.options?.host??this.element,e):this._$AH.handleEvent(e)}}class he{constructor(e,t,s){this.element=e,this.type=6,this._$AN=void 0,this._$AM=t,this.options=s}get _$AU(){return this._$AM._$AU}_$AI(e){te(this,e)}}const le=T.litHtmlPolyfillSupport;le?.(ee,ie),(T.litHtmlVersions??=[]).push("3.3.3");const ce=globalThis;class ue extends B{constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0}createRenderRoot(){const e=super.createRenderRoot();return this.renderOptions.renderBefore??=e.firstChild,e}update(e){const t=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(e),this._$Do=((e,t,s)=>{const i=s?.renderBefore??t;let r=i._$litPart$;if(void 0===r){const e=s?.renderBefore??null;i._$litPart$=r=new ie(t.insertBefore(U(),e),e,void 0,s??{})}return r._$AI(e),r})(t,this.renderRoot,this.renderOptions)}connectedCallback(){super.connectedCallback(),this._$Do?.setConnected(!0)}disconnectedCallback(){super.disconnectedCallback(),this._$Do?.setConnected(!1)}render(){return X}}ue._$litElement$=!0,ue.finalized=!0,ce.litElementHydrateSupport?.({LitElement:ue});const de=ce.litElementPolyfillSupport;de?.({LitElement:ue}),(ce.litElementVersions??=[]).push("4.2.2");const pe=e=>(t,s)=>{void 0!==s?s.addInitializer(()=>{customElements.define(e,t)}):customElements.define(e,t)},fe={attribute:!0,type:String,converter:H,reflect:!1,hasChanged:A},ge=(e=fe,t,s)=>{const{kind:i,metadata:r}=s;let n=globalThis.litPropertyMetadata.get(r);if(void 0===n&&globalThis.litPropertyMetadata.set(r,n=new Map),"setter"===i&&((e=Object.create(e)).wrapped=!0),n.set(s.name,e),"accessor"===i){const{name:i}=s;return{set(s){const r=t.get.call(this);t.set.call(this,s),this.requestUpdate(i,r,e,!0,s)},init(t){return void 0!==t&&this.C(i,void 0,e,t),t}}}if("setter"===i){const{name:i}=s;return function(s){const r=this[i];t.call(this,s),this.requestUpdate(i,r,e,!0,s)}}throw Error("Unsupported decorator location: "+i)};function me(e){return(t,s)=>"object"==typeof s?ge(e,t,s):((e,t,s)=>{const i=t.hasOwnProperty(s);return t.constructor.createProperty(s,e),i?Object.getOwnPropertyDescriptor(t,s):void 0})(e,t,s)}function be(e){return me({...e,state:!0,attribute:!1})}const ye=JSON.parse('{"panel":{"title":"Manage covers","id":"id","create":"Create","name":"Name","rename":"Rename","changeType":"Change type","add":"Add shutter","delete":"Delete","type":"Type","dialog":{"confirm":"Confirm","cancel":"Cancel","title":{"create":"adding a new shutter","add":"Add a shutter","remove":"Remove","rename":"Rename","changeType":"Change type"},"content":{"create":"You are about to create a new remote control, please follow these steps: <br>{{panel.dialog.step.shutter}}<br>{{panel.dialog.step.add}}","add":"You are about to add a shutter to an existing remote control, please follow these steps: <br>{{panel.dialog.step.shutter}}<br>{{panel.dialog.step.add}}","remove":"You are going to delete this remote control, are you sure?"},"step":{"shutter":"- Press the PROG button on the shutter\'s remote control for 3 seconds, the shutter should make a confirmation movement","add":"- Click the confirm button in the dialog box, the shutter should make a confirmation movement"}},"error":{"create":"Fail to creating cover","add":"Fail to adding shutter","rename":"Fail to renaming cover","changeType":"Type change failed","remove":"Fail to removing cover","emptyField":"You should provide the field"},"success":{"create":"Cover successfully added","add":"Command successfully sent","rename":"Cover successfully renamed","changeType":"Type has been successfully changed","remove":"Cover successfully removed"},"coverType":{"shutter":"Shutter","button":"Button"}},"error":"Error"}');var ve=s.t(ye,2);const Ee=JSON.parse('{"panel":{"title":"Contrôle des commandes","id":"id","create":"Créer","name":"Nom","rename":"Renommer","changeType":"Changer type","add":"Ajouter volet","delete":"Supprimer","type":"Type","dialog":{"confirm":"Confirmer","cancel":"Annuler","title":{"create":"Ajouter une télécommande","add":"Ajouter un volet","remove":"Supprimer","rename":"Renommer","changeType":"Changer le type"},"content":{"create":"Vous vous apprêtez à créer une nouvelle télécommande, pour cela veuillez suivre les étapes suivantes : <br>{{panel.dialog.step.shutter}}<br>{{panel.dialog.step.add}}","add":"Vous vous apprêtez à ajouter un volet sur une télécommande existante, pour cela veuillez suivre les étapes suivantes : <br>{{panel.dialog.step.shutter}}<br>{{panel.dialog.step.add}}","remove":"Vous allez supprimer cette télécommande, êtes vous sûr ?"},"step":{"shutter":"- Faites un appuis de 3s sur le bouton PROG de la télécommande du volet, le volet doit faire un mouvement de confirmation","add":"- Cliquez sur le bouton confirmer de la boite de dialogue, le volet doit effectuer un mouvement de confirmation"}},"error":{"create":"Ajout de la télécommande échoué","add":"Ajout du volet échoué","rename":"Renommage de la télécommande échoué","changeType":"Le changement de type à échoué","remove":"Suppression de la télécommande échoué","emptyField":"Vous devez remplir le champ"},"success":{"create":"Télécommande ajoutée","add":"Commande envoyée","rename":"Télécommande renommée","changeType":"Le type à été changé","remove":"Télécommande supprimée"},"coverType":{"shutter":"Volet","button":"Bouton"}},"error":"Erreur"}');var _e=s.t(Ee,2);function He(e,t){const s=t&&t.cache?t.cache:Se,i=t&&t.serializer?t.serializer:we;return(t&&t.strategy?t.strategy:Te)(e,{cache:s,serializer:i})}function Ae(e,t,s,i){const r=null==(n=i)||"number"==typeof n||"boolean"==typeof n?i:s(i);var n;let o=t.get(r);return void 0===o&&(o=e.call(this,i),t.set(r,o)),o}function $e(e,t,s){const i=Array.prototype.slice.call(arguments,3),r=s(i);let n=t.get(r);return void 0===n&&(n=e.apply(this,i),t.set(r,n)),n}function Be(e,t,s,i,r){return s.bind(t,e,i,r)}function Te(e,t){return Be(e,this,1===e.length?Ae:$e,t.cache.create(),t.serializer)}const we=function(){return JSON.stringify(arguments)};var Pe=class{constructor(){this.cache=Object.create(null)}get(e){return this.cache[e]}set(e,t){this.cache[e]=t}};const Se={create:function(){return new Pe}},Ce={variadic:function(e,t){return Be(e,this,$e,t.cache.create(),t.serializer)},monadic:function(e,t){return Be(e,this,Ae,t.cache.create(),t.serializer)}},Oe=/(?:[Eec]{1,6}|G{1,5}|[Qq]{1,5}|(?:[yYur]+|U{1,5})|[ML]{1,5}|d{1,2}|D{1,3}|F{1}|[abB]{1,5}|[hkHK]{1,2}|w{1,2}|W{1}|m{1,2}|s{1,2}|[zZOvVxX]{1,4})(?=([^']*'[^']*')*[^']*$)/g;function Re(e){const t={};return e.replace(Oe,e=>{const s=e.length;switch(e[0]){case"G":t.era=4===s?"long":5===s?"narrow":"short";break;case"y":t.year=2===s?"2-digit":"numeric";break;case"Y":case"u":case"U":case"r":throw new RangeError("`Y/u/U/r` (year) patterns are not supported, use `y` instead");case"q":case"Q":throw new RangeError("`q/Q` (quarter) patterns are not supported");case"M":case"L":t.month=["numeric","2-digit","short","long","narrow"][s-1];break;case"w":case"W":throw new RangeError("`w/W` (week) patterns are not supported");case"d":t.day=["numeric","2-digit"][s-1];break;case"D":case"F":case"g":throw new RangeError("`D/F/g` (day) patterns are not supported, use `d` instead");case"E":t.weekday=4===s?"long":5===s?"narrow":"short";break;case"e":if(s<4)throw new RangeError("`e..eee` (weekday) patterns are not supported");t.weekday=["short","long","narrow","short"][s-3];break;case"c":if(s<4)throw new RangeError("`c..ccc` (weekday) patterns are not supported");t.weekday=["short","long","narrow","short"][s-3];break;case"a":t.hour12=!0;break;case"b":case"B":throw new RangeError("`b/B` (period) patterns are not supported, use `a` instead");case"h":t.hourCycle="h12",t.hour=["numeric","2-digit"][s-1];break;case"H":t.hourCycle="h23",t.hour=["numeric","2-digit"][s-1];break;case"K":t.hourCycle="h11",t.hour=["numeric","2-digit"][s-1];break;case"k":t.hourCycle="h24",t.hour=["numeric","2-digit"][s-1];break;case"j":case"J":case"C":throw new RangeError("`j/J/C` (hour) patterns are not supported, use `h/H/K/k` instead");case"m":t.minute=["numeric","2-digit"][s-1];break;case"s":t.second=["numeric","2-digit"][s-1];break;case"S":case"A":throw new RangeError("`S/A` (second) patterns are not supported, use `s` instead");case"z":t.timeZoneName=s<4?"short":"long";break;case"Z":case"O":case"v":case"V":case"X":case"x":throw new RangeError("`Z/O/v/V/X/x` (timeZone) patterns are not supported, use `z` instead")}return""}),t}const Ne=/[\t-\r \x85\u200E\u200F\u2028\u2029]/i;function Le(e){return e.replace(/^(.*?)-/,"")}const Ue=/^\.(?:(0+)(\*)?|(#+)|(0+)(#+))$/g,Ie=/^(@+)?(\+|#+)?[rs]?$/g,Me=/(\*)(0+)|(#+)(0+)|(0+)/g,xe=/^(0+)$/;function De(e){const t={};return"r"===e[e.length-1]?t.roundingPriority="morePrecision":"s"===e[e.length-1]&&(t.roundingPriority="lessPrecision"),e.replace(Ie,function(e,s,i){return"string"!=typeof i?(t.minimumSignificantDigits=s.length,t.maximumSignificantDigits=s.length):"+"===i?t.minimumSignificantDigits=s.length:"#"===s[0]?t.maximumSignificantDigits=s.length:(t.minimumSignificantDigits=s.length,t.maximumSignificantDigits=s.length+("string"==typeof i?i.length:0)),""}),t}function ke(e){switch(e){case"sign-auto":return{signDisplay:"auto"};case"sign-accounting":case"()":return{currencySign:"accounting"};case"sign-always":case"+!":return{signDisplay:"always"};case"sign-accounting-always":case"()!":return{signDisplay:"always",currencySign:"accounting"};case"sign-except-zero":case"+?":return{signDisplay:"exceptZero"};case"sign-accounting-except-zero":case"()?":return{signDisplay:"exceptZero",currencySign:"accounting"};case"sign-never":case"+_":return{signDisplay:"never"}}}function je(e){let t;if("E"===e[0]&&"E"===e[1]?(t={notation:"engineering"},e=e.slice(2)):"E"===e[0]&&(t={notation:"scientific"},e=e.slice(1)),t){const s=e.slice(0,2);if("+!"===s?(t.signDisplay="always",e=e.slice(2)):"+?"===s&&(t.signDisplay="exceptZero",e=e.slice(2)),!xe.test(e))throw new Error("Malformed concise eng/scientific notation");t.minimumIntegerDigits=e.length}return t}function Ge(e){return ke(e)||{}}function Fe(e){let t={};for(const s of e){switch(s.stem){case"percent":case"%":t.style="percent";continue;case"%x100":t.style="percent",t.scale=100;continue;case"currency":t.style="currency",t.currency=s.options[0];continue;case"group-off":case",_":t.useGrouping=!1;continue;case"precision-integer":case".":t.maximumFractionDigits=0;continue;case"measure-unit":case"unit":t.style="unit",t.unit=Le(s.options[0]);continue;case"compact-short":case"K":t.notation="compact",t.compactDisplay="short";continue;case"compact-long":case"KK":t.notation="compact",t.compactDisplay="long";continue;case"scientific":t={...t,notation:"scientific",...s.options.reduce((e,t)=>({...e,...Ge(t)}),{})};continue;case"engineering":t={...t,notation:"engineering",...s.options.reduce((e,t)=>({...e,...Ge(t)}),{})};continue;case"notation-simple":t.notation="standard";continue;case"unit-width-narrow":t.currencyDisplay="narrowSymbol",t.unitDisplay="narrow";continue;case"unit-width-short":t.currencyDisplay="code",t.unitDisplay="short";continue;case"unit-width-full-name":t.currencyDisplay="name",t.unitDisplay="long";continue;case"unit-width-iso-code":t.currencyDisplay="symbol";continue;case"scale":t.scale=parseFloat(s.options[0]);continue;case"rounding-mode-floor":t.roundingMode="floor";continue;case"rounding-mode-ceiling":t.roundingMode="ceil";continue;case"rounding-mode-down":t.roundingMode="trunc";continue;case"rounding-mode-up":t.roundingMode="expand";continue;case"rounding-mode-half-even":t.roundingMode="halfEven";continue;case"rounding-mode-half-down":t.roundingMode="halfTrunc";continue;case"rounding-mode-half-up":t.roundingMode="halfExpand";continue;case"integer-width":if(s.options.length>1)throw new RangeError("integer-width stems only accept a single optional option");s.options[0].replace(Me,function(e,s,i,r,n,o){if(s)t.minimumIntegerDigits=i.length;else{if(r&&n)throw new Error("We currently do not support maximum integer digits");if(o)throw new Error("We currently do not support exact integer digits")}return""});continue}if(xe.test(s.stem)){t.minimumIntegerDigits=s.stem.length;continue}if(Ue.test(s.stem)){if(s.options.length>1)throw new RangeError("Fraction-precision stems only accept a single optional option");s.stem.replace(Ue,function(e,s,i,r,n,o){return"*"===i?t.minimumFractionDigits=s.length:r&&"#"===r[0]?t.maximumFractionDigits=r.length:n&&o?(t.minimumFractionDigits=n.length,t.maximumFractionDigits=n.length+o.length):(t.minimumFractionDigits=s.length,t.maximumFractionDigits=s.length),""});const e=s.options[0];"w"===e?t={...t,trailingZeroDisplay:"stripIfInteger"}:e&&(t={...t,...De(e)});continue}if(Ie.test(s.stem)){t={...t,...De(s.stem)};continue}const e=ke(s.stem);e&&(t={...t,...e});const i=je(s.stem);i&&(t={...t,...i})}return t}let Ke=function(e){return e[e.EXPECT_ARGUMENT_CLOSING_BRACE=1]="EXPECT_ARGUMENT_CLOSING_BRACE",e[e.EMPTY_ARGUMENT=2]="EMPTY_ARGUMENT",e[e.MALFORMED_ARGUMENT=3]="MALFORMED_ARGUMENT",e[e.EXPECT_ARGUMENT_TYPE=4]="EXPECT_ARGUMENT_TYPE",e[e.INVALID_ARGUMENT_TYPE=5]="INVALID_ARGUMENT_TYPE",e[e.EXPECT_ARGUMENT_STYLE=6]="EXPECT_ARGUMENT_STYLE",e[e.INVALID_NUMBER_SKELETON=7]="INVALID_NUMBER_SKELETON",e[e.INVALID_DATE_TIME_SKELETON=8]="INVALID_DATE_TIME_SKELETON",e[e.EXPECT_NUMBER_SKELETON=9]="EXPECT_NUMBER_SKELETON",e[e.EXPECT_DATE_TIME_SKELETON=10]="EXPECT_DATE_TIME_SKELETON",e[e.UNCLOSED_QUOTE_IN_ARGUMENT_STYLE=11]="UNCLOSED_QUOTE_IN_ARGUMENT_STYLE",e[e.EXPECT_SELECT_ARGUMENT_OPTIONS=12]="EXPECT_SELECT_ARGUMENT_OPTIONS",e[e.EXPECT_PLURAL_ARGUMENT_OFFSET_VALUE=13]="EXPECT_PLURAL_ARGUMENT_OFFSET_VALUE",e[e.INVALID_PLURAL_ARGUMENT_OFFSET_VALUE=14]="INVALID_PLURAL_ARGUMENT_OFFSET_VALUE",e[e.EXPECT_SELECT_ARGUMENT_SELECTOR=15]="EXPECT_SELECT_ARGUMENT_SELECTOR",e[e.EXPECT_PLURAL_ARGUMENT_SELECTOR=16]="EXPECT_PLURAL_ARGUMENT_SELECTOR",e[e.EXPECT_SELECT_ARGUMENT_SELECTOR_FRAGMENT=17]="EXPECT_SELECT_ARGUMENT_SELECTOR_FRAGMENT",e[e.EXPECT_PLURAL_ARGUMENT_SELECTOR_FRAGMENT=18]="EXPECT_PLURAL_ARGUMENT_SELECTOR_FRAGMENT",e[e.INVALID_PLURAL_ARGUMENT_SELECTOR=19]="INVALID_PLURAL_ARGUMENT_SELECTOR",e[e.DUPLICATE_PLURAL_ARGUMENT_SELECTOR=20]="DUPLICATE_PLURAL_ARGUMENT_SELECTOR",e[e.DUPLICATE_SELECT_ARGUMENT_SELECTOR=21]="DUPLICATE_SELECT_ARGUMENT_SELECTOR",e[e.MISSING_OTHER_CLAUSE=22]="MISSING_OTHER_CLAUSE",e[e.INVALID_TAG=23]="INVALID_TAG",e[e.INVALID_TAG_NAME=25]="INVALID_TAG_NAME",e[e.UNMATCHED_CLOSING_TAG=26]="UNMATCHED_CLOSING_TAG",e[e.UNCLOSED_TAG=27]="UNCLOSED_TAG",e}({});function Ve(e){return 0===e.type}function qe(e){return 1===e.type}function ze(e){return 2===e.type}function Xe(e){return 3===e.type}function Ye(e){return 4===e.type}function We(e){return 5===e.type}function Ze(e){return 6===e.type}function Je(e){return 7===e.type}function Qe(e){return 8===e.type}function et(e){return!(!e||"object"!=typeof e||0!==e.type)}function tt(e){return!(!e||"object"!=typeof e||1!==e.type)}const st=/[ \xA0\u1680\u2000-\u200A\u202F\u205F\u3000]/,it={"001":["H","h"],419:["h","H","hB","hb"],AC:["H","h","hb","hB"],AD:["H","hB"],AE:["h","hB","hb","H"],AF:["H","hb","hB","h"],AG:["h","hb","H","hB"],AI:["H","h","hb","hB"],AL:["h","H","hB"],AM:["H","hB"],AO:["H","hB"],AR:["h","H","hB","hb"],AS:["h","H"],AT:["H","hB"],AU:["h","hb","H","hB"],AW:["H","hB"],AX:["H"],AZ:["H","hB","h"],BA:["H","hB","h"],BB:["h","hb","H","hB"],BD:["h","hB","H"],BE:["H","hB"],BF:["H","hB"],BG:["H","hB","h"],BH:["h","hB","hb","H"],BI:["H","h"],BJ:["H","hB"],BL:["H","hB"],BM:["h","hb","H","hB"],BN:["hb","hB","h","H"],BO:["h","H","hB","hb"],BQ:["H"],BR:["H","hB"],BS:["h","hb","H","hB"],BT:["h","H"],BW:["H","h","hb","hB"],BY:["H","h"],BZ:["H","h","hb","hB"],CA:["h","hb","H","hB"],CC:["H","h","hb","hB"],CD:["hB","H"],CF:["H","h","hB"],CG:["H","hB"],CH:["H","hB","h"],CI:["H","hB"],CK:["H","h","hb","hB"],CL:["h","H","hB","hb"],CM:["H","h","hB"],CN:["H","hB","hb","h"],CO:["h","H","hB","hb"],CP:["H"],CR:["h","H","hB","hb"],CU:["h","H","hB","hb"],CV:["H","hB"],CW:["H","hB"],CX:["H","h","hb","hB"],CY:["h","H","hb","hB"],CZ:["H"],DE:["H","hB"],DG:["H","h","hb","hB"],DJ:["h","H"],DK:["H"],DM:["h","hb","H","hB"],DO:["h","H","hB","hb"],DZ:["h","hB","hb","H"],EA:["H","h","hB","hb"],EC:["h","H","hB","hb"],EE:["H","hB"],EG:["h","hB","hb","H"],EH:["h","hB","hb","H"],ER:["h","H"],ES:["H","hB","h","hb"],ET:["hB","hb","h","H"],FI:["H"],FJ:["h","hb","H","hB"],FK:["H","h","hb","hB"],FM:["h","hb","H","hB"],FO:["H","h"],FR:["H","hB"],GA:["H","hB"],GB:["H","h","hb","hB"],GD:["h","hb","H","hB"],GE:["H","hB","h"],GF:["H","hB"],GG:["H","h","hb","hB"],GH:["h","H"],GI:["H","h","hb","hB"],GL:["H","h"],GM:["h","hb","H","hB"],GN:["H","hB"],GP:["H","hB"],GQ:["H","hB","h","hb"],GR:["h","H","hb","hB"],GS:["H","h","hb","hB"],GT:["h","H","hB","hb"],GU:["h","hb","H","hB"],GW:["H","hB"],GY:["h","hb","H","hB"],HK:["h","hB","hb","H"],HN:["h","H","hB","hb"],HR:["H","hB"],HU:["H","h"],IC:["H","h","hB","hb"],ID:["H"],IE:["H","h","hb","hB"],IL:["H","hB"],IM:["H","h","hb","hB"],IN:["h","H"],IO:["H","h","hb","hB"],IQ:["h","hB","hb","H"],IR:["hB","H"],IS:["H"],IT:["H","hB"],JE:["H","h","hb","hB"],JM:["h","hb","H","hB"],JO:["h","hB","hb","H"],JP:["H","K","h"],KE:["hB","hb","H","h"],KG:["H","h","hB","hb"],KH:["hB","h","H","hb"],KI:["h","hb","H","hB"],KM:["H","h","hB","hb"],KN:["h","hb","H","hB"],KP:["h","H","hB","hb"],KR:["h","H","hB","hb"],KW:["h","hB","hb","H"],KY:["h","hb","H","hB"],KZ:["H","hB"],LA:["H","hb","hB","h"],LB:["h","hB","hb","H"],LC:["h","hb","H","hB"],LI:["H","hB","h"],LK:["H","h","hB","hb"],LR:["h","hb","H","hB"],LS:["h","H"],LT:["H","h","hb","hB"],LU:["H","h","hB"],LV:["H","hB","hb","h"],LY:["h","hB","hb","H"],MA:["H","h","hB","hb"],MC:["H","hB"],MD:["H","hB"],ME:["H","hB","h"],MF:["H","hB"],MG:["H","h"],MH:["h","hb","H","hB"],MK:["H","h","hb","hB"],ML:["H"],MM:["hB","hb","H","h"],MN:["H","h","hb","hB"],MO:["h","hB","hb","H"],MP:["h","hb","H","hB"],MQ:["H","hB"],MR:["h","hB","hb","H"],MS:["H","h","hb","hB"],MT:["H","h"],MU:["H","h"],MV:["H","h"],MW:["h","hb","H","hB"],MX:["h","H","hB","hb"],MY:["hb","hB","h","H"],MZ:["H","hB"],NA:["h","H","hB","hb"],NC:["H","hB"],NE:["H"],NF:["H","h","hb","hB"],NG:["H","h","hb","hB"],NI:["h","H","hB","hb"],NL:["H","hB"],NO:["H","h"],NP:["H","h","hB"],NR:["H","h","hb","hB"],NU:["H","h","hb","hB"],NZ:["h","hb","H","hB"],OM:["h","hB","hb","H"],PA:["h","H","hB","hb"],PE:["h","H","hB","hb"],PF:["H","h","hB"],PG:["h","H"],PH:["h","hB","hb","H"],PK:["h","hB","H"],PL:["H","h"],PM:["H","hB"],PN:["H","h","hb","hB"],PR:["h","H","hB","hb"],PS:["h","hB","hb","H"],PT:["H","hB"],PW:["h","H"],PY:["h","H","hB","hb"],QA:["h","hB","hb","H"],RE:["H","hB"],RO:["H","hB"],RS:["H","hB","h"],RU:["H"],RW:["H","h"],SA:["h","hB","hb","H"],SB:["h","hb","H","hB"],SC:["H","h","hB"],SD:["h","hB","hb","H"],SE:["H"],SG:["h","hb","H","hB"],SH:["H","h","hb","hB"],SI:["H","hB"],SJ:["H"],SK:["H"],SL:["h","hb","H","hB"],SM:["H","h","hB"],SN:["H","h","hB"],SO:["h","H"],SR:["H","hB"],SS:["h","hb","H","hB"],ST:["H","hB"],SV:["h","H","hB","hb"],SX:["H","h","hb","hB"],SY:["h","hB","hb","H"],SZ:["h","hb","H","hB"],TA:["H","h","hb","hB"],TC:["h","hb","H","hB"],TD:["h","H","hB"],TF:["H","h","hB"],TG:["H","hB"],TH:["H","h"],TJ:["H","h"],TL:["H","hB","hb","h"],TM:["H","h"],TN:["h","hB","hb","H"],TO:["h","H"],TR:["H","hB"],TT:["h","hb","H","hB"],TW:["hB","hb","h","H"],TZ:["hB","hb","H","h"],UA:["H","hB","h"],UG:["hB","hb","H","h"],UM:["h","hb","H","hB"],US:["h","hb","H","hB"],UY:["h","H","hB","hb"],UZ:["H","hB","h"],VA:["H","h","hB"],VC:["h","hb","H","hB"],VE:["h","H","hB","hb"],VG:["h","hb","H","hB"],VI:["h","hb","H","hB"],VN:["H","h"],VU:["h","H"],WF:["H","hB"],WS:["h","H"],XK:["H","hB","h"],YE:["h","hB","hb","H"],YT:["H","hB"],ZA:["H","h","hb","hB"],ZM:["h","hb","H","hB"],ZW:["H","h"],"af-ZA":["H","h","hB","hb"],"ar-001":["h","hB","hb","H"],"ca-ES":["H","h","hB"],"en-001":["h","hb","H","hB"],"en-HK":["h","hb","H","hB"],"en-IL":["H","h","hb","hB"],"en-MY":["h","hb","H","hB"],"es-BR":["H","h","hB","hb"],"es-ES":["H","h","hB","hb"],"es-GQ":["H","h","hB","hb"],"fr-CA":["H","h","hB"],"gl-ES":["H","h","hB"],"gu-IN":["hB","hb","h","H"],"hi-IN":["hB","h","H"],"it-CH":["H","h","hB"],"it-IT":["H","h","hB"],"kn-IN":["hB","h","H"],"ku-SY":["H","hB"],"ml-IN":["hB","h","H"],"mr-IN":["hB","hb","h","H"],"pa-IN":["hB","hb","h","H"],"ta-IN":["hB","h","hb","H"],"te-IN":["hB","h","H"],"zu-ZA":["H","hB","hb","h"]};function rt(e){let t=e.hourCycle;if(void 0===t&&e.hourCycles&&e.hourCycles.length&&(t=e.hourCycles[0]),t)switch(t){case"h24":return"k";case"h23":return"H";case"h12":return"h";case"h11":return"K";default:throw new Error("Invalid hourCycle")}const s=e.language;let i;return"root"!==s&&(i=e.maximize().region),(it[i||""]||it[s||""]||it[`${s}-001`]||it["001"])[0]}const nt=new RegExp(`^${st.source}*`),ot=new RegExp(`${st.source}*$`);function at(e,t){return{start:e,end:t}}const ht=!!Object.fromEntries,lt=!!String.prototype.trimStart,ct=!!String.prototype.trimEnd,ut=ht?Object.fromEntries:function(e){const t={};for(const[s,i]of e)t[s]=i;return t},dt=lt?function(e){return e.trimStart()}:function(e){return e.replace(nt,"")},pt=ct?function(e){return e.trimEnd()}:function(e){return e.replace(ot,"")},ft=new RegExp("([^\\p{White_Space}\\p{Pattern_Syntax}]*)","yu");var gt=class{constructor(e,t={}){this.message=e,this.position={offset:0,line:1,column:1},this.ignoreTag=!!t.ignoreTag,this.locale=t.locale,this.requiresOtherClause=!!t.requiresOtherClause,this.shouldParseSkeletons=!!t.shouldParseSkeletons}parse(){if(0!==this.offset())throw Error("parser can only be used once");if(this.message.length>0){const e=this.message.charCodeAt(0);if(35!==e&&39!==e&&60!==e&&123!==e&&125!==e){const e=function(e){if(0===e.length)return null;let t=1,s=1;for(let i=0;i<e.length;){const r=e.charCodeAt(i);switch(r){case 35:case 39:case 60:case 123:case 125:return null}if(10===r)t++,s=1,i++;else if(s++,r>=55296&&r<=56319&&i+1<e.length){const t=e.charCodeAt(i+1);i+=t>=56320&&t<=57343?2:1}else i++}return{offset:e.length,line:t,column:s}}(this.message);if(e){const t=this.clonePosition();return this.position=e,{val:[{type:0,value:this.message,location:at(t,this.clonePosition())}],err:null}}}}return this.parseMessage(0,"",!1)}parseMessage(e,t,s){let i=[];for(;!this.isEOF();){const r=this.char();if(123===r){const t=this.parseArgument(e,s);if(t.err)return t;i.push(t.val)}else{if(125===r&&e>0)break;if(35!==r||"plural"!==t&&"selectordinal"!==t){if(60===r&&!this.ignoreTag&&47===this.peek()){if(s)break;return this.error(26,at(this.clonePosition(),this.clonePosition()))}if(60===r&&!this.ignoreTag&&mt(this.peek()||0)){const s=this.parseTag(e,t);if(s.err)return s;i.push(s.val)}else{const s=this.parseLiteral(e,t);if(s.err)return s;i.push(s.val)}}else{const e=this.clonePosition();this.bump(),i.push({type:7,location:at(e,this.clonePosition())})}}}return{val:i,err:null}}parseTag(e,t){const s=this.clonePosition();this.bump();const i=this.parseTagName();if(this.bumpSpace(),this.bumpIf("/>"))return{val:{type:0,value:`<${i}/>`,location:at(s,this.clonePosition())},err:null};if(this.bumpIf(">")){const r=this.parseMessage(e+1,t,!0);if(r.err)return r;const n=r.val,o=this.clonePosition();if(this.bumpIf("</")){if(this.isEOF()||!mt(this.char()))return this.error(23,at(o,this.clonePosition()));const e=this.clonePosition();return i!==this.parseTagName()?this.error(26,at(e,this.clonePosition())):(this.bumpSpace(),this.bumpIf(">")?{val:{type:8,value:i,children:n,location:at(s,this.clonePosition())},err:null}:this.error(23,at(o,this.clonePosition())))}return this.error(27,at(s,this.clonePosition()))}return this.error(23,at(s,this.clonePosition()))}parseTagName(){const e=this.offset();for(this.bump();!this.isEOF()&&bt(this.char());)this.bump();return this.message.slice(e,this.offset())}parseLiteral(e,t){const s=this.clonePosition();let i="";for(;;){const s=this.tryParseQuote(t);if(s){i+=s;continue}const r=this.tryParseUnquoted(e,t);if(r){i+=r;continue}const n=this.tryParseLeftAngleBracket();if(!n)break;i+=n}return{val:{type:0,value:i,location:at(s,this.clonePosition())},err:null}}tryParseLeftAngleBracket(){return this.isEOF()||60!==this.char()||!this.ignoreTag&&(mt(e=this.peek()||0)||47===e)?null:(this.bump(),"<");var e}tryParseQuote(e){if(this.isEOF()||39!==this.char())return null;switch(this.peek()){case 39:return this.bump(),this.bump(),"'";case 123:case 60:case 62:case 125:break;case 35:if("plural"===e||"selectordinal"===e)break;return null;default:return null}this.bump();const t=[this.char()];for(this.bump();!this.isEOF();){const e=this.char();if(39===e){if(39!==this.peek()){this.bump();break}t.push(39),this.bump()}else t.push(e);this.bump()}return String.fromCodePoint(...t)}tryParseUnquoted(e,t){if(this.isEOF())return null;const s=this.char();return 60===s||123===s||35===s&&("plural"===t||"selectordinal"===t)||125===s&&e>0?null:(this.bump(),String.fromCodePoint(s))}parseArgument(e,t){const s=this.clonePosition();if(this.bump(),this.bumpSpace(),this.isEOF())return this.error(1,at(s,this.clonePosition()));if(125===this.char())return this.bump(),this.error(2,at(s,this.clonePosition()));let i=this.parseIdentifierIfPossible().value;if(!i)return this.error(3,at(s,this.clonePosition()));if(this.bumpSpace(),this.isEOF())return this.error(1,at(s,this.clonePosition()));switch(this.char()){case 125:return this.bump(),{val:{type:1,value:i,location:at(s,this.clonePosition())},err:null};case 44:return this.bump(),this.bumpSpace(),this.isEOF()?this.error(1,at(s,this.clonePosition())):this.parseArgumentOptions(e,t,i,s);default:return this.error(3,at(s,this.clonePosition()))}}parseIdentifierIfPossible(){const e=this.clonePosition(),t=this.offset(),s=function(e,t){return ft.lastIndex=t,ft.exec(e)[1]??""}(this.message,t),i=t+s.length;return this.bumpTo(i),{value:s,location:at(e,this.clonePosition())}}parseArgumentOptions(e,t,s,i){let r=this.clonePosition(),n=this.parseIdentifierIfPossible().value,o=this.clonePosition();switch(n){case"":return this.error(4,at(r,o));case"number":case"date":case"time":{this.bumpSpace();let e=null;if(this.bumpIf(",")){this.bumpSpace();const t=this.clonePosition(),s=this.parseSimpleArgStyleIfPossible();if(s.err)return s;const i=pt(s.val);if(0===i.length)return this.error(6,at(this.clonePosition(),this.clonePosition()));e={style:i,styleLocation:at(t,this.clonePosition())}}const t=this.tryParseArgumentClose(i);if(t.err)return t;const r=at(i,this.clonePosition());if(e&&e.style.startsWith("::")){let t=dt(e.style.slice(2));if("number"===n){const i=this.parseNumberSkeletonFromString(t,e.styleLocation);return i.err?i:{val:{type:2,value:s,location:r,style:i.val},err:null}}{if(0===t.length)return this.error(10,r);let i=t;return this.locale&&(i=function(e,t){let s="";for(let i=0;i<e.length;i++){const r=e.charAt(i);if("j"===r){let n=0;for(;i+1<e.length&&e.charAt(i+1)===r;)n++,i++;let o=1+(1&n),a=n<2?1:3+(n>>1),h="a",l=rt(t);for("H"!=l&&"k"!=l||(a=0);a-- >0;)s+=h;for(;o-- >0;)s=l+s}else s+="J"===r?"H":r}return s}(t,this.locale)),{val:{type:"date"===n?3:4,value:s,location:r,style:{type:1,pattern:i,location:e.styleLocation,parsedOptions:this.shouldParseSkeletons?Re(i):{}}},err:null}}}return{val:{type:"number"===n?2:"date"===n?3:4,value:s,location:r,style:e?.style??null},err:null}}case"plural":case"selectordinal":case"select":{const r=this.clonePosition();if(this.bumpSpace(),!this.bumpIf(","))return this.error(12,at(r,{...r}));this.bumpSpace();let o=this.parseIdentifierIfPossible(),a=0;if("select"!==n&&"offset"===o.value){if(!this.bumpIf(":"))return this.error(13,at(this.clonePosition(),this.clonePosition()));this.bumpSpace();const e=this.tryParseDecimalInteger(13,14);if(e.err)return e;this.bumpSpace(),o=this.parseIdentifierIfPossible(),a=e.val}const h=this.tryParsePluralOrSelectOptions(e,n,t,o);if(h.err)return h;const l=this.tryParseArgumentClose(i);if(l.err)return l;const c=at(i,this.clonePosition());return"select"===n?{val:{type:5,value:s,options:ut(h.val),location:c},err:null}:{val:{type:6,value:s,options:ut(h.val),offset:a,pluralType:"plural"===n?"cardinal":"ordinal",location:c},err:null}}default:return this.error(5,at(r,o))}}tryParseArgumentClose(e){return this.isEOF()||125!==this.char()?this.error(1,at(e,this.clonePosition())):(this.bump(),{val:!0,err:null})}parseSimpleArgStyleIfPossible(){let e=0;const t=this.clonePosition();for(;!this.isEOF();)switch(this.char()){case 39:{this.bump();let e=this.clonePosition();if(!this.bumpUntil("'"))return this.error(11,at(e,this.clonePosition()));this.bump();break}case 123:e+=1,this.bump();break;case 125:if(!(e>0))return{val:this.message.slice(t.offset,this.offset()),err:null};e-=1;break;default:this.bump()}return{val:this.message.slice(t.offset,this.offset()),err:null}}parseNumberSkeletonFromString(e,t){let s=[];try{s=function(e){if(0===e.length)throw new Error("Number skeleton cannot be empty");const t=e.split(Ne).filter(e=>e.length>0),s=[];for(const e of t){let t=e.split("/");if(0===t.length)throw new Error("Invalid number skeleton");const[i,...r]=t;for(const e of r)if(0===e.length)throw new Error("Invalid number skeleton");s.push({stem:i,options:r})}return s}(e)}catch{return this.error(7,t)}return{val:{type:0,tokens:s,location:t,parsedOptions:this.shouldParseSkeletons?Fe(s):{}},err:null}}tryParsePluralOrSelectOptions(e,t,s,i){let r=!1;const n=[],o=new Set;let{value:a,location:h}=i;for(;;){if(0===a.length){const e=this.clonePosition();if("select"===t||!this.bumpIf("="))break;{const t=this.tryParseDecimalInteger(16,19);if(t.err)return t;h=at(e,this.clonePosition()),a=this.message.slice(e.offset,this.offset())}}if(o.has(a))return this.error("select"===t?21:20,h);"other"===a&&(r=!0),this.bumpSpace();const i=this.clonePosition();if(!this.bumpIf("{"))return this.error("select"===t?17:18,at(this.clonePosition(),this.clonePosition()));const l=this.parseMessage(e+1,t,s);if(l.err)return l;const c=this.tryParseArgumentClose(i);if(c.err)return c;n.push([a,{value:l.val,location:at(i,this.clonePosition())}]),o.add(a),this.bumpSpace(),({value:a,location:h}=this.parseIdentifierIfPossible())}return 0===n.length?this.error("select"===t?15:16,at(this.clonePosition(),this.clonePosition())):this.requiresOtherClause&&!r?this.error(22,at(this.clonePosition(),this.clonePosition())):{val:n,err:null}}tryParseDecimalInteger(e,t){let s=1;const i=this.clonePosition();this.bumpIf("+")||this.bumpIf("-")&&(s=-1);let r=!1,n=0;for(;!this.isEOF();){const e=this.char();if(!(e>=48&&e<=57))break;r=!0,n=10*n+(e-48),this.bump()}const o=at(i,this.clonePosition());return r?(n*=s,Number.isSafeInteger(n)?{val:n,err:null}:this.error(t,o)):this.error(e,o)}offset(){return this.position.offset}isEOF(){return this.offset()===this.message.length}clonePosition(){return{offset:this.position.offset,line:this.position.line,column:this.position.column}}char(){const e=this.position.offset;if(e>=this.message.length)throw Error("out of bound");const t=this.message.codePointAt(e);if(void 0===t)throw Error(`Offset ${e} is at invalid UTF-16 code unit boundary`);return t}error(e,t){return{val:null,err:{kind:e,message:this.message,location:t}}}bump(){if(this.isEOF())return;const e=this.char();10===e?(this.position.line+=1,this.position.column=1,this.position.offset+=1):(this.position.column+=1,this.position.offset+=e<65536?1:2)}bumpIf(e){if(this.message.startsWith(e,this.offset())){for(let t=0;t<e.length;t++)this.bump();return!0}return!1}bumpUntil(e){const t=this.offset(),s=this.message.indexOf(e,t);return s>=0?(this.bumpTo(s),!0):(this.bumpTo(this.message.length),!1)}bumpTo(e){if(this.offset()>e)throw Error(`targetOffset ${e} must be greater than or equal to the current offset ${this.offset()}`);for(e=Math.min(e,this.message.length);;){const t=this.offset();if(t===e)break;if(t>e)throw Error(`targetOffset ${e} is at invalid UTF-16 code unit boundary`);if(this.bump(),this.isEOF())break}}bumpSpace(){for(;!this.isEOF()&&yt(this.char());)this.bump()}peek(){if(this.isEOF())return null;const e=this.char(),t=this.offset();return this.message.charCodeAt(t+(e>=65536?2:1))??null}};function mt(e){return e>=97&&e<=122||e>=65&&e<=90}function bt(e){return 45===e||46===e||e>=48&&e<=57||95===e||e>=97&&e<=122||e>=65&&e<=90||183==e||e>=192&&e<=214||e>=216&&e<=246||e>=248&&e<=893||e>=895&&e<=8191||e>=8204&&e<=8205||e>=8255&&e<=8256||e>=8304&&e<=8591||e>=11264&&e<=12271||e>=12289&&e<=55295||e>=63744&&e<=64975||e>=65008&&e<=65533||e>=65536&&e<=983039}function yt(e){return e>=9&&e<=13||32===e||133===e||e>=8206&&e<=8207||8232===e||8233===e}function vt(e){e.forEach(e=>{if(delete e.location,We(e)||Ze(e))for(const t in e.options)delete e.options[t].location,vt(e.options[t].value);else ze(e)&&et(e.style)||(Xe(e)||Ye(e))&&tt(e.style)?delete e.style.location:Qe(e)&&vt(e.children)})}function Et(e,t={}){t={shouldParseSkeletons:!0,requiresOtherClause:!0,...t};const s=new gt(e,t).parse();if(s.err){const e=SyntaxError(Ke[s.err.kind]);throw e.location=s.err.location,e.originalMessage=s.err.message,e}return t?.captureLocation||vt(s.val),s.val}var _t=class extends Error{constructor(e,t,s){super(e),this.code=t,this.originalMessage=s}toString(){return`[formatjs Error: ${this.code}] ${this.message}`}},Ht=class extends _t{constructor(e,t,s,i){super(`Invalid values for "${e}": "${t}". Options are "${Object.keys(s).join('", "')}"`,"INVALID_VALUE",i)}},At=class extends _t{constructor(e,t,s){super(`Value for "${e}" must be of type ${t}`,"INVALID_VALUE",s)}},$t=class extends _t{constructor(e,t){super(`The intl string context variable "${e}" was not provided to the string "${t}"`,"MISSING_VALUE",t)}};function Bt(e){return"function"==typeof e}function Tt(e,t,s,i,r,n,o){if(1===e.length&&Ve(e[0]))return[{type:0,value:e[0].value}];const a=[];for(const h of e){if(Ve(h)){a.push({type:0,value:h.value});continue}if(Je(h)){"number"==typeof n&&a.push({type:0,value:s.getNumberFormat(t).format(n)});continue}const{value:e}=h;if(!r||!(e in r))throw new $t(e,o);let l=r[e];if(qe(h))l&&"string"!=typeof l&&"number"!=typeof l&&"bigint"!=typeof l||(l="string"==typeof l||"number"==typeof l||"bigint"==typeof l?String(l):""),a.push({type:"string"==typeof l?0:1,value:l});else{if(Xe(h)){const e="string"==typeof h.style?i.date[h.style]:tt(h.style)?h.style.parsedOptions:void 0;a.push({type:0,value:s.getDateTimeFormat(t,e).format(l)});continue}if(Ye(h)){const e="string"==typeof h.style?i.time[h.style]:tt(h.style)?h.style.parsedOptions:i.time.medium;a.push({type:0,value:s.getDateTimeFormat(t,e).format(l)});continue}if(ze(h)){const e="string"==typeof h.style?i.number[h.style]:et(h.style)?h.style.parsedOptions:void 0;if(e&&e.scale){const t=e.scale||1;if("bigint"==typeof l){if(!Number.isInteger(t))throw new TypeError(`Cannot apply fractional scale ${t} to bigint value. Scale must be an integer when formatting bigint.`);l*=BigInt(t)}else l*=t}a.push({type:0,value:s.getNumberFormat(t,e).format(l)});continue}if(Qe(h)){const{children:e,value:l}=h,c=r[l];if(!Bt(c))throw new At(l,"function",o);let u=c(Tt(e,t,s,i,r,n).map(e=>e.value));Array.isArray(u)||(u=[u]),a.push(...u.map(e=>({type:"string"==typeof e?0:1,value:e})))}if(We(h)){const e=l,n=(Object.prototype.hasOwnProperty.call(h.options,e)?h.options[e]:void 0)||h.options.other;if(!n)throw new Ht(h.value,l,Object.keys(h.options),o);a.push(...Tt(n.value,t,s,i,r));continue}if(Ze(h)){const e=`=${l}`;let n=Object.prototype.hasOwnProperty.call(h.options,e)?h.options[e]:void 0;if(!n){if(!Intl.PluralRules)throw new _t('Intl.PluralRules is not available in this environment.\nTry polyfilling it using "@formatjs/intl-pluralrules"\n',"MISSING_INTL_API",o);const e="bigint"==typeof l?Number(l):l,i=s.getPluralRules(t,{type:h.pluralType}).select(e-(h.offset||0));n=(Object.prototype.hasOwnProperty.call(h.options,i)?h.options[i]:void 0)||h.options.other}if(!n)throw new Ht(h.value,l,Object.keys(h.options),o);const c="bigint"==typeof l?Number(l):l;a.push(...Tt(n.value,t,s,i,r,c-(h.offset||0)));continue}}}return(h=a).length<2?h:h.reduce((e,t)=>{const s=e[e.length-1];return s&&0===s.type&&0===t.type?s.value+=t.value:e.push(t),e},[]);var h}function wt(e){return{create:()=>({get:t=>e[t],set(t,s){e[t]=s}})}}var Pt=class e{constructor(t,s=e.defaultLocale,i,r){if(this.formatterCache={number:{},dateTime:{},pluralRules:{}},this.format=e=>{const t=this.formatToParts(e);if(1===t.length)return t[0].value;const s=t.reduce((e,t)=>(e.length&&0===t.type&&"string"==typeof e[e.length-1]?e[e.length-1]+=t.value:e.push(t.value),e),[]);return s.length<=1?s[0]||"":s},this.formatToParts=e=>Tt(this.ast,this.locales,this.formatters,this.formats,e,void 0,this.message),this.resolvedOptions=()=>({locale:this.resolvedLocale?.toString()||Intl.NumberFormat.supportedLocalesOf(this.locales)[0]}),this.getAst=()=>this.ast,this.locales=s,this.resolvedLocale=e.resolveLocale(s),"string"==typeof t){if(this.message=t,!e.__parse)throw new TypeError("IntlMessageFormat.__parse must be set to process `message` of type `string`");const{...s}=r||{};this.ast=e.__parse(t,{...s,locale:this.resolvedLocale})}else this.ast=t;if(!Array.isArray(this.ast))throw new TypeError("A message must be provided as a String or AST.");var n,o;this.formats=(n=e.formats,(o=i)?Object.keys(n).reduce((e,t)=>{var s,i;return e[t]=(s=n[t],(i=o[t])?{...s,...i,...Object.keys(s).reduce((e,t)=>(e[t]={...s[t],...i[t]},e),{})}:s),e},{...n}):n),this.formatters=r&&r.formatters||function(e={number:{},dateTime:{},pluralRules:{}}){return{getNumberFormat:He((...e)=>new Intl.NumberFormat(...e),{cache:wt(e.number),strategy:Ce.variadic}),getDateTimeFormat:He((...e)=>new Intl.DateTimeFormat(...e),{cache:wt(e.dateTime),strategy:Ce.variadic}),getPluralRules:He((...e)=>new Intl.PluralRules(...e),{cache:wt(e.pluralRules),strategy:Ce.variadic})}}(this.formatterCache)}static{this.memoizedDefaultLocale=null}static get defaultLocale(){return e.memoizedDefaultLocale||(e.memoizedDefaultLocale=(new Intl.NumberFormat).resolvedOptions().locale),e.memoizedDefaultLocale}static{this.resolveLocale=e=>{if(void 0===Intl.Locale)return;const t=Intl.NumberFormat.supportedLocalesOf(e);return t.length>0?new Intl.Locale(t[0]):new Intl.Locale("string"==typeof e?e:e[0])}}static{this.__parse=Et}static{this.formats={number:{integer:{maximumFractionDigits:0},currency:{style:"currency"},percent:{style:"percent"}},date:{short:{month:"numeric",day:"numeric",year:"2-digit"},medium:{month:"short",day:"numeric",year:"numeric"},long:{month:"long",day:"numeric",year:"numeric"},full:{weekday:"long",month:"long",day:"numeric",year:"numeric"}},time:{short:{hour:"numeric",minute:"numeric"},medium:{hour:"numeric",minute:"numeric",second:"numeric"},long:{hour:"numeric",minute:"numeric",second:"numeric",timeZoneName:"short"},full:{hour:"numeric",minute:"numeric",second:"numeric",timeZoneName:"short"}}}}};const St={en:ve,fr:_e};function Ct(e,t,...s){const i=t.replace(/['"]+/g,"");let r=Ot(e,i);if(void 0===r)return"";const n=r.match(/{{.*?}}/g);if(n&&(n.forEach(e=>{const t=Ot(e=e.replace(/{{|}}/g,""),i);t&&(r=null==r?void 0:r.replace(e,t))}),r=r.replace(/{{|}}/g,"")),0===s.length)return r;const o={};for(let e=0;e<s.length;e+=2){let t=s[e];t=t.replace(/^{([^}]+)?}$/,"$1"),o[t]=s[e+1]}try{return new Pt(r,t).format(o)}catch(e){return`Translation ${String(e)}`}}function Ot(e,t){let s;try{s=e.split(".").reduce((e,t)=>e[t],St[t])}catch(t){try{s=e.split(".").reduce((e,t)=>e[t],St.en)}catch(t){console.error("translation not found : "+e)}}return s}const Rt=h`
-  .button {
-    margin-right: -0.57em;
-  }
-  
-  .flex {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .flex-center {
-    justify-content: center !important;
-  }
-  
-  .flexRow {
-    display: flex;
-    margin-bottom: 0.5rem;
-    justify-content: center;
-  }
-  
-  .flexRow-center {
-    justify-content: center;
+(()=>{"use strict";var e={};const t={};function o(r){const i=t[r];if(void 0!==i)return i.exports;const s=t[r]={exports:{}};return e[r](s,s.exports,o),s.exports}(()=>{const e=Object.getPrototypeOf;let t;o.t=function(r,i){if(1&i&&(r=this(r)),8&i)return r;if("object"==typeof r&&r){if(4&i&&r.__esModule)return r;if(16&i&&"function"==typeof r.then)return r}const s=Object.create(null);o.r(s);const n={};t=t||[null,e({}),e([]),e(e)];for(var a=2&i&&r;("object"==typeof a||"function"==typeof a)&&!~t.indexOf(a);a=e(a))Object.getOwnPropertyNames(a).forEach(e=>n[e]=()=>r[e]);return n.default=()=>r,o.d(s,n),s}})(),o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),o.r=e=>{Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})};const r=globalThis,i=r.ShadowRoot&&(void 0===r.ShadyCSS||r.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,s=Symbol(),n=new WeakMap;class a{constructor(e,t,o){if(this._$cssResult$=!0,o!==s)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=e,this.t=t}get styleSheet(){let e=this.o;const t=this.t;if(i&&void 0===e){const o=void 0!==t&&1===t.length;o&&(e=n.get(t)),void 0===e&&((this.o=e=new CSSStyleSheet).replaceSync(this.cssText),o&&n.set(t,e))}return e}toString(){return this.cssText}}const l=(e,...t)=>{const o=1===e.length?e[0]:t.reduce((t,o,r)=>t+(e=>{if(!0===e._$cssResult$)return e.cssText;if("number"==typeof e)return e;throw Error("Value passed to 'css' function must be a 'css' function result: "+e+". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.")})(o)+e[r+1],e[0]);return new a(o,e,s)},c=(e,t)=>{if(i)e.adoptedStyleSheets=t.map(e=>e instanceof CSSStyleSheet?e:e.styleSheet);else for(const o of t){const t=document.createElement("style"),i=r.litNonce;void 0!==i&&t.setAttribute("nonce",i),t.textContent=o.cssText,e.appendChild(t)}},d=i?e=>e:e=>e instanceof CSSStyleSheet?(e=>{let t="";for(const o of e.cssRules)t+=o.cssText;return(e=>new a("string"==typeof e?e:e+"",void 0,s))(t)})(e):e,{is:h,defineProperty:p,getOwnPropertyDescriptor:u,getOwnPropertyNames:m,getOwnPropertySymbols:v,getPrototypeOf:g}=Object,y=globalThis,f=y.trustedTypes,b=f?f.emptyScript:"",$=y.reactiveElementPolyfillSupport,_=(e,t)=>e,x={toAttribute(e,t){switch(t){case Boolean:e=e?b:null;break;case Object:case Array:e=null==e?e:JSON.stringify(e)}return e},fromAttribute(e,t){let o=e;switch(t){case Boolean:o=null!==e;break;case Number:o=null===e?null:Number(e);break;case Object:case Array:try{o=JSON.parse(e)}catch(e){o=null}}return o}},w=(e,t)=>!h(e,t),A={attribute:!0,type:String,converter:x,reflect:!1,useDefault:!1,hasChanged:w};Symbol.metadata??=Symbol("metadata"),y.litPropertyMetadata??=new WeakMap;class C extends HTMLElement{static addInitializer(e){this._$Ei(),(this.l??=[]).push(e)}static get observedAttributes(){return this.finalize(),this._$Eh&&[...this._$Eh.keys()]}static createProperty(e,t=A){if(t.state&&(t.attribute=!1),this._$Ei(),this.prototype.hasOwnProperty(e)&&((t=Object.create(t)).wrapped=!0),this.elementProperties.set(e,t),!t.noAccessor){const o=Symbol(),r=this.getPropertyDescriptor(e,o,t);void 0!==r&&p(this.prototype,e,r)}}static getPropertyDescriptor(e,t,o){const{get:r,set:i}=u(this.prototype,e)??{get(){return this[t]},set(e){this[t]=e}};return{get:r,set(t){const s=r?.call(this);i?.call(this,t),this.requestUpdate(e,s,o)},configurable:!0,enumerable:!0}}static getPropertyOptions(e){return this.elementProperties.get(e)??A}static _$Ei(){if(this.hasOwnProperty(_("elementProperties")))return;const e=g(this);e.finalize(),void 0!==e.l&&(this.l=[...e.l]),this.elementProperties=new Map(e.elementProperties)}static finalize(){if(this.hasOwnProperty(_("finalized")))return;if(this.finalized=!0,this._$Ei(),this.hasOwnProperty(_("properties"))){const e=this.properties,t=[...m(e),...v(e)];for(const o of t)this.createProperty(o,e[o])}const e=this[Symbol.metadata];if(null!==e){const t=litPropertyMetadata.get(e);if(void 0!==t)for(const[e,o]of t)this.elementProperties.set(e,o)}this._$Eh=new Map;for(const[e,t]of this.elementProperties){const o=this._$Eu(e,t);void 0!==o&&this._$Eh.set(o,e)}this.elementStyles=this.finalizeStyles(this.styles)}static finalizeStyles(e){const t=[];if(Array.isArray(e)){const o=new Set(e.flat(1/0).reverse());for(const e of o)t.unshift(d(e))}else void 0!==e&&t.push(d(e));return t}static _$Eu(e,t){const o=t.attribute;return!1===o?void 0:"string"==typeof o?o:"string"==typeof e?e.toLowerCase():void 0}constructor(){super(),this._$Ep=void 0,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Em=null,this._$Ev()}_$Ev(){this._$ES=new Promise(e=>this.enableUpdating=e),this._$AL=new Map,this._$E_(),this.requestUpdate(),this.constructor.l?.forEach(e=>e(this))}addController(e){(this._$EO??=new Set).add(e),void 0!==this.renderRoot&&this.isConnected&&e.hostConnected?.()}removeController(e){this._$EO?.delete(e)}_$E_(){const e=new Map,t=this.constructor.elementProperties;for(const o of t.keys())this.hasOwnProperty(o)&&(e.set(o,this[o]),delete this[o]);e.size>0&&(this._$Ep=e)}createRenderRoot(){const e=this.shadowRoot??this.attachShadow(this.constructor.shadowRootOptions);return c(e,this.constructor.elementStyles),e}connectedCallback(){this.renderRoot??=this.createRenderRoot(),this.enableUpdating(!0),this._$EO?.forEach(e=>e.hostConnected?.())}enableUpdating(e){}disconnectedCallback(){this._$EO?.forEach(e=>e.hostDisconnected?.())}attributeChangedCallback(e,t,o){this._$AK(e,o)}_$ET(e,t){const o=this.constructor.elementProperties.get(e),r=this.constructor._$Eu(e,o);if(void 0!==r&&!0===o.reflect){const i=(void 0!==o.converter?.toAttribute?o.converter:x).toAttribute(t,o.type);this._$Em=e,null==i?this.removeAttribute(r):this.setAttribute(r,i),this._$Em=null}}_$AK(e,t){const o=this.constructor,r=o._$Eh.get(e);if(void 0!==r&&this._$Em!==r){const e=o.getPropertyOptions(r),i="function"==typeof e.converter?{fromAttribute:e.converter}:void 0!==e.converter?.fromAttribute?e.converter:x;this._$Em=r;const s=i.fromAttribute(t,e.type);this[r]=s??this._$Ej?.get(r)??s,this._$Em=null}}requestUpdate(e,t,o,r=!1,i){if(void 0!==e){const s=this.constructor;if(!1===r&&(i=this[e]),o??=s.getPropertyOptions(e),!((o.hasChanged??w)(i,t)||o.useDefault&&o.reflect&&i===this._$Ej?.get(e)&&!this.hasAttribute(s._$Eu(e,o))))return;this.C(e,t,o)}!1===this.isUpdatePending&&(this._$ES=this._$EP())}C(e,t,{useDefault:o,reflect:r,wrapped:i},s){o&&!(this._$Ej??=new Map).has(e)&&(this._$Ej.set(e,s??t??this[e]),!0!==i||void 0!==s)||(this._$AL.has(e)||(this.hasUpdated||o||(t=void 0),this._$AL.set(e,t)),!0===r&&this._$Em!==e&&(this._$Eq??=new Set).add(e))}async _$EP(){this.isUpdatePending=!0;try{await this._$ES}catch(e){Promise.reject(e)}const e=this.scheduleUpdate();return null!=e&&await e,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){if(!this.isUpdatePending)return;if(!this.hasUpdated){if(this.renderRoot??=this.createRenderRoot(),this._$Ep){for(const[e,t]of this._$Ep)this[e]=t;this._$Ep=void 0}const e=this.constructor.elementProperties;if(e.size>0)for(const[t,o]of e){const{wrapped:e}=o,r=this[t];!0!==e||this._$AL.has(t)||void 0===r||this.C(t,void 0,o,r)}}let e=!1;const t=this._$AL;try{e=this.shouldUpdate(t),e?(this.willUpdate(t),this._$EO?.forEach(e=>e.hostUpdate?.()),this.update(t)):this._$EM()}catch(t){throw e=!1,this._$EM(),t}e&&this._$AE(t)}willUpdate(e){}_$AE(e){this._$EO?.forEach(e=>e.hostUpdated?.()),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(e)),this.updated(e)}_$EM(){this._$AL=new Map,this.isUpdatePending=!1}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$ES}shouldUpdate(e){return!0}update(e){this._$Eq&&=this._$Eq.forEach(e=>this._$ET(e,this[e])),this._$EM()}updated(e){}firstUpdated(e){}}C.elementStyles=[],C.shadowRootOptions={mode:"open"},C[_("elementProperties")]=new Map,C[_("finalized")]=new Map,$?.({ReactiveElement:C}),(y.reactiveElementVersions??=[]).push("2.1.2");const S=globalThis,T=e=>e,E=S.trustedTypes,k=E?E.createPolicy("lit-html",{createHTML:e=>e}):void 0,O="$lit$",P=`lit$${Math.random().toFixed(9).slice(2)}$`,R="?"+P,D=`<${R}>`,j=document,U=()=>j.createComment(""),N=e=>null===e||"object"!=typeof e&&"function"!=typeof e,M=Array.isArray,H="[ \t\n\f\r]",z=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,B=/-->/g,I=/>/g,L=RegExp(`>|${H}(?:([^\\s"'>=/]+)(${H}*=${H}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`,"g"),q=/'/g,V=/"/g,K=/^(?:script|style|textarea|title)$/i,F=e=>(t,...o)=>({_$litType$:e,strings:t,values:o}),W=F(1),J=(F(2),F(3),Symbol.for("lit-noChange")),Y=Symbol.for("lit-nothing"),G=new WeakMap,Z=j.createTreeWalker(j,129);function Q(e,t){if(!M(e)||!e.hasOwnProperty("raw"))throw Error("invalid template strings array");return void 0!==k?k.createHTML(t):t}const X=(e,t)=>{const o=e.length-1,r=[];let i,s=2===t?"<svg>":3===t?"<math>":"",n=z;for(let t=0;t<o;t++){const o=e[t];let a,l,c=-1,d=0;for(;d<o.length&&(n.lastIndex=d,l=n.exec(o),null!==l);)d=n.lastIndex,n===z?"!--"===l[1]?n=B:void 0!==l[1]?n=I:void 0!==l[2]?(K.test(l[2])&&(i=RegExp("</"+l[2],"g")),n=L):void 0!==l[3]&&(n=L):n===L?">"===l[0]?(n=i??z,c=-1):void 0===l[1]?c=-2:(c=n.lastIndex-l[2].length,a=l[1],n=void 0===l[3]?L:'"'===l[3]?V:q):n===V||n===q?n=L:n===B||n===I?n=z:(n=L,i=void 0);const h=n===L&&e[t+1].startsWith("/>")?" ":"";s+=n===z?o+D:c>=0?(r.push(a),o.slice(0,c)+O+o.slice(c)+P+h):o+P+(-2===c?t:h)}return[Q(e,s+(e[o]||"<?>")+(2===t?"</svg>":3===t?"</math>":"")),r]};class ee{constructor({strings:e,_$litType$:t},o){let r;this.parts=[];let i=0,s=0;const n=e.length-1,a=this.parts,[l,c]=X(e,t);if(this.el=ee.createElement(l,o),Z.currentNode=this.el.content,2===t||3===t){const e=this.el.content.firstChild;e.replaceWith(...e.childNodes)}for(;null!==(r=Z.nextNode())&&a.length<n;){if(1===r.nodeType){if(r.hasAttributes())for(const e of r.getAttributeNames())if(e.endsWith(O)){const t=c[s++],o=r.getAttribute(e).split(P),n=/([.?@])?(.*)/.exec(t);a.push({type:1,index:i,name:n[2],strings:o,ctor:"."===n[1]?se:"?"===n[1]?ne:"@"===n[1]?ae:ie}),r.removeAttribute(e)}else e.startsWith(P)&&(a.push({type:6,index:i}),r.removeAttribute(e));if(K.test(r.tagName)){const e=r.textContent.split(P),t=e.length-1;if(t>0){r.textContent=E?E.emptyScript:"";for(let o=0;o<t;o++)r.append(e[o],U()),Z.nextNode(),a.push({type:2,index:++i});r.append(e[t],U())}}}else if(8===r.nodeType)if(r.data===R)a.push({type:2,index:i});else{let e=-1;for(;-1!==(e=r.data.indexOf(P,e+1));)a.push({type:7,index:i}),e+=P.length-1}i++}}static createElement(e,t){const o=j.createElement("template");return o.innerHTML=e,o}}function te(e,t,o=e,r){if(t===J)return t;let i=void 0!==r?o._$Co?.[r]:o._$Cl;const s=N(t)?void 0:t._$litDirective$;return i?.constructor!==s&&(i?._$AO?.(!1),void 0===s?i=void 0:(i=new s(e),i._$AT(e,o,r)),void 0!==r?(o._$Co??=[])[r]=i:o._$Cl=i),void 0!==i&&(t=te(e,i._$AS(e,t.values),i,r)),t}class oe{constructor(e,t){this._$AV=[],this._$AN=void 0,this._$AD=e,this._$AM=t}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(e){const{el:{content:t},parts:o}=this._$AD,r=(e?.creationScope??j).importNode(t,!0);Z.currentNode=r;let i=Z.nextNode(),s=0,n=0,a=o[0];for(;void 0!==a;){if(s===a.index){let t;2===a.type?t=new re(i,i.nextSibling,this,e):1===a.type?t=new a.ctor(i,a.name,a.strings,this,e):6===a.type&&(t=new le(i,this,e)),this._$AV.push(t),a=o[++n]}s!==a?.index&&(i=Z.nextNode(),s++)}return Z.currentNode=j,r}p(e){let t=0;for(const o of this._$AV)void 0!==o&&(void 0!==o.strings?(o._$AI(e,o,t),t+=o.strings.length-2):o._$AI(e[t])),t++}}class re{get _$AU(){return this._$AM?._$AU??this._$Cv}constructor(e,t,o,r){this.type=2,this._$AH=Y,this._$AN=void 0,this._$AA=e,this._$AB=t,this._$AM=o,this.options=r,this._$Cv=r?.isConnected??!0}get parentNode(){let e=this._$AA.parentNode;const t=this._$AM;return void 0!==t&&11===e?.nodeType&&(e=t.parentNode),e}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(e,t=this){e=te(this,e,t),N(e)?e===Y||null==e||""===e?(this._$AH!==Y&&this._$AR(),this._$AH=Y):e!==this._$AH&&e!==J&&this._(e):void 0!==e._$litType$?this.$(e):void 0!==e.nodeType?this.T(e):(e=>M(e)||"function"==typeof e?.[Symbol.iterator])(e)?this.k(e):this._(e)}O(e){return this._$AA.parentNode.insertBefore(e,this._$AB)}T(e){this._$AH!==e&&(this._$AR(),this._$AH=this.O(e))}_(e){this._$AH!==Y&&N(this._$AH)?this._$AA.nextSibling.data=e:this.T(j.createTextNode(e)),this._$AH=e}$(e){const{values:t,_$litType$:o}=e,r="number"==typeof o?this._$AC(e):(void 0===o.el&&(o.el=ee.createElement(Q(o.h,o.h[0]),this.options)),o);if(this._$AH?._$AD===r)this._$AH.p(t);else{const e=new oe(r,this),o=e.u(this.options);e.p(t),this.T(o),this._$AH=e}}_$AC(e){let t=G.get(e.strings);return void 0===t&&G.set(e.strings,t=new ee(e)),t}k(e){M(this._$AH)||(this._$AH=[],this._$AR());const t=this._$AH;let o,r=0;for(const i of e)r===t.length?t.push(o=new re(this.O(U()),this.O(U()),this,this.options)):o=t[r],o._$AI(i),r++;r<t.length&&(this._$AR(o&&o._$AB.nextSibling,r),t.length=r)}_$AR(e=this._$AA.nextSibling,t){for(this._$AP?.(!1,!0,t);e!==this._$AB;){const t=T(e).nextSibling;T(e).remove(),e=t}}setConnected(e){void 0===this._$AM&&(this._$Cv=e,this._$AP?.(e))}}class ie{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(e,t,o,r,i){this.type=1,this._$AH=Y,this._$AN=void 0,this.element=e,this.name=t,this._$AM=r,this.options=i,o.length>2||""!==o[0]||""!==o[1]?(this._$AH=Array(o.length-1).fill(new String),this.strings=o):this._$AH=Y}_$AI(e,t=this,o,r){const i=this.strings;let s=!1;if(void 0===i)e=te(this,e,t,0),s=!N(e)||e!==this._$AH&&e!==J,s&&(this._$AH=e);else{const r=e;let n,a;for(e=i[0],n=0;n<i.length-1;n++)a=te(this,r[o+n],t,n),a===J&&(a=this._$AH[n]),s||=!N(a)||a!==this._$AH[n],a===Y?e=Y:e!==Y&&(e+=(a??"")+i[n+1]),this._$AH[n]=a}s&&!r&&this.j(e)}j(e){e===Y?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,e??"")}}class se extends ie{constructor(){super(...arguments),this.type=3}j(e){this.element[this.name]=e===Y?void 0:e}}class ne extends ie{constructor(){super(...arguments),this.type=4}j(e){this.element.toggleAttribute(this.name,!!e&&e!==Y)}}class ae extends ie{constructor(e,t,o,r,i){super(e,t,o,r,i),this.type=5}_$AI(e,t=this){if((e=te(this,e,t,0)??Y)===J)return;const o=this._$AH,r=e===Y&&o!==Y||e.capture!==o.capture||e.once!==o.once||e.passive!==o.passive,i=e!==Y&&(o===Y||r);r&&this.element.removeEventListener(this.name,this,o),i&&this.element.addEventListener(this.name,this,e),this._$AH=e}handleEvent(e){"function"==typeof this._$AH?this._$AH.call(this.options?.host??this.element,e):this._$AH.handleEvent(e)}}class le{constructor(e,t,o){this.element=e,this.type=6,this._$AN=void 0,this._$AM=t,this.options=o}get _$AU(){return this._$AM._$AU}_$AI(e){te(this,e)}}const ce=S.litHtmlPolyfillSupport;ce?.(ee,re),(S.litHtmlVersions??=[]).push("3.3.3");const de=globalThis;class he extends C{constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0}createRenderRoot(){const e=super.createRenderRoot();return this.renderOptions.renderBefore??=e.firstChild,e}update(e){const t=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(e),this._$Do=((e,t,o)=>{const r=o?.renderBefore??t;let i=r._$litPart$;if(void 0===i){const e=o?.renderBefore??null;r._$litPart$=i=new re(t.insertBefore(U(),e),e,void 0,o??{})}return i._$AI(e),i})(t,this.renderRoot,this.renderOptions)}connectedCallback(){super.connectedCallback(),this._$Do?.setConnected(!0)}disconnectedCallback(){super.disconnectedCallback(),this._$Do?.setConnected(!1)}render(){return J}}he._$litElement$=!0,he.finalized=!0,de.litElementHydrateSupport?.({LitElement:he});const pe=de.litElementPolyfillSupport;pe?.({LitElement:he}),(de.litElementVersions??=[]).push("4.2.2");const ue=e=>(t,o)=>{void 0!==o?o.addInitializer(()=>{customElements.define(e,t)}):customElements.define(e,t)},me={attribute:!0,type:String,converter:x,reflect:!1,hasChanged:w},ve=(e=me,t,o)=>{const{kind:r,metadata:i}=o;let s=globalThis.litPropertyMetadata.get(i);if(void 0===s&&globalThis.litPropertyMetadata.set(i,s=new Map),"setter"===r&&((e=Object.create(e)).wrapped=!0),s.set(o.name,e),"accessor"===r){const{name:r}=o;return{set(o){const i=t.get.call(this);t.set.call(this,o),this.requestUpdate(r,i,e,!0,o)},init(t){return void 0!==t&&this.C(r,void 0,e,t),t}}}if("setter"===r){const{name:r}=o;return function(o){const i=this[r];t.call(this,o),this.requestUpdate(r,i,e,!0,o)}}throw Error("Unsupported decorator location: "+r)};function ge(e){return(t,o)=>"object"==typeof o?ve(e,t,o):((e,t,o)=>{const r=t.hasOwnProperty(o);return t.constructor.createProperty(o,e),r?Object.getOwnPropertyDescriptor(t,o):void 0})(e,t,o)}function ye(e){return ge({...e,state:!0,attribute:!1})}const fe=(e,t,o)=>(o.configurable=!0,o.enumerable=!0,Reflect.decorate&&"object"!=typeof t&&Object.defineProperty(e,t,o),o);function be(e,t){return(o,r,i)=>{const s=t=>t.renderRoot?.querySelector(e)??null;if(t){const{get:e,set:t}="object"==typeof r?o:i??(()=>{const e=Symbol();return{get(){return this[e]},set(t){this[e]=t}}})();return fe(o,r,{get(){let o=e.call(this);return void 0===o&&(o=s(this),(null!==o||this.hasUpdated)&&t.call(this,o)),o}})}return fe(o,r,{get(){return s(this)}})}}const $e=JSON.parse('{"panel":{"title":"RTS remotes","id":"id","create":"Create","name":"Name","rename":"Rename","changeType":"Change type","add":"Pair one more cover","delete":"Delete","type":"Type","dialog":{"confirm":"Confirm","cancel":"Cancel","title":{"create":"adding a new shutter","add":"Add a shutter","remove":"Remove","rename":"Rename","changeType":"Change type"},"content":{"create":"You are about to create a new remote control, please follow these steps: <br>{{panel.dialog.step.shutter}}<br>{{panel.dialog.step.add}}","add":"You are about to add a shutter to an existing remote control, please follow these steps: <br>{{panel.dialog.step.shutter}}<br>{{panel.dialog.step.add}}","remove":"You are going to delete this remote control, are you sure?"},"step":{"shutter":"- Press the PROG button on the shutter\'s remote control for 3 seconds, the shutter should make a confirmation movement","add":"- Click the confirm button in the dialog box, the shutter should make a confirmation movement"}},"error":{"create":"Fail to creating cover","add":"Fail to adding shutter","rename":"Fail to renaming cover","changeType":"Type change failed","remove":"Fail to removing cover","emptyField":"You should provide the field","command":"The command could not be sent"},"success":{"create":"Cover successfully added","add":"Command successfully sent","rename":"Cover successfully renamed","changeType":"Type has been successfully changed","remove":"Cover successfully removed"},"coverType":{"shutter":"Shutter","button":"Button"},"newRemote":"New remote","namePlaceholder":"e.g. Living room shutter","remotes":"Remotes","empty":"No remote yet. Create the first one above.","control":{"up":"Up","my":"Stop / My","down":"Down","press":"Press"},"busy":{"create":"Sending pairing command…","add":"Sending pairing command…","remove":"Removing…","rename":"Renaming…","changeType":"Changing type…"}},"error":"Error"}');var _e=o.t($e,2);const xe=JSON.parse('{"panel":{"title":"Télécommandes RTS","id":"id","create":"Créer","name":"Nom","rename":"Renommer","changeType":"Changer le type","add":"Appairer un volet supplémentaire","delete":"Supprimer","type":"Type","dialog":{"confirm":"Confirmer","cancel":"Annuler","title":{"create":"Ajouter une télécommande","add":"Ajouter un volet","remove":"Supprimer","rename":"Renommer","changeType":"Changer le type"},"content":{"create":"Vous vous apprêtez à créer une nouvelle télécommande, pour cela veuillez suivre les étapes suivantes : <br>{{panel.dialog.step.shutter}}<br>{{panel.dialog.step.add}}","add":"Vous vous apprêtez à ajouter un volet sur une télécommande existante, pour cela veuillez suivre les étapes suivantes : <br>{{panel.dialog.step.shutter}}<br>{{panel.dialog.step.add}}","remove":"Vous allez supprimer cette télécommande, êtes vous sûr ?"},"step":{"shutter":"- Faites un appuis de 3s sur le bouton PROG de la télécommande du volet, le volet doit faire un mouvement de confirmation","add":"- Cliquez sur le bouton confirmer de la boite de dialogue, le volet doit effectuer un mouvement de confirmation"}},"error":{"create":"Ajout de la télécommande échoué","add":"Ajout du volet échoué","rename":"Renommage de la télécommande échoué","changeType":"Le changement de type à échoué","remove":"Suppression de la télécommande échoué","emptyField":"Vous devez remplir le champ","command":"La commande n\'a pas pu être envoyée"},"success":{"create":"Télécommande ajoutée","add":"Commande envoyée","rename":"Télécommande renommée","changeType":"Le type à été changé","remove":"Télécommande supprimée"},"coverType":{"shutter":"Volet","button":"Bouton"},"newRemote":"Nouvelle télécommande","namePlaceholder":"Ex : Volet salon","remotes":"Télécommandes","empty":"Aucune télécommande pour l\'instant. Crée la première ci-dessus.","control":{"up":"Monter","my":"Stop / My","down":"Descendre","press":"Appuyer"},"busy":{"create":"Envoi de la commande d\'appairage…","add":"Envoi de la commande d\'appairage…","remove":"Suppression…","rename":"Renommage…","changeType":"Changement de type…"}},"error":"Erreur"}'),we={en:_e,fr:o.t(xe,2)};function Ae(e,t,...o){const r=t.replace(/['"]+/g,"");let i=Ce(e,r);if(void 0===i)return"";i=i.replace(/{{(.*?)}}/g,(e,t)=>Ce(t,r)??"");for(let e=0;e+1<o.length;e+=2){const t=String(o[e]).replace(/^{|}$/g,"");i=i.split(`{${t}}`).join(String(o[e+1]))}return i}function Ce(e,t){const o=t=>e.split(".").reduce((e,t)=>null!==e&&"object"==typeof e?e[t]:void 0,we[t]),r=o(t)??o("en");if("string"==typeof r)return r;console.error(`translation not found : ${e}`)}const Se=l`
+  :host {
+    --rts-radius: var(--ha-card-border-radius, 12px);
+    --rts-divider: var(--divider-color, rgba(127, 127, 127, 0.2));
   }
 
-  form {
-    display: flex;
-    flex-direction: column;
-    margin-top: 25px;
-    margin-bottom: 25px;
-  }
-  
-  .gap {
-    gap: 1rem;
-  }
-  
-  .grow {
-    flex-grow: 1;
-  }
-
-  h2, .center {
-    text-align: center;
-  }
-  
   ha-card {
     display: flex;
     flex-direction: column;
-    margin: 5px;
-    max-width: calc(100vw - 10px);
+    margin: 8px;
   }
 
-  label {
-    width: 120px;
-    align-self: center;
+  .section-title {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--secondary-text-color);
+    margin: 0 0 8px;
   }
-  
-  .row {
+
+  .hint {
+    font-size: 13px;
+    color: var(--secondary-text-color);
+    margin: 4px 0 0;
+  }
+
+  input, select {
+    box-sizing: border-box;
     height: 40px;
-    margin: 0;
+    padding: 0 12px;
+    font: inherit;
+    font-size: 15px;
+    color: var(--primary-text-color);
+    background-color: var(--input-fill-color, var(--secondary-background-color));
+    border: 1px solid var(--rts-divider);
+    border-bottom: 1px solid var(--input-idle-line-color, var(--secondary-text-color));
+    border-radius: 4px 4px 0 0;
+    outline: none;
+  }
+
+  input:focus, select:focus {
+    border-bottom: 2px solid var(--primary-color);
+  }
+
+  input:disabled, select:disabled {
+    opacity: 0.5;
+  }
+
+  label.field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--secondary-text-color);
+  }
+
+  .icon-btn {
+    display: inline-flex;
     align-items: center;
-  }
-  
-  select, input {
-    background-color: var(--mdc-text-field-fill-color);
-    flex-grow: 1;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
     border: none;
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--secondary-text-color);
+    cursor: pointer;
+    --mdc-icon-size: 20px;
   }
-`;var Nt=function(e,t,s,i){var r,n=arguments.length,o=n<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,s):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,s,i);else for(var a=e.length-1;a>=0;a--)(r=e[a])&&(o=(n<3?r(o):n>3?r(t,s,o):r(t,s))||o);return n>3&&o&&Object.defineProperty(t,s,o),o};let Lt=class extends ue{constructor(){super(...arguments),Object.defineProperty(this,"hass",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"closed",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"name",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"contentKey",{enumerable:!0,configurable:!0,writable:!0,value:void 0})}firstUpdated(e){var t;const s=null===(t=this.shadowRoot)||void 0===t?void 0:t.getElementById("dialog");s&&s.addEventListener("closed",e=>{var t;const s=e,i=null===(t=this.shadowRoot)||void 0===t?void 0:t.querySelector("form");if(null==i)return;const r=i.shutterName.value;r&&this.closed("accept"===s.detail.action,r)})}setContentKey(e){this.contentKey=e}open(){var e;const t=null===(e=this.shadowRoot)||void 0===e?void 0:e.getElementById("dialog");t&&(t.show(),this.requestUpdate())}render(){return z`
-      <ha-dialog id="dialog" flexcontent="" scrimClickAction="">
-        <ha-dialog-header>
-          <span slot="title">${Ct(`panel.dialog.title.${this.contentKey}`,this.hass.language)}</span>
-        </ha-dialog-header>
-        <form>
-            <input type="text" name="shutterName" id="shutterName" value="${this.name}">
-        </form>
-        <ha-button
-          slot="primaryAction"
-          dialogAction="accept">
-          ${Ct("panel.dialog.confirm",this.hass.language)}
-        </ha-button>
-        <ha-button variant="danger"
-          slot="secondaryAction"
-          dialogAction="decline">
-          ${Ct("panel.dialog.cancel",this.hass.language)}
-        </ha-button>  
-      </ha-dialog>
-    `}};Object.defineProperty(Lt,"styles",{enumerable:!0,configurable:!0,writable:!0,value:h`${Rt}`}),Nt([me()],Lt.prototype,"hass",void 0),Nt([me()],Lt.prototype,"closed",void 0),Nt([me()],Lt.prototype,"name",void 0),Nt([be()],Lt.prototype,"contentKey",void 0),Lt=Nt([pe("rts-link-rename-dialog")],Lt);class Ut{constructor(e){}get _$AU(){return this._$AM._$AU}_$AT(e,t,s){this._$Ct=e,this._$AM=t,this._$Ci=s}_$AS(e,t){return this.update(e,t)}update(e,t){return this.render(...t)}}class It extends Ut{constructor(e){if(super(e),this.it=Y,2!==e.type)throw Error(this.constructor.directiveName+"() can only be used in child bindings")}render(e){if(e===Y||null==e)return this._t=void 0,this.it=e;if(e===X)return e;if("string"!=typeof e)throw Error(this.constructor.directiveName+"() called with a non-string value");if(e===this.it)return this._t;this.it=e;const t=[e];return t.raw=t,this._t={_$litType$:this.constructor.resultType,strings:t,values:[]}}}It.directiveName="unsafeHTML",It.resultType=1;const Mt=(e=>(...t)=>({_$litDirective$:e,values:t}))(It);var xt=function(e,t,s,i){var r,n=arguments.length,o=n<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,s):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,s,i);else for(var a=e.length-1;a>=0;a--)(r=e[a])&&(o=(n<3?r(o):n>3?r(t,s,o):r(t,s))||o);return n>3&&o&&Object.defineProperty(t,s,o),o};let Dt=class extends ue{constructor(){super(...arguments),Object.defineProperty(this,"hass",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"closed",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"contentKey",{enumerable:!0,configurable:!0,writable:!0,value:void 0})}firstUpdated(e){var t;const s=null===(t=this.shadowRoot)||void 0===t?void 0:t.getElementById("dialog");s&&s.addEventListener("closed",e=>{const t=e;this.closed("accept"===t.detail.action)})}setContentKey(e){this.contentKey=e}open(){var e;const t=null===(e=this.shadowRoot)||void 0===e?void 0:e.getElementById("dialog");t&&(t.show(),this.requestUpdate())}render(){return z`
-      <ha-dialog id="dialog" flexcontent="" scrimClickAction="">
-        <ha-dialog-header>
-          <span slot="title">${Ct(`panel.dialog.title.${this.contentKey}`,this.hass.language)}</span>
-        </ha-dialog-header>
-        <div class="content">${Mt(Ct(`panel.dialog.content.${this.contentKey}`,this.hass.language))}</div>
-          <ha-button
-            slot="primaryAction"
-            dialogAction="accept">
-            ${Ct("panel.dialog.confirm",this.hass.language)}
-          </ha-button>
-          <ha-button variant="danger"
-            slot="secondaryAction"
-            dialogAction="decline">
-            ${Ct("panel.dialog.cancel",this.hass.language)}
-          </ha-button>
-      </ha-dialog>
-    `}};var kt;function jt(e){return Object.values(e).reduce((e,t)=>(Object(t)instanceof String&&e.push(t),e),[])}Object.defineProperty(Dt,"styles",{enumerable:!0,configurable:!0,writable:!0,value:h`${Rt}`}),xt([me()],Dt.prototype,"hass",void 0),xt([me()],Dt.prototype,"closed",void 0),xt([be()],Dt.prototype,"contentKey",void 0),Dt=xt([pe("rts-link-confirm-dialog")],Dt),function(e){e.SHUTTER="shutter",e.BUTTON="button"}(kt||(kt={}));var Gt=function(e,t,s,i){var r,n=arguments.length,o=n<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,s):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,s,i);else for(var a=e.length-1;a>=0;a--)(r=e[a])&&(o=(n<3?r(o):n>3?r(t,s,o):r(t,s))||o);return n>3&&o&&Object.defineProperty(t,s,o),o};let Ft=class extends ue{constructor(){super(...arguments),Object.defineProperty(this,"hass",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"closed",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"type",{enumerable:!0,configurable:!0,writable:!0,value:kt.SHUTTER}),Object.defineProperty(this,"contentKey",{enumerable:!0,configurable:!0,writable:!0,value:void 0})}firstUpdated(e){var t;const s=null===(t=this.shadowRoot)||void 0===t?void 0:t.getElementById("dialog");s&&s.addEventListener("closed",e=>{var t;const s=e,i=null===(t=this.shadowRoot)||void 0===t?void 0:t.querySelector("form");if(null==i)return;const r=i.coverType.value;r&&this.closed("accept"===s.detail.action,r)})}setContentKey(e){this.contentKey=e}setSelected(e){this.type=e}open(){var e,t;const s=null===(e=this.shadowRoot)||void 0===e?void 0:e.getElementById("dialog");if(!s)return;const i=null===(t=this.shadowRoot)||void 0===t?void 0:t.querySelector("select");i&&(i.selectedIndex=Object.values(kt).indexOf(this.type)),s.show(),this.requestUpdate()}render(){return z`
-      <ha-dialog id="dialog" flexcontent="" scrimClickAction="">
-        <ha-dialog-header>
-          <span slot="title">${Ct(`panel.dialog.title.${this.contentKey}`,this.hass.language)}</span>
-        </ha-dialog-header>
-        <form>
-          <select name="coverType" id="coverType">
-            ${jt(kt).map(e=>(console.log(e,this.type.valueOf(),e===this.type.valueOf()),z`<option value="${e}">${Ct(`panel.coverType.${e}`,this.hass.language)}</option>`))}
-          </select>
-        </form>
-        <ha-button
-          slot="primaryAction"
-          dialogAction="accept">
-          ${Ct("panel.dialog.confirm",this.hass.language)}
-        </ha-button>
-        <ha-button variant="danger"
-          slot="secondaryAction"
-          dialogAction="decline">
-          ${Ct("panel.dialog.cancel",this.hass.language)}
-        </ha-button>  
-      </ha-dialog>
-    `}};Object.defineProperty(Ft,"styles",{enumerable:!0,configurable:!0,writable:!0,value:h`${Rt}`}),Gt([me()],Ft.prototype,"hass",void 0),Gt([me()],Ft.prototype,"closed",void 0),Gt([be()],Ft.prototype,"type",void 0),Gt([be()],Ft.prototype,"contentKey",void 0),Ft=Gt([pe("rts-link-change-type-dialog")],Ft);var Kt,Vt=function(e,t,s,i){var r,n=arguments.length,o=n<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,s):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,s,i);else for(var a=e.length-1;a>=0;a--)(r=e[a])&&(o=(n<3?r(o):n>3?r(t,s,o):r(t,s))||o);return n>3&&o&&Object.defineProperty(t,s,o),o};!function(e){e[e.add=0]="add",e[e.remove=1]="remove",e[e.rename=2]="rename",e[e.changeType=3]="changeType"}(Kt||(Kt={}));let qt=class extends ue{constructor(){super(...arguments),Object.defineProperty(this,"hass",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"disabled",{enumerable:!0,configurable:!0,writable:!0,value:!1}),Object.defineProperty(this,"removeCover",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"addShutter",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"rename",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"changeType",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"datas",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"selectedCover",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"btnClicked",{enumerable:!0,configurable:!0,writable:!0,value:void 0})}addRow(e){var t;return z`
-      <div class="grid-item">${e.id}</div>
-      <div class="grid-item">${e.name}</div>
-      <div class="grid-item">${Ct(`panel.coverType.${null!==(t=e.cover_type)&&void 0!==t?t:kt.SHUTTER}`,this.hass.language)}</div>
-      <div class="grid-item">
-        <ha-button appearance="plain" @click='${t=>{this.openDialog(t,e,Kt.rename,"rename")}}' class="button" id="rename" .disabled="${this.disabled}">
-          ${Ct("panel.rename",this.hass.language)}
-        </ha-button>
-        <ha-button appearance="plain" @click='${t=>{this.openDialog(t,e,Kt.changeType,"changeType")}}' class="button" id="changeType" .disabled="${this.disabled}">
-          ${Ct("panel.changeType",this.hass.language)}
-        </ha-button>
-        <ha-button appearance="plain" @click='${t=>{this.openDialog(t,e,Kt.add,"add")}}' class="button" id="add" .disabled="${this.disabled}">
-          ${Ct("panel.add",this.hass.language)}
-        </ha-button>
-        <ha-button appearance="plain" @click='${t=>{this.openDialog(t,e,Kt.remove,"remove")}}' class="button" id="delete" .disabled="${this.disabled}">
-          ${Ct("panel.delete",this.hass.language)}
-        </ha-button>
-      </div>
-        `}openDialog(e,t,s,i){var r,n,o,a,h,l,c,u;let d;switch(e.target.blur(),this.selectedCover=t,this.btnClicked=s,s){case Kt.rename:d=null!==(n=null===(r=this.shadowRoot)||void 0===r?void 0:r.querySelector("rts-link-rename-dialog"))&&void 0!==n?n:null,d&&(d.name=null!==(o=t.name)&&void 0!==o?o:"");break;case Kt.changeType:d=null!==(h=null===(a=this.shadowRoot)||void 0===a?void 0:a.querySelector("rts-link-change-type-dialog"))&&void 0!==h?h:null,d&&d.setSelected(null!==(l=t.cover_type)&&void 0!==l?l:kt.SHUTTER);break;default:d=null!==(u=null===(c=this.shadowRoot)||void 0===c?void 0:c.querySelector("rts-link-confirm-dialog"))&&void 0!==u?u:null}null!=d&&(d.setContentKey(i),d.open())}handleClosedDialog(e){if(e&&this.selectedCover&&void 0!==!this.btnClicked){switch(this.btnClicked){case Kt.add:this.addShutter(this.selectedCover);break;case Kt.remove:this.removeCover(this.selectedCover);break;case Kt.rename:this.rename(this.selectedCover);break;case Kt.changeType:this.changeType(this.selectedCover)}this.selectedCover=void 0,this.btnClicked=void 0}}handleClosedRenameDialog(e,t){t&&this.selectedCover&&(this.selectedCover.name=t,this.handleClosedDialog(e))}handleClosedChangeTypeDialog(e,t){t&&this.selectedCover&&(this.selectedCover.cover_type=t,this.handleClosedDialog(e))}render(){return void 0===this.datas?z``:z`
-            <div class="grid-container">
-              <div class="grid-item header">${Ct("panel.id",this.hass.language)}</div>
-              <div class="grid-item header">${Ct("panel.name",this.hass.language)}</div>
-              <div class="grid-item header">${Ct("panel.type",this.hass.language)}</div>
-              <div class="grid-item header"></div>
-              ${this.datas.map(e=>this.addRow(e))}     
-            </div>
-            <rts-link-confirm-dialog 
-              .closed="${this.handleClosedDialog.bind(this)}" 
-              .hass="${this.hass}">
-            </rts-link-confirm-dialog>
-            <rts-link-rename-dialog 
-              .closed="${this.handleClosedRenameDialog.bind(this)}" 
-              .hass="${this.hass}">
-            </rts-link-rename-dialog>
-            <rts-link-change-type-dialog 
-              .closed="${this.handleClosedChangeTypeDialog.bind(this)}" 
-              .hass="${this.hass}">
-            </rts-link-change-type-dialog>
-        `}static get styles(){return h`
-      ${Rt}
-      .header {
-        font-weight: bold;
-      }
-      
-      .grid-container {
-        display: grid;
-        grid-template-columns: auto auto auto auto;
-      }
-      
-      .grid-item {
-        align-self: center;
-        min-width: 20px;
-      }
-    `}};Vt([me()],qt.prototype,"hass",void 0),Vt([me()],qt.prototype,"disabled",void 0),Vt([me()],qt.prototype,"removeCover",void 0),Vt([me()],qt.prototype,"addShutter",void 0),Vt([me()],qt.prototype,"rename",void 0),Vt([me()],qt.prototype,"changeType",void 0),Vt([me({type:Array})],qt.prototype,"datas",void 0),Vt([be()],qt.prototype,"selectedCover",void 0),Vt([be()],qt.prototype,"btnClicked",void 0),qt=Vt([pe("rts-link-covers-table")],qt);var zt=function(e,t,s,i){var r,n=arguments.length,o=n<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,s):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,s,i);else for(var a=e.length-1;a>=0;a--)(r=e[a])&&(o=(n<3?r(o):n>3?r(t,s,o):r(t,s))||o);return n>3&&o&&Object.defineProperty(t,s,o),o};let Xt=class extends ue{constructor(){super(...arguments),Object.defineProperty(this,"hass",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"panel",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"narrow",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"reload",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"error",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"success",{enumerable:!0,configurable:!0,writable:!0,value:null}),Object.defineProperty(this,"coversData",{enumerable:!0,configurable:!0,writable:!0,value:[]})}firstUpdated(){var e;this.updateCoversData();const t=null===(e=this.shadowRoot)||void 0===e?void 0:e.querySelector("#add");null!=t&&t.addEventListener("click",e=>{var t,s;e.target.blur();const i=null!==(s=null===(t=this.shadowRoot)||void 0===t?void 0:t.querySelector("rts-link-confirm-dialog"))&&void 0!==s?s:null;null!=i&&(i.setContentKey("create"),i.open())})}handleAdd(e){var t;if(!e)return;const s=null===(t=this.shadowRoot)||void 0===t?void 0:t.querySelector("form");if(null==s)return;const i=s.shutterName.value,r=s.coverType.value;if(!i||!r)return this.error=Ct("panel.error.emptyField",this.hass.language),void this.requestUpdate();this.disableButtons(!0),(async(e,t,s)=>await e.callApi("POST","rts_link/cover/new",{name:t,type:s}))(this.hass,i,r).then(e=>{e.success?(this.updateCoversData(),this.success=Ct("panel.success.create",this.hass.language)):this.error=Ct("panel.error.create",this.hass.language)}).catch(()=>this.error=Ct("panel.error.create",this.hass.language)).finally(()=>this.disableButtons(!1))}handleAddShutter(e){e&&(this.disableButtons(!0),(async(e,t)=>await e.callApi("POST","rts_link/cover/add",{id:t}))(this.hass,e.id).then(e=>{e.success?(this.updateCoversData(),this.success=Ct("panel.success.add",this.hass.language)):this.error=Ct("panel.error.add",this.hass.language)}).catch(()=>{this.error=Ct("panel.error.add",this.hass.language)}).finally(()=>this.disableButtons(!1)))}handleDelete(e){this.disableButtons(!0),(async(e,t)=>await e.callApi("POST","rts_link/cover/remove",{id:t}))(this.hass,e.id).then(e=>{e.success?(this.updateCoversData(),this.success=Ct("panel.success.remove",this.hass.language)):this.error=Ct("panel.error.remove",this.hass.language)}).catch(()=>this.error=Ct("panel.error.remove",this.hass.language)).finally(()=>this.disableButtons(!1))}handleRename(e){this.disableButtons(!0),(async(e,t,s)=>await e.callApi("POST","rts_link/cover/rename",{id:t,name:s}))(this.hass,e.id,e.name).then(e=>{e.success?(this.updateCoversData(),this.success=Ct("panel.success.rename",this.hass.language)):this.error=Ct("panel.error.rename",this.hass.language)}).catch(()=>this.error=Ct("panel.error.rename",this.hass.language)).finally(()=>this.disableButtons(!1))}handleChangeType(e){var t;this.disableButtons(!0),(async(e,t,s)=>await e.callApi("POST","rts_link/cover/type",{id:t,type:s}))(this.hass,e.id,null!==(t=e.cover_type)&&void 0!==t?t:kt.SHUTTER).then(e=>{e.success?(this.updateCoversData(),this.success=Ct("panel.success.changeType",this.hass.language)):this.error=Ct("panel.error.changeType",this.hass.language)}).catch(()=>this.error=Ct("panel.error.changeType",this.hass.language)).finally(()=>this.disableButtons(!1))}updateCoversData(){(async e=>await e.callWS({type:"rts_link_get_all_covers"}))(this.hass).then(e=>{this.coversData=e,this.requestUpdate(),this.updateCoversTable()}).catch(e=>{this.error=e.message,this.requestUpdate()})}updateCoversTable(){var e;const t=null===(e=this.shadowRoot)||void 0===e?void 0:e.querySelector("rts-link-covers-table");null!==t&&(t.disabled=!0,t.requestUpdate(),t.datas=this.coversData,t.disabled=!1,t.requestUpdate())}disableButtons(e){var t,s;e&&(this.error=null,this.success=null);const i=null===(t=this.shadowRoot)||void 0===t?void 0:t.querySelector("rts-link-covers-table");if(null===i)return;i.disabled=e,i.requestUpdate();const r=null===(s=this.shadowRoot)||void 0===s?void 0:s.querySelector("#add");null!==r&&(r.disabled=e,this.requestUpdate())}requestUpdate(e,t,s){super.requestUpdate(e,t,s),"panel"===e&&this.updateCoversData()}render(){return z`
-      <ha-card .header="${Ct("panel.title",this.hass.language)}">
-        ${null!=this.error?z`<div id="error">${this.error}</div>`:""}
-        ${null!=this.success?z`<div id="success">${this.success}</div>`:""}
-        <div class="card-content">
-          <div class="content">
-            <form>
-              <div class="flexRow">
-                <label for="shutterName">${Ct("panel.name",this.hass.language)}</label>
-                <input type="text" name="shutterName" id="shutterName">
-              </div>
-              <div class="flexRow">
-                <label for="coverType">${Ct("panel.type",this.hass.language)}</label>
-                <select name="coverType" id="coverType">
-                  ${jt(kt).map(e=>z`<option value="${e}">${Ct(`panel.coverType.${e}`,this.hass.language)}</option>`)}
-                </select>
-              </div>
-              <div class="flexRow">
-                <ha-button class="button" id="add">
-                  ${Ct("panel.create",this.hass.language)}
-                </ha-button>
-              </div>
-            </form>
-            <rts-link-covers-table 
-              .hass="${this.hass}" 
-              .removeCover="${this.handleDelete.bind(this)}" 
-              .addShutter="${this.handleAddShutter.bind(this)}"
-              .rename="${this.handleRename.bind(this)}"
-              .changeType="${this.handleChangeType.bind(this)}"
-            ></rts-link-covers-table>
+
+  .icon-btn:hover:not(:disabled) {
+    background-color: var(--secondary-background-color);
+    color: var(--primary-text-color);
+  }
+
+  .icon-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  .icon-btn.danger:hover:not(:disabled) {
+    color: var(--error-color);
+  }
+
+  .icon-btn.control {
+    color: var(--primary-color);
+    background-color: rgba(var(--rgb-primary-color, 3, 169, 244), 0.1);
+  }
+
+  .icon-btn.control:hover:not(:disabled) {
+    background-color: rgba(var(--rgb-primary-color, 3, 169, 244), 0.2);
+    color: var(--primary-color);
+  }
+
+  .spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--rts-divider);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .dialog-content {
+    line-height: 1.5;
+    color: var(--primary-text-color);
+  }
+
+  .dialog-content input, .dialog-content select {
+    width: 100%;
+    margin-top: 8px;
+  }
+`;var Te=function(e,t,o,r){var i,s=arguments.length,n=s<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,o):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,t,o,r);else for(var a=e.length-1;a>=0;a--)(i=e[a])&&(n=(s<3?i(n):s>3?i(t,o,n):i(t,o))||n);return s>3&&n&&Object.defineProperty(t,o,n),n};class Ee extends he{constructor(){super(...arguments),this.contentKey=void 0}setContentKey(e){this.contentKey=e}async open(){await this.updateComplete,this.dialogEl.open||this.dialogEl.showModal();const e=this.renderRoot.querySelector("[autofocus]");e?.focus()}finish(e){this.dialogEl.open&&this.dialogEl.close(),this.onClosed(e)}t(e){return Ae(e,this.hass.language)}onBackdropClick(e){e.target===this.dialogEl&&this.finish(!1)}onCancel(e){e.preventDefault(),this.finish(!1)}render(){return W`
+      <dialog @click=${this.onBackdropClick} @cancel=${this.onCancel}>
+        <div class="surface">
+          <h2 class="title">${this.contentKey?this.t(`panel.dialog.title.${this.contentKey}`):""}</h2>
+          <div class="dialog-content">${this.renderBody()}</div>
+          <div class="actions">
+            <ha-button appearance="plain" @click=${()=>{this.finish(!1)}}>
+              ${this.t("panel.dialog.cancel")}
+            </ha-button>
+            <ha-button @click=${()=>{this.finish(!0)}}>
+              ${this.t("panel.dialog.confirm")}
+            </ha-button>
           </div>
         </div>
+      </dialog>
+    `}static get styles(){return[Se,l`
+      dialog {
+        padding: 0;
+        border: none;
+        border-radius: var(--ha-dialog-border-radius, 24px);
+        width: min(520px, calc(100vw - 32px));
+        background: var(--ha-dialog-surface-background, var(--card-background-color, #fff));
+        color: var(--primary-text-color);
+        box-shadow: var(--dialog-box-shadow, 0 8px 32px rgba(0, 0, 0, 0.3));
+        outline: none;
+      }
+
+      dialog::backdrop {
+        background: var(--mdc-dialog-scrim-color, rgba(0, 0, 0, 0.5));
+      }
+
+      .surface {
+        padding: 24px;
+      }
+
+      .title {
+        margin: 0 0 16px;
+        font-size: 22px;
+        font-weight: 400;
+      }
+
+      .actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+        margin-top: 24px;
+      }
+    `]}}Te([ge({attribute:!1})],Ee.prototype,"hass",void 0),Te([ye()],Ee.prototype,"contentKey",void 0),Te([be("dialog")],Ee.prototype,"dialogEl",void 0);var ke=function(e,t,o,r){var i,s=arguments.length,n=s<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,o):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,t,o,r);else for(var a=e.length-1;a>=0;a--)(i=e[a])&&(n=(s<3?i(n):s>3?i(t,o,n):i(t,o))||n);return s>3&&n&&Object.defineProperty(t,o,n),n};let Oe=class extends Ee{constructor(){super(...arguments),this.name=""}async open(){await this.updateComplete,this.input.value=this.name??"",await super.open(),this.input.select()}onClosed(e){const t=this.input.value.trim();t&&this.closed(e,t)}renderBody(){return W`
+      <form @submit=${e=>{e.preventDefault(),this.finish(!0)}}>
+        <input type="text" id="shutterName" autocomplete="off" autofocus .value=${this.name??""}>
+      </form>`}};ke([ge({attribute:!1})],Oe.prototype,"closed",void 0),ke([ge({attribute:!1})],Oe.prototype,"name",void 0),ke([be("#shutterName")],Oe.prototype,"input",void 0),Oe=ke([ue("rts-link-rename-dialog")],Oe);class Pe{constructor(e){}get _$AU(){return this._$AM._$AU}_$AT(e,t,o){this._$Ct=e,this._$AM=t,this._$Ci=o}_$AS(e,t){return this.update(e,t)}update(e,t){return this.render(...t)}}class Re extends Pe{constructor(e){if(super(e),this.it=Y,2!==e.type)throw Error(this.constructor.directiveName+"() can only be used in child bindings")}render(e){if(e===Y||null==e)return this._t=void 0,this.it=e;if(e===J)return e;if("string"!=typeof e)throw Error(this.constructor.directiveName+"() called with a non-string value");if(e===this.it)return this._t;this.it=e;const t=[e];return t.raw=t,this._t={_$litType$:this.constructor.resultType,strings:t,values:[]}}}Re.directiveName="unsafeHTML",Re.resultType=1;const De=(e=>(...t)=>({_$litDirective$:e,values:t}))(Re);var je=function(e,t,o,r){var i,s=arguments.length,n=s<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,o):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,t,o,r);else for(var a=e.length-1;a>=0;a--)(i=e[a])&&(n=(s<3?i(n):s>3?i(t,o,n):i(t,o))||n);return s>3&&n&&Object.defineProperty(t,o,n),n};let Ue=class extends Ee{onClosed(e){this.closed(e)}renderBody(){return this.contentKey?W`${De(this.t(`panel.dialog.content.${this.contentKey}`))}`:W``}};var Ne;function Me(e){return Object.values(e).reduce((e,t)=>(Object(t)instanceof String&&e.push(t),e),[])}je([ge({attribute:!1})],Ue.prototype,"closed",void 0),Ue=je([ue("rts-link-confirm-dialog")],Ue),function(e){e.SHUTTER="shutter",e.BUTTON="button"}(Ne||(Ne={}));var He=function(e,t,o,r){var i,s=arguments.length,n=s<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,o):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,t,o,r);else for(var a=e.length-1;a>=0;a--)(i=e[a])&&(n=(s<3?i(n):s>3?i(t,o,n):i(t,o))||n);return s>3&&n&&Object.defineProperty(t,o,n),n};let ze=class extends Ee{constructor(){super(...arguments),this.type=Ne.SHUTTER}setSelected(e){this.type=e}async open(){await this.updateComplete,this.select.value=this.type,await super.open()}onClosed(e){const t=this.select.value;t&&this.closed(e,t)}renderBody(){return W`
+      <select id="coverType" autofocus .value=${this.type}>
+        ${Me(Ne).map(e=>W`
+          <option value=${e} ?selected=${e===this.type}>${this.t(`panel.coverType.${e}`)}</option>`)}
+      </select>`}};He([ge({attribute:!1})],ze.prototype,"closed",void 0),He([ye()],ze.prototype,"type",void 0),He([be("#coverType")],ze.prototype,"select",void 0),ze=He([ue("rts-link-change-type-dialog")],ze);var Be,Ie=function(e,t,o,r){var i,s=arguments.length,n=s<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,o):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,t,o,r);else for(var a=e.length-1;a>=0;a--)(i=e[a])&&(n=(s<3?i(n):s>3?i(t,o,n):i(t,o))||n);return s>3&&n&&Object.defineProperty(t,o,n),n};!function(e){e[e.add=0]="add",e[e.remove=1]="remove",e[e.rename=2]="rename",e[e.changeType=3]="changeType"}(Be||(Be={}));const Le={[Ne.SHUTTER]:"mdi:window-shutter",[Ne.BUTTON]:"mdi:gesture-tap-button"};let qe=class extends he{constructor(){super(...arguments),this.disabled=!1,this.pendingId=null,this.selectedCover=void 0,this.btnClicked=void 0}t(e){return Ae(e,this.hass.language)}async command(e,t){this.pendingId=e.id;try{await this.sendCommand(e,t)}finally{this.pendingId=null}}iconButton(e,t,o,r="",i=this.disabled){return W`
+      <button class="icon-btn ${r}" title=${t} aria-label=${t} .disabled=${i} @click=${o}>
+        <ha-icon icon=${e}></ha-icon>
+      </button>`}controls(e){const t=this.disabled||null!==this.pendingId;return(e.cover_type??Ne.SHUTTER)===Ne.BUTTON?W`${this.iconButton("mdi:gesture-tap",this.t("panel.control.press"),()=>{this.command(e,"press")},"control",t)}`:W`
+      ${this.iconButton("mdi:arrow-up",this.t("panel.control.up"),()=>{this.command(e,"up")},"control",t)}
+      ${this.iconButton("mdi:star-outline",this.t("panel.control.my"),()=>{this.command(e,"stop")},"control",t)}
+      ${this.iconButton("mdi:arrow-down",this.t("panel.control.down"),()=>{this.command(e,"down")},"control",t)}
+    `}row(e){const t=e.cover_type??Ne.SHUTTER;return W`
+      <div class="row">
+        <div class="identity">
+          <div class="type-icon">
+            ${this.pendingId===e.id?W`<div class="spinner"></div>`:W`<ha-icon icon=${Le[t]??"mdi:remote"}></ha-icon>`}
+          </div>
+          <div class="text">
+            <div class="name">${e.name}</div>
+            <div class="secondary">${this.t(`panel.coverType.${t}`)} · ${this.t("panel.id")} ${e.id}</div>
+          </div>
+        </div>
+        <div class="controls">${this.controls(e)}</div>
+        <div class="actions">
+          ${this.iconButton("mdi:pencil",this.t("panel.rename"),()=>{this.openDialog(e,Be.rename,"rename")})}
+          ${this.iconButton("mdi:swap-horizontal",this.t("panel.changeType"),()=>{this.openDialog(e,Be.changeType,"changeType")})}
+          ${this.iconButton("mdi:link-variant-plus",this.t("panel.add"),()=>{this.openDialog(e,Be.add,"add")})}
+          ${this.iconButton("mdi:delete-outline",this.t("panel.delete"),()=>{this.openDialog(e,Be.remove,"remove")},"danger")}
+        </div>
+      </div>`}openDialog(e,t,o){let r;switch(this.selectedCover=e,this.btnClicked=t,t){case Be.rename:r=this.renameDialog,r&&(r.name=e.name??"");break;case Be.changeType:r=this.changeTypeDialog,r&&r.setSelected(e.cover_type??Ne.SHUTTER);break;default:r=this.confirmDialog}null!=r&&(r.setContentKey(o),r.open())}handleClosedDialog(e){const t=this.selectedCover,o=this.btnClicked;if(this.selectedCover=void 0,this.btnClicked=void 0,e&&t&&void 0!==o)switch(o){case Be.add:this.addShutter(t);break;case Be.remove:this.removeCover(t);break;case Be.rename:this.rename(t);break;case Be.changeType:this.changeType(t)}}handleClosedRenameDialog(e,t){t&&this.selectedCover&&(e&&(this.selectedCover={...this.selectedCover,name:t}),this.handleClosedDialog(e))}handleClosedChangeTypeDialog(e,t){t&&this.selectedCover&&(e&&(this.selectedCover={...this.selectedCover,cover_type:t}),this.handleClosedDialog(e))}render(){let e;return e=void 0===this.datas?W`<div class="empty"><div class="spinner"></div></div>`:0===this.datas.length?W`
+        <div class="empty">
+          <ha-icon icon="mdi:window-shutter-open"></ha-icon>
+          <div>${this.t("panel.empty")}</div>
+        </div>`:W`<div class="list">${this.datas.map(e=>this.row(e))}</div>`,W`
+      ${e}
+      <rts-link-confirm-dialog .closed=${this.handleClosedDialog.bind(this)} .hass=${this.hass}></rts-link-confirm-dialog>
+      <rts-link-rename-dialog .closed=${this.handleClosedRenameDialog.bind(this)} .hass=${this.hass}></rts-link-rename-dialog>
+      <rts-link-change-type-dialog .closed=${this.handleClosedChangeTypeDialog.bind(this)} .hass=${this.hass}></rts-link-change-type-dialog>
+    `}static get styles(){return[Se,l`
+      .list {
+        border: 1px solid var(--rts-divider);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 8px 8px 12px;
+        border-bottom: 1px solid var(--rts-divider);
+      }
+
+      .row:last-child {
+        border-bottom: none;
+      }
+
+      .row:hover {
+        background-color: var(--secondary-background-color);
+      }
+
+      .identity {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+
+      .type-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background-color: var(--secondary-background-color);
+        color: var(--state-icon-color, var(--primary-color));
+      }
+
+      .row:hover .type-icon {
+        background-color: var(--card-background-color);
+      }
+
+      .text {
+        min-width: 0;
+      }
+
+      .name {
+        font-size: 16px;
+        color: var(--primary-text-color);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .secondary {
+        font-size: 13px;
+        color: var(--secondary-text-color);
+      }
+
+      .controls, .actions {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex-shrink: 0;
+      }
+
+      .controls {
+        padding-right: 8px;
+        border-right: 1px solid var(--rts-divider);
+      }
+
+      .empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 32px 16px;
+        color: var(--secondary-text-color);
+        --mdc-icon-size: 40px;
+      }
+
+      /* Narrow screens: actions go on a second line */
+      @media (max-width: 600px) {
+        .row {
+          flex-wrap: wrap;
+        }
+        .identity {
+          flex-basis: 100%;
+        }
+        .controls {
+          padding-right: 0;
+          border-right: none;
+        }
+        .actions {
+          margin-left: auto;
+          gap: 0;
+        }
+      }
+    `]}};Ie([ge({attribute:!1})],qe.prototype,"hass",void 0),Ie([ge({type:Boolean})],qe.prototype,"disabled",void 0),Ie([ge({attribute:!1})],qe.prototype,"removeCover",void 0),Ie([ge({attribute:!1})],qe.prototype,"addShutter",void 0),Ie([ge({attribute:!1})],qe.prototype,"rename",void 0),Ie([ge({attribute:!1})],qe.prototype,"changeType",void 0),Ie([ge({attribute:!1})],qe.prototype,"sendCommand",void 0),Ie([ge({attribute:!1})],qe.prototype,"datas",void 0),Ie([ye()],qe.prototype,"pendingId",void 0),Ie([be("rts-link-confirm-dialog")],qe.prototype,"confirmDialog",void 0),Ie([be("rts-link-rename-dialog")],qe.prototype,"renameDialog",void 0),Ie([be("rts-link-change-type-dialog")],qe.prototype,"changeTypeDialog",void 0),qe=Ie([ue("rts-link-covers-table")],qe);var Ve=function(e,t,o,r){var i,s=arguments.length,n=s<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,o):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,t,o,r);else for(var a=e.length-1;a>=0;a--)(i=e[a])&&(n=(s<3?i(n):s>3?i(t,o,n):i(t,o))||n);return s>3&&n&&Object.defineProperty(t,o,n),n};let Ke=class extends he{constructor(){super(...arguments),this.error=null,this.success=null,this.coversData=void 0,this.busy=null}t(e){return Ae(e,this.hass.language)}firstUpdated(e){this.updateCoversData()}openCreateDialog(e){if(e.preventDefault(),!this.nameInput.value.trim())return this.error=this.t("panel.error.emptyField"),void this.nameInput.focus();this.error=null,this.confirmDialog.setContentKey("create"),this.confirmDialog.open()}handleAdd(e){if(!e)return;const t=this.nameInput.value.trim(),o=this.typeSelect.value;t&&o?this.run("create",async()=>await(async(e,t,o)=>await e.callApi("POST","rts_link/cover/new",{name:t,type:o}))(this.hass,t,o)).then(e=>{e&&(this.nameInput.value="")}):this.error=this.t("panel.error.emptyField")}handleAddShutter(e){this.run("add",async()=>await(async(e,t)=>await e.callApi("POST","rts_link/cover/add",{id:t}))(this.hass,e.id))}handleDelete(e){this.run("remove",async()=>await(async(e,t)=>await e.callApi("POST","rts_link/cover/remove",{id:t}))(this.hass,e.id))}handleRename(e){this.run("rename",async()=>await(async(e,t,o)=>await e.callApi("POST","rts_link/cover/rename",{id:t,name:o}))(this.hass,e.id,e.name))}handleChangeType(e){this.run("changeType",async()=>await(async(e,t,o)=>await e.callApi("POST","rts_link/cover/type",{id:t,type:o}))(this.hass,e.id,e.cover_type??Ne.SHUTTER))}async handleCommand(e,t){this.error=null,this.success=null;try{await(async(e,t,o)=>{await e.callWS({type:"rts_link_send_command",rts_id:t,command:o})})(this.hass,e.id,t)}catch(t){this.error=`${this.t("panel.error.command")} (${e.name})`}}async run(e,t){this.error=null,this.success=null,this.busy=e;let o=!1;try{o=(await t()).success}catch(e){o=!1}return this.busy=null,o?(this.success=this.t(`panel.success.${e}`),this.updateCoversData()):this.error=this.t(`panel.error.${e}`),o}updateCoversData(){(async e=>await e.callWS({type:"rts_link_get_all_covers"}))(this.hass).then(e=>{this.coversData=[...e].sort((e,t)=>e.name.localeCompare(t.name))}).catch(e=>{this.coversData=[],this.error=e.message??this.t("error")})}requestUpdate(e,t){super.requestUpdate(e,t),"panel"===e&&this.updateCoversData()}render(){const e=null!==this.busy;return W`
+      <ha-card>
+        <div class="header">
+          <ha-icon icon="mdi:remote"></ha-icon>
+          <span>${this.t("panel.title")}</span>
+        </div>
+
+        ${this.error?W`<ha-alert alert-type="error" dismissable @alert-dismissed-clicked=${()=>{this.error=null}}>${this.error}</ha-alert>`:Y}
+        ${this.success?W`<ha-alert alert-type="success" dismissable @alert-dismissed-clicked=${()=>{this.success=null}}>${this.success}</ha-alert>`:Y}
+        ${this.busy?W`<div class="busy"><div class="spinner"></div>${this.t(`panel.busy.${this.busy}`)}</div>`:Y}
+
+        <div class="card-content">
+          <section>
+            <h3 class="section-title">${this.t("panel.newRemote")}</h3>
+            <form class="add-form" @submit=${this.openCreateDialog}>
+              <label class="field name">
+                ${this.t("panel.name")}
+                <input type="text" id="shutterName" autocomplete="off" .disabled=${e}
+                       placeholder=${this.t("panel.namePlaceholder")}>
+              </label>
+              <label class="field">
+                ${this.t("panel.type")}
+                <select id="coverType" .disabled=${e}>
+                  ${Me(Ne).map(e=>W`<option value=${e}>${this.t(`panel.coverType.${e}`)}</option>`)}
+                </select>
+              </label>
+              <ha-button class="create" .disabled=${e} @click=${this.openCreateDialog}>
+                <ha-icon slot="start" icon="mdi:plus"></ha-icon>
+                ${this.t("panel.create")}
+              </ha-button>
+            </form>
+          </section>
+
+          <section>
+            <h3 class="section-title">
+              ${this.t("panel.remotes")}${this.coversData?W` <span class="count">${this.coversData.length}</span>`:Y}
+            </h3>
+            <rts-link-covers-table
+              .hass=${this.hass}
+              .datas=${this.coversData}
+              .disabled=${e}
+              .removeCover=${this.handleDelete.bind(this)}
+              .addShutter=${this.handleAddShutter.bind(this)}
+              .rename=${this.handleRename.bind(this)}
+              .changeType=${this.handleChangeType.bind(this)}
+              .sendCommand=${this.handleCommand.bind(this)}
+            ></rts-link-covers-table>
+          </section>
+        </div>
       </ha-card>
-      <rts-link-confirm-dialog .closed="${this.handleAdd.bind(this)}" .hass="${this.hass}"></rts-link-confirm-dialog>
-    `}static get styles(){return h`
-      ${Rt}
-      #error {
-        background-color: red;
-        color: white;
-        padding: 3px;
-        margin-bottom: 10px;
+      <rts-link-confirm-dialog .closed=${this.handleAdd.bind(this)} .hass=${this.hass}></rts-link-confirm-dialog>
+    `}static get styles(){return[Se,l`
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 16px 8px;
+        font-size: 20px;
+        color: var(--primary-text-color);
       }
-      #success {
-        background-color: green;
-        color: white;
-        padding: 3px;
-        margin-bottom: 10px;
+
+      .header ha-icon {
+        color: var(--primary-color);
       }
-    `}};zt([me()],Xt.prototype,"hass",void 0),zt([me()],Xt.prototype,"panel",void 0),zt([me({type:Boolean,reflect:!0})],Xt.prototype,"narrow",void 0),zt([me()],Xt.prototype,"reload",void 0),zt([be()],Xt.prototype,"error",void 0),zt([be()],Xt.prototype,"success",void 0),zt([be()],Xt.prototype,"coversData",void 0),Xt=zt([pe("rts-link-covers-card")],Xt);var Yt=function(e,t,s,i){var r,n=arguments.length,o=n<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,s):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(e,t,s,i);else for(var a=e.length-1;a>=0;a--)(r=e[a])&&(o=(n<3?r(o):n>3?r(t,s,o):r(t,s))||o);return n>3&&o&&Object.defineProperty(t,s,o),o};let Wt=class extends ue{constructor(){super(...arguments),Object.defineProperty(this,"hass",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"panel",{enumerable:!0,configurable:!0,writable:!0,value:void 0}),Object.defineProperty(this,"narrow",{enumerable:!0,configurable:!0,writable:!0,value:void 0})}render(){return z`
+
+      ha-alert {
+        display: block;
+        margin: 0 16px 8px;
+      }
+
+      .busy {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 16px 8px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        background-color: var(--secondary-background-color);
+        color: var(--primary-text-color);
+      }
+
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 8px 16px 16px;
+      }
+
+      .add-form {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        gap: 12px;
+      }
+
+      .add-form .name {
+        flex: 1 1 200px;
+      }
+
+      .add-form input {
+        width: 100%;
+      }
+
+      .count {
+        display: inline-block;
+        min-width: 20px;
+        padding: 0 6px;
+        margin-left: 4px;
+        border-radius: 10px;
+        text-align: center;
+        background-color: var(--secondary-background-color);
+        color: var(--primary-text-color);
+      }
+
+      :host([narrow]) .add-form .create {
+        width: 100%;
+      }
+    `]}};Ve([ge({attribute:!1})],Ke.prototype,"hass",void 0),Ve([ge({attribute:!1})],Ke.prototype,"panel",void 0),Ve([ge({type:Boolean,reflect:!0})],Ke.prototype,"narrow",void 0),Ve([ge({attribute:!1})],Ke.prototype,"reload",void 0),Ve([ye()],Ke.prototype,"error",void 0),Ve([ye()],Ke.prototype,"success",void 0),Ve([ye()],Ke.prototype,"coversData",void 0),Ve([ye()],Ke.prototype,"busy",void 0),Ve([be("rts-link-confirm-dialog")],Ke.prototype,"confirmDialog",void 0),Ve([be("#shutterName")],Ke.prototype,"nameInput",void 0),Ve([be("#coverType")],Ke.prototype,"typeSelect",void 0),Ke=Ve([ue("rts-link-covers-card")],Ke);var Fe=function(e,t,o,r){var i,s=arguments.length,n=s<3?t:null===r?r=Object.getOwnPropertyDescriptor(t,o):r;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,t,o,r);else for(var a=e.length-1;a>=0;a--)(i=e[a])&&(n=(s<3?i(n):s>3?i(t,o,n):i(t,o))||n);return s>3&&n&&Object.defineProperty(t,o,n),n};let We=class extends he{render(){return W`
             <div class="header">
                 <div class="toolbar">
                     <ha-menu-button .hass=${this.hass} .narrow=${this.narrow}></ha-menu-button>
-                    <div class="main-title">
-                        Rts Link
-                    </div>
+                    <div class="main-title">RTS Link</div>
                     <div class="version">
                             v${"0.0.0"}
                     </div>
                 </div>
             </div>
             <div class="view">
-                <div>
                 ${this.getCards()}
-                </div>
             </div>
-        `}reload(){var e;const t=null===(e=this.shadowRoot)||void 0===e?void 0:e.querySelectorAll(".card");void 0!==t&&t.forEach(e=>{e.requestUpdate("panel")})}getCards(){return z`
+        `}reload(){const e=this.shadowRoot?.querySelectorAll(".card");void 0!==e&&e.forEach(e=>{e.requestUpdate("panel")})}getCards(){return W`
             <rts-link-covers-card class="card" .hass=${this.hass} .narrow=${this.narrow} .panel=${this.panel} .reload="${this.reload.bind(this)}"></rts-link-covers-card>
-        `}};Object.defineProperty(Wt,"styles",{enumerable:!0,configurable:!0,writable:!0,value:h`
+        `}};We.styles=l`
           .header {
             background-color: var(--app-header-background-color);
             color: var(--app-header-text-color, white);
@@ -270,15 +467,16 @@
             color: rgba(var(--rgb-text-primary-color), 0.9);
           }
           .view {
-            height: calc(100vh - 112px);
+            box-sizing: border-box;
+            min-height: calc(100vh - var(--header-height, 56px));
+            padding: 16px 8px 24px;
             display: flex;
             justify-content: center;
+            align-items: flex-start;
+            background-color: var(--primary-background-color);
           }
           .view > * {
-            width: 600px;
-            max-width: 600px;
+            width: 100%;
+            max-width: 760px;
           }
-          .view > *:last-child {
-            margin-bottom: 20px;
-          }
-    `}),Yt([me()],Wt.prototype,"hass",void 0),Yt([me()],Wt.prototype,"panel",void 0),Yt([me({type:Boolean,reflect:!0})],Wt.prototype,"narrow",void 0),Wt=Yt([pe("rts-link-panel")],Wt)})();
+    `,Fe([ge()],We.prototype,"hass",void 0),Fe([ge()],We.prototype,"panel",void 0),Fe([ge({type:Boolean,reflect:!0})],We.prototype,"narrow",void 0),We=Fe([ue("rts-link-panel")],We)})();

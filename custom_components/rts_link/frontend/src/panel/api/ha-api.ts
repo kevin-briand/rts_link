@@ -1,4 +1,4 @@
-import { type HomeAssistant } from 'custom-card-helpers'
+import { type HomeAssistant } from '../../types/hass'
 import { CoverDeviceEnum } from './enum/cover-device-enum';
 
 interface ApiResponse {

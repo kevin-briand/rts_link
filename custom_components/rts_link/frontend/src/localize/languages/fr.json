@@ -1,12 +1,12 @@
 {
   "panel": {
-    "title": "Contrôle des commandes",
+    "title": "Télécommandes RTS",
     "id": "id",
     "create": "Créer",
     "name": "Nom",
     "rename": "Renommer",
-    "changeType": "Changer type",
-    "add": "Ajouter volet",
+    "changeType": "Changer le type",
+    "add": "Appairer un volet supplémentaire",
     "delete": "Supprimer",
     "type": "Type",
     "dialog": {
@@ -35,7 +35,8 @@
       "rename": "Renommage de la télécommande échoué",
       "changeType": "Le changement de type à échoué",
       "remove": "Suppression de la télécommande échoué",
-      "emptyField": "Vous devez remplir le champ"
+      "emptyField": "Vous devez remplir le champ",
+      "command": "La commande n'a pas pu être envoyée"
     },
     "success": {
       "create": "Télécommande ajoutée",
@@ -47,6 +48,23 @@
     "coverType": {
       "shutter": "Volet",
       "button": "Bouton"
+    },
+    "newRemote": "Nouvelle télécommande",
+    "namePlaceholder": "Ex : Volet salon",
+    "remotes": "Télécommandes",
+    "empty": "Aucune télécommande pour l'instant. Crée la première ci-dessus.",
+    "control": {
+      "up": "Monter",
+      "my": "Stop / My",
+      "down": "Descendre",
+      "press": "Appuyer"
+    },
+    "busy": {
+      "create": "Envoi de la commande d'appairage…",
+      "add": "Envoi de la commande d'appairage…",
+      "remove": "Suppression…",
+      "rename": "Renommage…",
+      "changeType": "Changement de type…"
     }
   },
   "error": "Erreur"

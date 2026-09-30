@@ -1,12 +1,13 @@
 {
   "config": {
     "abort": {
-      "single_instance_allowed": "Only single instance is available"
+      "single_instance_allowed": "Only single instance is available",
+      "no_devices_found": "No USB device found"
     },
     "error": {
-      "cannot_connect": "Fail to connect"
+      "cannot_connect": "Fail to connect",
+      "unknown": "Unexpected error"
     },
-    "step": {
-    }
+    "step": {}
   }
 }

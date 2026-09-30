@@ -47,6 +47,11 @@ async def rename_cover(hass: HomeAssistant, rts_id: int, name: str):
     for cover in covers:
         if cover.get_id() == rts_id:
             cover._attr_name = name
+            if cover.hass is not None and cover.entity_id:
+                registry = entity_registry.async_get(hass)
+                if registry.async_get(cover.entity_id):
+                    registry.async_update_entity(cover.entity_id, original_name=name)
+                cover.async_write_ha_state()
 
 
 async def change_type_cover(hass: HomeAssistant, cover):

@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  homeassistant:
+    container_name: homeassistant-rts-link
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - ./custom_components:/config/custom_components
+      - ../../ha-config-test:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    privileged: true
+    network_mode: host
+
+

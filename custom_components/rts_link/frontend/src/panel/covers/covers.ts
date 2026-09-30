@@ -1,238 +1,258 @@
-import { css, type CSSResultGroup, html, LitElement, type PropertyDeclaration, type TemplateResult } from 'lit';
-import { type HomeAssistant, type Panel } from 'custom-card-helpers'
-import { customElement, property, state } from 'lit/decorators.js'
+import { css, type CSSResultGroup, html, LitElement, nothing, type PropertyValues, type TemplateResult } from 'lit'
+import { type HomeAssistant, type Panel } from '../../types/hass'
+import { customElement, property, query, state } from 'lit/decorators.js'
 import './table_covers'
 import '../dialog/confirm'
 import { localize } from '../../localize/localize'
 import { style } from '../../style'
-import { CoverDto } from '../websocket/dto/coverDto';
+import { type CoverDto } from '../websocket/dto/coverDto'
 import {
   rtsLinkAddShutter,
   rtsLinkChangeTypeCover,
   rtsLinkNewCover,
   rtsLinkRemoveCover,
-  rtsLinkRenameCover,
-} from '../api/ha-api';
-import { rtsLinkGetAllCovers } from '../websocket/ha-ws';
-import { RtsLinkCoversTable } from './table_covers';
-import { RtsLinkConfirmDialog } from '../dialog/confirm';
-import { CoverDeviceEnum } from '../api/enum/cover-device-enum';
-import { getEnumValues } from '../common';
+  rtsLinkRenameCover
+} from '../api/ha-api'
+import { type CoverCommand, rtsLinkGetAllCovers, rtsLinkSendCommand } from '../websocket/ha-ws'
+import { type RtsLinkConfirmDialog } from '../dialog/confirm'
+import { CoverDeviceEnum } from '../api/enum/cover-device-enum'
+import { getEnumValues } from '../common'
+
+interface ApiResponse { success: boolean }
 
 @customElement('rts-link-covers-card')
 export class RtsLinkCoversCard extends LitElement {
-  @property() public hass!: HomeAssistant
-  @property() public panel!: Panel
+  @property({ attribute: false }) public hass!: HomeAssistant
+  @property({ attribute: false }) public panel!: Panel
   @property({ type: Boolean, reflect: true }) public narrow!: boolean
-  @property() public reload!: () => void
+  @property({ attribute: false }) public reload!: () => void
   @state() private error: string | null = null
   @state() private success: string | null = null
-  @state() private coversData: CoverDto[] = []
+  @state() private coversData: CoverDto[] | undefined = undefined
+  @state() private busy: string | null = null
+  @query('rts-link-confirm-dialog') private confirmDialog!: RtsLinkConfirmDialog
+  @query('#shutterName') private nameInput!: HTMLInputElement
+  @query('#coverType') private typeSelect!: HTMLSelectElement
 
-  firstUpdated (): void {
+  private t (key: string): string {
+    return localize(key, this.hass.language)
+  }
+
+  protected firstUpdated (_changed: PropertyValues): void {
     this.updateCoversData()
-
-    const element = this.shadowRoot?.querySelector('#add')
-    if (element == null) {
-      return
-    }
-    element.addEventListener('click', (event) => {
-      const button = event.target as HTMLElement
-      button.blur()
-      const dialog: RtsLinkConfirmDialog | null = this.shadowRoot?.querySelector('rts-link-confirm-dialog') ?? null
-      if (dialog == null) {
-        return
-      }
-      dialog.setContentKey('create')
-      dialog.open()
-    })
   }
 
-  handleAdd (confirm: boolean): void {
+  private openCreateDialog (event: Event): void {
+    event.preventDefault()
+    if (!this.nameInput.value.trim()) {
+      this.error = this.t('panel.error.emptyField')
+      this.nameInput.focus()
+      return
+    }
+    this.error = null
+    this.confirmDialog.setContentKey('create')
+    void this.confirmDialog.open()
+  }
+
+  private handleAdd (confirm: boolean): void {
     if (!confirm) return
-    const form = this.shadowRoot?.querySelector('form')
-    if (form == null) return
-    const name = form.shutterName.value
-    const coverType = form.coverType.value
+    const name = this.nameInput.value.trim()
+    const coverType = this.typeSelect.value as CoverDeviceEnum
     if (!name || !coverType) {
-      this.error = localize('panel.error.emptyField', this.hass.language)
-      this.requestUpdate()
+      this.error = this.t('panel.error.emptyField')
       return
     }
-    this.disableButtons(true)
+    void this.run('create', async () => await rtsLinkNewCover(this.hass, name, coverType))
+      .then((ok) => { if (ok) this.nameInput.value = '' })
+  }
 
-    void rtsLinkNewCover(this.hass, name, coverType).then((data) => {
-      if (!data.success) {
-        this.error = localize("panel.error.create", this.hass.language)
-        return
-      }
+  private handleAddShutter (cover: CoverDto): void {
+    void this.run('add', async () => await rtsLinkAddShutter(this.hass, cover.id))
+  }
+
+  private handleDelete (cover: CoverDto): void {
+    void this.run('remove', async () => await rtsLinkRemoveCover(this.hass, cover.id))
+  }
+
+  private handleRename (cover: CoverDto): void {
+    void this.run('rename', async () => await rtsLinkRenameCover(this.hass, cover.id, cover.name))
+  }
+
+  private handleChangeType (cover: CoverDto): void {
+    void this.run('changeType', async () =>
+      await rtsLinkChangeTypeCover(this.hass, cover.id, cover.cover_type ?? CoverDeviceEnum.SHUTTER))
+  }
+
+  private async handleCommand (cover: CoverDto, command: CoverCommand): Promise<void> {
+    this.error = null
+    this.success = null
+    try {
+      await rtsLinkSendCommand(this.hass, cover.id, command)
+    } catch (e) {
+      this.error = `${this.t('panel.error.command')} (${cover.name})`
+    }
+  }
+
+  /** Runs an API call with busy indicator and success/error message. */
+  private async run (action: string, call: () => Promise<ApiResponse>): Promise<boolean> {
+    this.error = null
+    this.success = null
+    this.busy = action
+    let ok = false
+    try {
+      ok = (await call()).success
+    } catch (e) {
+      ok = false
+    }
+    this.busy = null
+    if (ok) {
+      this.success = this.t(`panel.success.${action}`)
       this.updateCoversData()
-      this.success = localize("panel.success.create", this.hass.language)
-    }).catch(() => this.error = localize("panel.error.create", this.hass.language))
-      .finally(() => this.disableButtons(false))
-  }
-
-  handleAddShutter (shutter: CoverDto): void {
-    if (!shutter) return
-    this.disableButtons(true)
-    void rtsLinkAddShutter(this.hass, shutter.id)
-      .then((data) => {
-        if (!data.success) {
-          this.error = localize("panel.error.add", this.hass.language)
-          return
-        }
-        this.updateCoversData();
-        this.success = localize("panel.success.add", this.hass.language)
-      })
-      .catch(() => {
-        this.error = localize("panel.error.add", this.hass.language)
-      })
-      .finally(() => this.disableButtons(false))
-  }
-
-  handleDelete (shutter: CoverDto): void {
-    this.disableButtons(true)
-    void rtsLinkRemoveCover(this.hass, shutter.id)
-      .then((data) => {
-        if (!data.success) {
-          this.error = localize("panel.error.remove", this.hass.language)
-          return
-        }
-        this.updateCoversData();
-        this.success = localize("panel.success.remove", this.hass.language)
-      })
-      .catch(() => this.error = localize("panel.error.remove", this.hass.language))
-      .finally(() => this.disableButtons(false))
-  }
-
-  handleRename (shutter: CoverDto): void {
-    this.disableButtons(true)
-    void rtsLinkRenameCover(this.hass, shutter.id, shutter.name)
-      .then((data) => {
-        if (!data.success) {
-          this.error = localize("panel.error.rename", this.hass.language)
-          return
-        }
-        this.updateCoversData();
-        this.success = localize("panel.success.rename", this.hass.language)
-      })
-      .catch(() => this.error = localize("panel.error.rename", this.hass.language))
-      .finally(() => this.disableButtons(false))
-  }
-
-  handleChangeType (shutter: CoverDto): void {
-    this.disableButtons(true)
-    void rtsLinkChangeTypeCover(this.hass, shutter.id, shutter.cover_type ?? CoverDeviceEnum.SHUTTER)
-      .then((data) => {
-        if (!data.success) {
-          this.error = localize("panel.error.changeType", this.hass.language)
-          return
-        }
-        this.updateCoversData();
-        this.success = localize("panel.success.changeType", this.hass.language)
-      })
-      .catch(() => this.error = localize("panel.error.changeType", this.hass.language))
-      .finally(() => this.disableButtons(false))
+    } else {
+      this.error = this.t(`panel.error.${action}`)
+    }
+    return ok
   }
 
   updateCoversData (): void {
     rtsLinkGetAllCovers(this.hass)
-      .then((r) => {
-        this.coversData = r
-        this.requestUpdate()
-        this.updateCoversTable()
+      .then((covers) => {
+        this.coversData = [...covers].sort((a, b) => a.name.localeCompare(b.name))
       })
-      .catch((e) => {
-        this.error = e.message
-        this.requestUpdate()
+      .catch((e: { message?: string }) => {
+        this.coversData = []
+        this.error = e.message ?? this.t('error')
       })
   }
 
-  updateCoversTable (): void {
-    const coversTable = this.shadowRoot?.querySelector('rts-link-covers-table') as RtsLinkCoversTable
-    if (coversTable === null) return
-    coversTable.disabled = true
-    coversTable.requestUpdate()
-    coversTable.datas = this.coversData
-    coversTable.disabled = false
-    coversTable.requestUpdate()
-  }
-
-  disableButtons (disabled: boolean): void {
-    if (disabled) {
-      this.error = null
-      this.success = null
-    }
-    const coversTable = this.shadowRoot?.querySelector('rts-link-covers-table') as RtsLinkCoversTable
-    if (coversTable === null) return
-    coversTable.disabled = disabled
-    coversTable.requestUpdate()
-    const buttonAdd = this.shadowRoot?.querySelector('#add') as HTMLButtonElement
-    if (buttonAdd === null) return
-    buttonAdd.disabled = disabled
-    this.requestUpdate()
-  }
-
-  requestUpdate (name?: PropertyKey, oldValue?: unknown, options?: PropertyDeclaration): void {
-    super.requestUpdate(name, oldValue, options)
+  requestUpdate (name?: PropertyKey, oldValue?: unknown): void {
+    super.requestUpdate(name, oldValue)
     if (name === 'panel') this.updateCoversData()
   }
 
   render (): TemplateResult<1> {
+    const disabled = this.busy !== null
     return html`
-      <ha-card .header="${localize("panel.title", this.hass.language)}">
-        ${this.error != null ? html`<div id="error">${this.error}</div>` : ''}
-        ${this.success != null ? html`<div id="success">${this.success}</div>` : ''}
+      <ha-card>
+        <div class="header">
+          <ha-icon icon="mdi:remote"></ha-icon>
+          <span>${this.t('panel.title')}</span>
+        </div>
+
+        ${this.error ? html`<ha-alert alert-type="error" dismissable @alert-dismissed-clicked=${() => { this.error = null }}>${this.error}</ha-alert>` : nothing}
+        ${this.success ? html`<ha-alert alert-type="success" dismissable @alert-dismissed-clicked=${() => { this.success = null }}>${this.success}</ha-alert>` : nothing}
+        ${this.busy ? html`<div class="busy"><div class="spinner"></div>${this.t(`panel.busy.${this.busy}`)}</div>` : nothing}
+
         <div class="card-content">
-          <div class="content">
-            <form>
-              <div class="flexRow">
-                <label for="shutterName">${localize('panel.name', this.hass.language)}</label>
-                <input type="text" name="shutterName" id="shutterName">
-              </div>
-              <div class="flexRow">
-                <label for="coverType">${localize('panel.type', this.hass.language)}</label>
-                <select name="coverType" id="coverType">
-                  ${getEnumValues(CoverDeviceEnum).map((v) => {
-                    return html`<option value="${v}">${localize(`panel.coverType.${v}`, this.hass.language)}</option>`
-                  })}
+          <section>
+            <h3 class="section-title">${this.t('panel.newRemote')}</h3>
+            <form class="add-form" @submit=${this.openCreateDialog}>
+              <label class="field name">
+                ${this.t('panel.name')}
+                <input type="text" id="shutterName" autocomplete="off" .disabled=${disabled}
+                       placeholder=${this.t('panel.namePlaceholder')}>
+              </label>
+              <label class="field">
+                ${this.t('panel.type')}
+                <select id="coverType" .disabled=${disabled}>
+                  ${getEnumValues(CoverDeviceEnum).map((v) => html`<option value=${v}>${this.t(`panel.coverType.${v}`)}</option>`)}
                 </select>
-              </div>
-              <div class="flexRow">
-                <ha-button class="button" id="add">
-                  ${localize('panel.create', this.hass.language)}
-                </ha-button>
-              </div>
+              </label>
+              <ha-button class="create" .disabled=${disabled} @click=${this.openCreateDialog}>
+                <ha-icon slot="start" icon="mdi:plus"></ha-icon>
+                ${this.t('panel.create')}
+              </ha-button>
             </form>
-            <rts-link-covers-table 
-              .hass="${this.hass}" 
-              .removeCover="${this.handleDelete.bind(this)}" 
-              .addShutter="${this.handleAddShutter.bind(this)}"
-              .rename="${this.handleRename.bind(this)}"
-              .changeType="${this.handleChangeType.bind(this)}"
+          </section>
+
+          <section>
+            <h3 class="section-title">
+              ${this.t('panel.remotes')}${this.coversData ? html` <span class="count">${this.coversData.length}</span>` : nothing}
+            </h3>
+            <rts-link-covers-table
+              .hass=${this.hass}
+              .datas=${this.coversData}
+              .disabled=${disabled}
+              .removeCover=${this.handleDelete.bind(this)}
+              .addShutter=${this.handleAddShutter.bind(this)}
+              .rename=${this.handleRename.bind(this)}
+              .changeType=${this.handleChangeType.bind(this)}
+              .sendCommand=${this.handleCommand.bind(this)}
             ></rts-link-covers-table>
-          </div>
+          </section>
         </div>
       </ha-card>
-      <rts-link-confirm-dialog .closed="${this.handleAdd.bind(this)}" .hass="${this.hass}"></rts-link-confirm-dialog>
+      <rts-link-confirm-dialog .closed=${this.handleAdd.bind(this)} .hass=${this.hass}></rts-link-confirm-dialog>
     `
   }
 
   static get styles (): CSSResultGroup {
-    return css`
-      ${style}
-      #error {
-        background-color: red;
-        color: white;
-        padding: 3px;
-        margin-bottom: 10px;
+    return [style, css`
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 16px 8px;
+        font-size: 20px;
+        color: var(--primary-text-color);
       }
-      #success {
-        background-color: green;
-        color: white;
-        padding: 3px;
-        margin-bottom: 10px;
+
+      .header ha-icon {
+        color: var(--primary-color);
       }
-    `
+
+      ha-alert {
+        display: block;
+        margin: 0 16px 8px;
+      }
+
+      .busy {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 16px 8px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        background-color: var(--secondary-background-color);
+        color: var(--primary-text-color);
+      }
+
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 8px 16px 16px;
+      }
+
+      .add-form {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        gap: 12px;
+      }
+
+      .add-form .name {
+        flex: 1 1 200px;
+      }
+
+      .add-form input {
+        width: 100%;
+      }
+
+      .count {
+        display: inline-block;
+        min-width: 20px;
+        padding: 0 6px;
+        margin-left: 4px;
+        border-radius: 10px;
+        text-align: center;
+        background-color: var(--secondary-background-color);
+        color: var(--primary-text-color);
+      }
+
+      :host([narrow]) .add-form .create {
+        width: 100%;
+      }
+    `]
   }
 }

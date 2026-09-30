@@ -1,5 +1,6 @@
+import asyncio
+import contextlib
 import logging
-from dataclasses import dataclass
 
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.storage import Store
@@ -10,12 +11,14 @@ from custom_components.rts_link.manage_cover import remove_cover, add_cover, ren
 _LOGGER = logging.getLogger(__name__)
 
 
-@dataclass
 class Cover:
     def __init__(self, id: int, name: str, cover_type: CoverType = CoverType.SHUTTER, **kwargs):
-        self.id = id
+        self.id = int(id)
         self.name = name
-        self.cover_type = cover_type
+        self.cover_type = CoverType(cover_type)
+
+    def as_dict(self) -> dict:
+        return {'id': self.id, 'name': self.name, 'cover_type': str(self.cover_type)}
 
 
 class RTSLinkApi:
@@ -33,18 +36,22 @@ class RTSLinkApi:
             _LOGGER.info(data)
             self.covers = [Cover(**cover) for cover in data]
 
-    async def start(self):
-        await self.ser.start_serial()
-        self.run_task = self.hass.loop.create_task(self.ser.run())
+    async def start(self) -> bool:
+        """Open the serial port and start the reconnection loop."""
+        connected = await self.ser.start_serial()
+        self.run_task = self.hass.async_create_background_task(self.ser.run(), 'rts_link_serial')
+        return connected
 
     async def stop(self):
         self.ser.stop()
         if self.run_task:
             self.run_task.cancel()
-            await self.run_task
+            with contextlib.suppress(asyncio.CancelledError):
+                await self.run_task
+            self.run_task = None
 
-    async def is_accessible(self):
-        return await self.ser.start_serial()
+    async def _save(self):
+        await self.store.async_save([cover.as_dict() for cover in self.covers])
 
     async def send_command(self, rts_id: int, command) -> bool:
         return await self.ser.write(F'{command.value};{rts_id}\n')
@@ -57,7 +64,7 @@ class RTSLinkApi:
         rts_id = int(data_id)
         await add_cover(self.hass, name, rts_id, cover_type)
         self.covers.append(Cover(rts_id, name, cover_type))
-        await self.store.async_save(self.covers)
+        await self._save()
         return True
 
     async def add_shutter_to_existing_cover(self, rts_id: int) -> bool:
@@ -73,7 +80,7 @@ class RTSLinkApi:
             if cover.id != rts_id:
                 covers.append(cover)
         self.covers = covers
-        await self.store.async_save(self.covers)
+        await self._save()
         await remove_cover(self.hass, rts_id)
         return True
 
@@ -84,7 +91,7 @@ class RTSLinkApi:
                 cover.name = name
             covers.append(cover)
         self.covers = covers
-        await self.store.async_save(self.covers)
+        await self._save()
         await rename_cover(self.hass, rts_id, name)
         return True
 
@@ -96,7 +103,7 @@ class RTSLinkApi:
                 await change_type_cover(self.hass, cover)
             covers.append(cover)
         self.covers = covers
-        await self.store.async_save(self.covers)
+        await self._save()
         return True
 
     def get_all_covers(self):

@@ -1,60 +1,42 @@
 import * as en from './languages/en.json'
 import * as fr from './languages/fr.json'
 
-import IntlMessageFormat from 'intl-messageformat'
-
-const LANGUAGES: any = {
+const LANGUAGES: Record<string, unknown> = {
   en,
   fr
 }
 
-export function localize (string: string, language: string, ...args: any[]): string {
+/**
+ * Translate a key ("panel.dialog.confirm") in the given language, English as fallback.
+ * {{other.key}} inside a translation is replaced by that translation,
+ * and optional args ('name', value, ...) replace {name} placeholders.
+ */
+export function localize (key: string, language: string, ...args: unknown[]): string {
   const lang = language.replace(/['"]+/g, '')
 
-  let translated: string | undefined = findTranslation(string, lang)
+  let translated = findTranslation(key, lang)
   if (translated === undefined) return ''
 
-  // replace keys in the translated message
-  const iKeys = translated.match(/{{.*?}}/g)
-  if (iKeys) {
-    iKeys.forEach((key) => {
-      key = key.replace(/{{|}}/g, '')
-      const result = findTranslation(key, lang)
-      if (result) {
-        translated = translated?.replace(key, result)
-      }
-    })
-    translated = translated.replace(/{{|}}/g, '')
-  }
+  // nested translations: {{panel.dialog.step.add}}
+  translated = translated.replace(/{{(.*?)}}/g, (_match, nestedKey: string) => findTranslation(nestedKey, lang) ?? '')
 
-  if (args.length === 0) return translated
-
-    type arg = Record<string, any>
-    const argObject: arg = {}
-    for (let i = 0; i < args.length; i += 2) {
-      let key = args[i]
-      key = key.replace(/^{([^}]+)?}$/, '$1')
-      argObject[key] = args[i + 1]
-    }
-
-    try {
-      const message = new IntlMessageFormat(translated, language)
-      return message.format(argObject) as string
-    } catch (err) {
-      return `Translation ${String(err)}`
-    }
-}
-
-function findTranslation (key: string, language: string) {
-  let translated = undefined
-  try {
-    translated = key.split('.').reduce((o, i) => o[i], LANGUAGES[language])
-  } catch (e) {
-    try {
-      translated = key.split('.').reduce((o, i) => o[i], LANGUAGES.en)
-    } catch (e) {
-      console.error("translation not found : " + key);
-    }
+  // placeholders: localize('key', 'fr', 'name', 'Salon') replaces {name}
+  for (let i = 0; i + 1 < args.length; i += 2) {
+    const name = String(args[i]).replace(/^{|}$/g, '')
+    translated = translated.split(`{${name}}`).join(String(args[i + 1]))
   }
   return translated
+}
+
+function findTranslation (key: string, language: string): string | undefined {
+  const lookup = (lang: string): unknown =>
+    key.split('.').reduce<unknown>((node, part) =>
+      (node !== null && typeof node === 'object') ? (node as Record<string, unknown>)[part] : undefined, LANGUAGES[lang])
+
+  const value = lookup(language) ?? lookup('en')
+  if (typeof value !== 'string') {
+    console.error(`translation not found : ${key}`)
+    return undefined
+  }
+  return value
 }

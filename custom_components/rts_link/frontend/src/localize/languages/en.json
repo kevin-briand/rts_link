@@ -1,12 +1,12 @@
 {
   "panel": {
-    "title": "Manage covers",
+    "title": "RTS remotes",
     "id": "id",
     "create": "Create",
     "name": "Name",
     "rename": "Rename",
     "changeType": "Change type",
-    "add": "Add shutter",
+    "add": "Pair one more cover",
     "delete": "Delete",
     "type": "Type",
     "dialog": {
@@ -35,7 +35,8 @@
       "rename": "Fail to renaming cover",
       "changeType": "Type change failed",
       "remove": "Fail to removing cover",
-      "emptyField": "You should provide the field"
+      "emptyField": "You should provide the field",
+      "command": "The command could not be sent"
     },
     "success": {
       "create": "Cover successfully added",
@@ -47,6 +48,23 @@
     "coverType": {
       "shutter": "Shutter",
       "button": "Button"
+    },
+    "newRemote": "New remote",
+    "namePlaceholder": "e.g. Living room shutter",
+    "remotes": "Remotes",
+    "empty": "No remote yet. Create the first one above.",
+    "control": {
+      "up": "Up",
+      "my": "Stop / My",
+      "down": "Down",
+      "press": "Press"
+    },
+    "busy": {
+      "create": "Sending pairing command…",
+      "add": "Sending pairing command…",
+      "remove": "Removing…",
+      "rename": "Renaming…",
+      "changeType": "Changing type…"
     }
   },
   "error": "Error"

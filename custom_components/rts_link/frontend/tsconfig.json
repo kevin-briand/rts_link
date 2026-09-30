@@ -1,17 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "es2020",
     "lib": [
-      "es2017",
+      "es2020",
       "dom",
       "dom.iterable"
     ],
     "experimentalDecorators": true,
-    "useDefineForClassFields": true,
-    "module": "esNext",
-    "moduleResolution": "node",
+    "useDefineForClassFields": false,
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
-     "outDir": "./dist/",
+    "outDir": "./dist/",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -19,6 +19,10 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "rootDir": "./src"
+  },
+  "include": [
+    "src"
+  ]
 }

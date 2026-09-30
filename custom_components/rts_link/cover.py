@@ -38,34 +38,33 @@ class ShutterEntity(CoverEntity):
         self.hass = hass
         self.entity_id = f'cover.rts_link_{rts_id}'
         self._attr_device_class = CoverDeviceClass.SHUTTER
+        # RTS is one-way: the real state is unknown, keep every button available
+        self._attr_assumed_state = True
         self._attr_is_closed = None
-        self._attr_current_cover_position = 0
         self._attr_supported_features = CoverEntityFeature.OPEN | CoverEntityFeature.STOP | CoverEntityFeature.CLOSE
 
     async def async_open_cover(self, **kwargs):
         """Open the cover."""
         await self.move_cover(Command.UP)
-        self._attr_current_cover_position = 100
         self._attr_is_closed = False
         self.async_write_ha_state()
 
     async def async_close_cover(self, **kwargs):
         """Close cover."""
         await self.move_cover(Command.DOWN)
-        self._attr_current_cover_position = 0
         self._attr_is_closed = True
         self.async_write_ha_state()
 
     async def async_stop_cover(self, **kwargs):
         """Stop the cover."""
         await self.move_cover(Command.STOP)
-        self._attr_current_cover_position = 50
+        # Stopped somewhere (or "My" position): position unknown
         self._attr_is_closed = False
         self.async_write_ha_state()
 
     async def move_cover(self, command: Command):
-        rts_api = self.hass.data[DOMAIN][RTS_API]
-        if not await rts_api.send_command(self.id, command):
+        rts_api = self.hass.data.get(DOMAIN, {}).get(RTS_API)
+        if rts_api is None or not await rts_api.send_command(self.id, command):
             raise ShutterError()
 
     def get_id(self):

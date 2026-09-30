@@ -43,8 +43,8 @@ class BpEntity(ButtonEntity):
         await self.move_cover(Command.STOP)
 
     async def move_cover(self, command: Command):
-        rts_api = self.hass.data[DOMAIN][RTS_API]
-        if not await rts_api.send_command(self.id, command):
+        rts_api = self.hass.data.get(DOMAIN, {}).get(RTS_API)
+        if rts_api is None or not await rts_api.send_command(self.id, command):
             raise ButtonError()
 
     def get_id(self):

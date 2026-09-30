@@ -2,18 +2,17 @@
 from __future__ import annotations
 
 import logging
-from concurrent.futures import ThreadPoolExecutor
 from typing import Any
 
 import voluptuous as vol
-import serial
+import serial.tools.list_ports
 import asyncio
 
 from homeassistant import config_entries, exceptions
 from homeassistant.core import HomeAssistant
 
-from . import RTSLinkApi
 from .const import DOMAIN
+from .rts_serial import RTSSerial
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -24,17 +23,22 @@ async def validate_input(hass: HomeAssistant, data: dict) -> dict[str, Any]:
     Data has the keys from DATA_SCHEMA with values provided by the user.
     """
 
-    ser = RTSLinkApi(hass, data['USB'])
-    if not await ser.is_accessible():
-        raise CannotConnect()
+    ser = RTSSerial(data['USB'])
+    try:
+        if not await ser.start_serial():
+            raise CannotConnect()
+    finally:
+        # Release the port, async_setup_entry will open it again
+        ser.stop()
 
-    loop = asyncio.get_running_loop()
-    with ThreadPoolExecutor() as executor:
-        devices = await loop.run_in_executor(executor, serial.tools.list_ports.comports)
+    devices = await asyncio.get_running_loop().run_in_executor(None, serial.tools.list_ports.comports)
     for device in devices:
         if device.device == data['USB']:
             data['vid'] = device.vid
             data['pid'] = device.pid
+
+    if data.get('vid') is None or data.get('pid') is None:
+        raise CannotConnect()
 
     return {
         'vid': data['vid'],
@@ -46,7 +50,6 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow"""
 
     VERSION = 1
-    CONNECTION_CLASS = config_entries.CONN_CLASS_LOCAL_POLL
 
     async def async_step_user(self, user_input=None):
         """Handle the initial step."""
@@ -55,15 +58,13 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         if self._async_current_entries():
             return self.async_abort(reason="single_instance_allowed")
 
-        loop = asyncio.get_running_loop()
-        with ThreadPoolExecutor() as executor:
-            devices = await loop.run_in_executor(executor, serial.tools.list_ports.comports)
+        devices = await asyncio.get_running_loop().run_in_executor(None, serial.tools.list_ports.comports)
         usb_found = []
         for device in devices:
             usb_found.append(device.device)
 
         if len(usb_found) == 0:
-            return 'No USB found'
+            return self.async_abort(reason="no_devices_found")
 
         errors = {}
         if user_input is not None:
